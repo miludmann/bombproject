@@ -52,11 +52,11 @@ public class threadServer extends Thread {
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 	    String inputLine, outputLine;
 	    
-        out.println("Socket initialised");
+        //out.println("Socket initialised");
 	    
 	    try {
 			while ((inputLine = in.readLine()) != null) {
-				System.out.println("SERVER: I received: " + inputLine);
+				System.out.println("SERVER: String received: " + inputLine);
 				
 				if (inputLine.equals("quit"))
 					break;

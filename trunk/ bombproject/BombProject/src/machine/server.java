@@ -20,11 +20,16 @@ public class server {
     	ts.start();
     	
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-		String outputLine = stdIn.readLine();
+		String outputLine;
 		
-	    if (outputLine != null) {
-	    	ts.sendMsgClient(outputLine);
+		do{
+			outputLine = stdIn.readLine();
+			
+		    if (outputLine != null)
+		    	ts.sendMsgClient(outputLine);
 	    }
+		while(!outputLine.equals("quit"));
+
     }
 
 	public void setPort(int port) {
