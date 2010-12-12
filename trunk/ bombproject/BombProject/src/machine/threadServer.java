@@ -10,6 +10,7 @@ import java.net.Socket;
 public class threadServer extends Thread {
 	
 	private server gameServ;
+	private PrintWriter out;
 	
 	public threadServer(server serv){
 		gameServ = serv;
@@ -33,7 +34,8 @@ public class threadServer extends Thread {
 	        System.exit(1);
 	    }
 	
-	    PrintWriter out = null;
+	    //PrintWriter out = null;
+	    out = null;
 	    BufferedReader in = null;
 	    
 		try {
@@ -50,7 +52,7 @@ public class threadServer extends Thread {
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 	    String inputLine, outputLine;
 	    
-        out.println("test");
+        out.println("Socket initialised");
 	    
 	    try {
 			while ((inputLine = in.readLine()) != null) {
@@ -58,7 +60,7 @@ public class threadServer extends Thread {
 				
 				if (inputLine.equals("quit"))
 					break;
-				
+				/*
 				outputLine = stdIn.readLine();
 			    if (outputLine != null) {
 			        out.println(outputLine);
@@ -66,6 +68,7 @@ public class threadServer extends Thread {
 				
 				if (outputLine.equals("quit"))
 					break;
+				*/
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -83,5 +86,17 @@ public class threadServer extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void setOut(PrintWriter out) {
+		this.out = out;
+	}
+
+	public PrintWriter getOut() {
+		return out;
+	}
+	
+	public void sendMsgClient(String s){
+		getOut().println(s);
 	}
 }

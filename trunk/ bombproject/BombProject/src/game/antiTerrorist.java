@@ -1,4 +1,4 @@
-package side;
+package game;
 
 
 public class antiTerrorist {
