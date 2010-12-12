@@ -1,10 +1,13 @@
 package machine;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class server {
 	
 	private int port;
+	private static threadServer ts;
 	
 	public server(int port){
 		setPort(port);
@@ -13,8 +16,15 @@ public class server {
     public static void main(String[] args) throws IOException {
     	
     	server gameServer = new server(15000);
-    	threadServer ts = new threadServer(gameServer);
+    	ts = new threadServer(gameServer);
     	ts.start();
+    	
+        BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+		String outputLine = stdIn.readLine();
+		
+	    if (outputLine != null) {
+	    	ts.sendMsgClient(outputLine);
+	    }
     }
 
 	public void setPort(int port) {

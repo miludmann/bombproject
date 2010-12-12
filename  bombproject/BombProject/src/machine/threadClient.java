@@ -44,6 +44,7 @@ public class threadClient extends Thread {
 				if (fromServer.equals("quit"))
 					break;
 				
+				/*
 			    fromUser = stdIn.readLine();
 			    if (fromUser != null) {
 			        out.println(fromUser);
@@ -51,6 +52,7 @@ public class threadClient extends Thread {
 			    
 				if (fromUser.equals("quit"))
 					break;
+				*/
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
