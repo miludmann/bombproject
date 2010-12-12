@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 public class threadClient extends Thread {
 	
 	private client gameClient;
+	private PrintWriter out;
 	
 	public threadClient(client cl){
 		gameClient = cl;
@@ -17,8 +18,8 @@ public class threadClient extends Thread {
 	
 	
 	public void run() {
-      Socket kkSocket = null;
-        PrintWriter out = null;
+		Socket kkSocket = null;
+        out = null;
         BufferedReader in = null;
 
         try {
@@ -39,7 +40,7 @@ public class threadClient extends Thread {
 
         try {
 			while ((fromServer = in.readLine()) != null) {
-			    System.out.println("CLIENT: I received: " + fromServer);
+			    System.out.println("CLIENT: String received: " + fromServer);
 			    
 				if (fromServer.equals("quit"))
 					break;
@@ -71,4 +72,19 @@ public class threadClient extends Thread {
 			e.printStackTrace();
 		}
 	}
+
+
+	public void setOut(PrintWriter out) {
+		this.out = out;
+	}
+
+	public PrintWriter getOut() {
+		return out;
+	}
+	
+	public void sendMsgServer(String s){
+		getOut().println(s);
+	}
+	
+	
 }
