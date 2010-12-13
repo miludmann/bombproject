@@ -1,50 +1,59 @@
 package game;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class gameWindow extends JFrame{
 	
 	private JPanel j1, j2, j3, j4, j5, j6;
+	private JLabel time, bombStatus;
 	
 	public gameWindow(){
 	
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setSize(1280, 800);
-	    this.setLocationRelativeTo(null);
+	    //this.setLocationRelativeTo(null); // Center the window
 	    this.setVisible(true);
 	    
 	    j1 = new JPanel();
 		j1.setBackground(Color.CYAN);
 	    j1.setBounds(0, 0, 800, 480);
-	    add (j1);
 	    
 	    j2 = new JPanel();
 		j2.setBackground(Color.GREEN);
 	    j2.setBounds(800, 0, 350, 350);
-	    add (j2);
 	    
 	    j3 = new JPanel();
 		j3.setBackground(Color.RED);
 	    j3.setBounds(1150, 0, 130, 350);
-	    add (j3);
 	    
 	    j4 = new JPanel();
 		j4.setBackground(Color.BLUE);
 	    j4.setBounds(800, 350, 480, 130);
-	    add (j4);
 	    
 	    j5 = new JPanel();
 		j5.setBackground(Color.DARK_GRAY);
 	    j5.setBounds(0, 480, 800, 320);
-	    add (j5);
 	    
 	    j6 = new JPanel();
 		j6.setBackground(Color.YELLOW);
 	    j6.setBounds(800, 480, 480, 320);
+	    
+	    add (j1);
+	    add (j2);
+	    add (j3);
+	    add (j4);
+	    add (j5);
 	    add (j6);
+	    
+	    j3.add ( time = new JLabel() );
+	    j2.add ( bombStatus = new JLabel() );
+
 	}
 
 	public void setJ1(JPanel j1) {
@@ -93,5 +102,21 @@ public class gameWindow extends JFrame{
 
 	public JPanel getJ6() {
 		return j6;
+	}
+
+	public void setTime(JLabel time) {
+		this.time = time;
+	}
+
+	public JLabel getTime() {
+		return time;
+	}
+
+	public void setBombStatus(JLabel bombStatus) {
+		this.bombStatus = bombStatus;
+	}
+
+	public JLabel getBombStatus() {
+		return bombStatus;
 	}
 }

@@ -2,9 +2,7 @@ package machine;
 
 import game.terrorist;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class server {
 	
@@ -53,5 +51,13 @@ public class server {
 
 	public terrorist getUnitT() {
 		return unitT;
+	}
+
+	public static void setTs(threadServer ts) {
+		server.ts = ts;
+	}
+
+	public static threadServer getTs() {
+		return ts;
 	}
 }
