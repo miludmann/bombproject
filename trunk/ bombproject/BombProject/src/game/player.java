@@ -5,20 +5,23 @@ import java.awt.event.KeyEvent;
 
 import machine.server;
 
-public class terrorist{
+public class player{
 	
 	private server serv;
 	private gameWindow gw;
 	private commandNXT cmdNXT;
+	private boolean isTerrorist;
 	private boolean bombPlanted;
+	private boolean bombDefused;
 	private long timeStart;
 	private long timeLeft;
 	
-	public terrorist(server s){
+	public player(server s, boolean isT){
 		setServ(s);
 		setGw(new gameWindow());
 		setCmdNXT(new commandNXT(this));
-		setHasPlacedBomb(false);
+		setTerrorist(true);
+		setBombPlanted(false);
 		setTimeStart(System.currentTimeMillis());
 		setTimeLeft(180);
 		
@@ -64,12 +67,20 @@ public class terrorist{
 		return gw;
 	}
 
-	public void setHasPlacedBomb(boolean hasPlacedBomb) {
-		this.bombPlanted = hasPlacedBomb;
+	public void setBombPlanted(boolean b) {
+		this.bombPlanted = b;
 	}
 
-	public boolean isHasPlacedBomb() {
+	public boolean isBombPlanted() {
 		return bombPlanted;
+	}
+	
+	public void setBombDefused(boolean b) {
+		this.bombDefused = b;
+	}
+
+	public boolean isBombDefused() {
+		return bombDefused;
 	}
 
 	public void setTimeLeft(int timeLeft) {
@@ -94,5 +105,13 @@ public class terrorist{
 
 	public long getTimeStart() {
 		return timeStart;
+	}
+
+	public void setTerrorist(boolean isTerrorist) {
+		this.isTerrorist = isTerrorist;
+	}
+
+	public boolean isTerrorist() {
+		return isTerrorist;
 	}
 }

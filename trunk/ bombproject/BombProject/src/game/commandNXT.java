@@ -2,10 +2,10 @@ package game;
 
 public class commandNXT {
 	
-	private static terrorist unitT;
+	private static player unitP;
 	
-	public commandNXT(terrorist t) {
-		setUnitT(t);
+	public commandNXT(player t) {
+		setUnit(t);
 	}
 
 	public static void commandReleasedTerrorist(char c){
@@ -32,11 +32,11 @@ public class commandNXT {
 			break;
 		case 'p':
 			// Plant Bomb
-			if ( ! getUnitT().isHasPlacedBomb() )
+			if ( ! getUnit().isBombPlanted() )
 			{
-				getUnitT().setHasPlacedBomb(true);
-				getUnitT().setTimeLeft(40);
-				getUnitT().setTimeStart(System.currentTimeMillis());
+				getUnit().setBombPlanted(true);
+				getUnit().setTimeLeft(40);
+				getUnit().setTimeStart(System.currentTimeMillis());
 				System.out.println("Plant the bomb !");
 			}
 			break;
@@ -48,12 +48,12 @@ public class commandNXT {
 
 	}
 
-	public void setUnitT(terrorist unitT) {
-		this.unitT = unitT;
+	public void setUnit(player p) {
+		unitP = p;
 	}
 
-	public static terrorist getUnitT() {
-		return unitT;
+	public static player getUnit() {
+		return unitP;
 	}
 
 }
