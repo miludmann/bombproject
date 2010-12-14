@@ -2,10 +2,10 @@ package game;
 
 public class threadTime extends Thread {
 
-	private terrorist unitT;
+	private player unit;
 	
-	public threadTime(terrorist t){
-		this.unitT = t;
+	public threadTime(player t){
+		this.unit = t;
 	}
 	
     public void run() {
@@ -16,20 +16,20 @@ public class threadTime extends Thread {
     	while ( true )
     	{
 			try {
-				Thread.currentThread().sleep(500);
+				Thread.currentThread().sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     		
-			remainingTime = unitT.getTimeLeft() - (System.currentTimeMillis() - unitT.getTimeStart())/1000;
-	   		unitT.getGw().getTime().setText(String.valueOf(remainingTime));
+			remainingTime = unit.getTimeLeft() - (System.currentTimeMillis() - unit.getTimeStart())/1000;
+	   		unit.getGw().getTime().setText(String.valueOf(remainingTime));
 	   		
-	   		isPlanted = unitT.isHasPlacedBomb();
+	   		isPlanted = unit.isBombPlanted();
 	   		if (isPlanted)
-	   			unitT.getGw().getBombStatus().setText("Bombe planted !");
+	   			unit.getGw().getBombStatus().setText("Bombe planted !");
 	   		else
-	   			unitT.getGw().getBombStatus().setText("Sector Clear");
+	   			unit.getGw().getBombStatus().setText("Sector Clear");
     	}
     }	
 }

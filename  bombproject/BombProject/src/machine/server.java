@@ -1,27 +1,30 @@
 package machine;
 
-import game.terrorist;
+import game.player;
 
 import java.io.IOException;
 
 public class server {
 	
 	private int port;
-	private static threadServer ts;
-	private static terrorist unitT;
+	private threadServer ts;
+	private player unit;
 	
 	public server(int port){
 		setPort(port);
-	}
-	
-    public static void main(String[] args) throws IOException {
-    	
-    	server gameServer = new server(15000);
-    	ts = new threadServer(gameServer);
+		
+    	ts = new threadServer(this);
     	ts.start();
     	
-    	unitT = new terrorist(gameServer);
+    	unit = new player(this, true);
+	}
+	
+    @SuppressWarnings("unused")
+	public static void main(String[] args) throws IOException {
     	
+    	server gameServer = new server(15000);
+
+
     	/*
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 		String outputLine;
@@ -45,19 +48,19 @@ public class server {
 		return port;
 	}
 
-	public void setUnitT(terrorist unitT) {
-		this.unitT = unitT;
+	public void setUnit(player p) {
+		unit = p;
 	}
 
-	public terrorist getUnitT() {
-		return unitT;
+	public player getUnit() {
+		return unit;
 	}
 
-	public static void setTs(threadServer ts) {
-		server.ts = ts;
+	public void setTs(threadServer t) {
+		ts = t;
 	}
 
-	public static threadServer getTs() {
+	public threadServer getTs() {
 		return ts;
 	}
 }
