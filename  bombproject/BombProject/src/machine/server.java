@@ -5,7 +5,9 @@ import game.terrorist;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,7 +17,7 @@ public class server {
 	private boolean isReady;
 	private boolean getStarted;
 	private int port;
-	private threadServer ts;
+	private static threadServer ts;
 	private player unit;
 	
 	public server(int port){
@@ -54,6 +56,8 @@ public class server {
     	}
     	while(!isReady);
     	
+    	unit = new terrorist(this);
+    	
 		initiateGame.setText("Start Game");
 		initiateGame.setEnabled(true);
 
@@ -77,16 +81,15 @@ public class server {
     	while(!getStarted);
 		
 		infoConnect.setVisible(false);
-    	unit = new terrorist(this);
+		
+		startGame();
 	}
 	
-    @SuppressWarnings("unused")
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws IOException {
     	
     	server gameServer = new server(15000);
 
-
-    	/*
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 		String outputLine;
 		
@@ -97,8 +100,6 @@ public class server {
 		    	ts.sendMsgClient(outputLine);
 	    }
 		while(!outputLine.equals("quit"));
-		*/
-
     }
 
 	public void setPort(int port) {
@@ -145,5 +146,11 @@ public class server {
 
 	public boolean isGetStarted() {
 		return getStarted;
+	}
+	
+    private void startGame() {
+    	// Here is the code where we initiate the game
+    	// Need to set all the server and client data
+    	
 	}
 }

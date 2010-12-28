@@ -7,6 +7,7 @@ public class player{
 	
 	private gameWindow gw;
 	private commandNXT cmdNXT;
+	private boolean movable;
 	private boolean isTerrorist;
 	private boolean bombPlanted;
 	private boolean bombDefused;
@@ -16,6 +17,7 @@ public class player{
 	public player(boolean isT){
 		setGw(new gameWindow());
 		setCmdNXT(new commandNXT(this));
+		setMovable(false);
 		setTerrorist(true);
 		setBombPlanted(false);
 		setTimeStart(System.currentTimeMillis());
@@ -101,5 +103,13 @@ public class player{
 
 	public boolean isTerrorist() {
 		return isTerrorist;
+	}
+
+	public void setMovable(boolean movable) {
+		this.movable = movable;
+	}
+
+	public boolean isMovable() {
+		return movable;
 	}
 }
