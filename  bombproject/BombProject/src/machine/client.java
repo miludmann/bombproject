@@ -1,5 +1,7 @@
 package machine;
 
+import game.antiTerrorist;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,10 +11,12 @@ public class client {
 	private int port;
 	private String host;
 	private static threadClient tc;
+	private antiTerrorist unit;
 	
 	public client(int port, String host){
 		setPort(port);
 		setHost(host);
+		
 	}
     public static void main(String[] args) throws IOException {
     	
@@ -20,9 +24,10 @@ public class client {
     	threadClient tc = new threadClient(gameClient);
     	tc.start();
     	
+    	
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 		String outputLine;
-		
+
 		do{
 			outputLine = stdIn.readLine();
 			
