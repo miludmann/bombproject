@@ -7,7 +7,7 @@ public class terrorist extends player {
 
 	
 	public terrorist(server s) {
-		super(s, true);
+		super(true);
 		setServ(s);
 		synchronyseClient();
 	}
