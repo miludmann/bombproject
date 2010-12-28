@@ -15,7 +15,7 @@ public class player{
 	private long timeStart;
 	private long timeLeft;
 	
-	public player(server s, boolean isT){
+	public player(boolean isT){
 		setGw(new gameWindow());
 		setCmdNXT(new commandNXT(this));
 		setTerrorist(true);
