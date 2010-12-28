@@ -7,7 +7,6 @@ import machine.server;
 
 public class player{
 	
-	private server serv;
 	private gameWindow gw;
 	private commandNXT cmdNXT;
 	private boolean isTerrorist;
@@ -17,7 +16,6 @@ public class player{
 	private long timeLeft;
 	
 	public player(server s, boolean isT){
-		setServ(s);
 		setGw(new gameWindow());
 		setCmdNXT(new commandNXT(this));
 		setTerrorist(true);
@@ -49,14 +47,6 @@ public class player{
 			}
 			});
 				
-	}
-	
-	public void setServ(server serv) {
-		this.serv = serv;
-	}
-
-	public server getServ() {
-		return serv;
 	}
 
 	public void setGw(gameWindow gw) {
