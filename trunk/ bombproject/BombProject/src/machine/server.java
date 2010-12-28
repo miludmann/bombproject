@@ -6,15 +6,30 @@ import java.io.IOException;
 
 public class server {
 	
+	private boolean isReady;
 	private int port;
 	private threadServer ts;
 	private player unit;
 	
 	public server(int port){
 		setPort(port);
+		setReady(false);
 		
     	ts = new threadServer(this);
     	ts.start();
+    	
+		System.out.println("Waiting for client");
+    	
+    	do
+    	{
+			try {
+				Thread.currentThread().sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	while(!isReady);
     	
     	unit = new player(this, true);
 	}
@@ -62,5 +77,13 @@ public class server {
 
 	public threadServer getTs() {
 		return ts;
+	}
+
+	public void setReady(boolean isReady) {
+		this.isReady = isReady;
+	}
+
+	public boolean isReady() {
+		return isReady;
 	}
 }
