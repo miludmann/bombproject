@@ -31,7 +31,7 @@ public class server {
 		JFrame infoConnect = new JFrame();
 		infoConnect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		infoConnect.setSize(200, 100);
-		infoConnect.setLocationRelativeTo(null); // Center the window
+		//infoConnect.setLocationRelativeTo(null); // Center the window
 		infoConnect.setVisible(true);
 		
 		JButton initiateGame = new JButton();

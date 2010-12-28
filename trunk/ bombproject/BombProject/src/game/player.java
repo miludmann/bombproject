@@ -3,8 +3,6 @@ package game;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import machine.server;
-
 public class player{
 	
 	private gameWindow gw;
@@ -21,7 +19,7 @@ public class player{
 		setTerrorist(true);
 		setBombPlanted(false);
 		setTimeStart(System.currentTimeMillis());
-		setTimeLeft(180);
+		setTimeLeft(0);
 		
 		
 		threadTime tt = new threadTime(this);
