@@ -1,6 +1,7 @@
 package machine;
 
 import game.antiTerrorist;
+import game.player;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,12 +12,14 @@ public class client {
 	private int port;
 	private String host;
 	private static threadClient tc;
-	private antiTerrorist unit;
+	private player unit;
+
 	
 	public client(int port, String host){
 		setPort(port);
 		setHost(host);
 		
+    	unit = new antiTerrorist(this);
 	}
     public static void main(String[] args) throws IOException {
     	
@@ -48,5 +51,11 @@ public class client {
 	}
 	public String getHost() {
 		return host;
+	}
+	public void setUnit(player unit) {
+		this.unit = unit;
+	}
+	public player getUnit() {
+		return unit;
 	}
 }
