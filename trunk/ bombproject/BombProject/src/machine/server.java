@@ -1,12 +1,19 @@
 package machine;
 
 import game.player;
+import game.terrorist;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 public class server {
 	
 	private boolean isReady;
+	private boolean getStarted;
 	private int port;
 	private threadServer ts;
 	private player unit;
@@ -14,16 +21,32 @@ public class server {
 	public server(int port){
 		setPort(port);
 		setReady(false);
+		setGetStarted(false);
 		
     	ts = new threadServer(this);
     	ts.start();
     	
 		System.out.println("Waiting for client");
-    	
+
+		JFrame infoConnect = new JFrame();
+		infoConnect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		infoConnect.setSize(200, 100);
+		infoConnect.setLocationRelativeTo(null); // Center the window
+		infoConnect.setVisible(true);
+		
+		JButton initiateGame = new JButton();
+		infoConnect.add(initiateGame);
+		initiateGame.setEnabled(false);
+
+		int progress = 0;
     	do
     	{
+    		
+    		initiateGame.setText(" Waiting for client " + repeat(". ", progress));
+    		progress=(progress>5)?0:progress+1;
+    		
 			try {
-				Thread.currentThread().sleep(100);
+				Thread.currentThread().sleep(500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -31,7 +54,31 @@ public class server {
     	}
     	while(!isReady);
     	
-    	unit = new player(this, true);
+		initiateGame.setText("Start Game");
+		initiateGame.setEnabled(true);
+
+		initiateGame.addActionListener(
+			    new ActionListener() {
+			        public void actionPerformed(ActionEvent e) {
+			        	setGetStarted(true);
+			        }
+			    }
+			);
+
+    	do
+    	{
+			try {
+				Thread.currentThread().sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	while(!getStarted);
+		
+		infoConnect.setVisible(false);
+		
+    	unit = new terrorist(this);
 	}
 	
     @SuppressWarnings("unused")
@@ -85,5 +132,19 @@ public class server {
 
 	public boolean isReady() {
 		return isReady;
+	}
+	
+	public static String repeat(String str, int times){
+		   StringBuilder ret = new StringBuilder();
+		   for(int i = 0;i < times;i++) ret.append(str);
+		   return ret.toString();
+		}
+
+	public void setGetStarted(boolean getStarted) {
+		this.getStarted = getStarted;
+	}
+
+	public boolean isGetStarted() {
+		return getStarted;
 	}
 }
