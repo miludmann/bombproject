@@ -77,7 +77,6 @@ public class server {
     	while(!getStarted);
 		
 		infoConnect.setVisible(false);
-		
     	unit = new terrorist(this);
 	}
 	
