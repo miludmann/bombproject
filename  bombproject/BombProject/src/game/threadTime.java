@@ -11,7 +11,7 @@ public class threadTime extends Thread {
     public void run() {
     	
     	long remainingTime;
-    	boolean isPlanted;
+    	boolean isPlanted, isDefused;
     	
     	while ( true )
     	{
@@ -23,11 +23,16 @@ public class threadTime extends Thread {
 			}
     		
 			remainingTime = unit.getTimeLeft() - (System.currentTimeMillis() - unit.getTimeStart())/1000;
-	   		unit.getGw().getTime().setText(String.valueOf(remainingTime));
+	   		unit.getGw().getTime().setText(String.valueOf(Math.max(remainingTime,0)));
 	   		
 	   		isPlanted = unit.isBombPlanted();
+	   		isDefused = unit.isBombDefused();
+	   		
 	   		if (isPlanted)
-	   			unit.getGw().getBombStatus().setText("Bombe planted !");
+	   			if(isDefused)
+		   			unit.getGw().getBombStatus().setText("Bombe Defused !");
+	   			else
+	   				unit.getGw().getBombStatus().setText("Bombe planted !");
 	   		else
 	   			unit.getGw().getBombStatus().setText("Sector Clear");
     	}
