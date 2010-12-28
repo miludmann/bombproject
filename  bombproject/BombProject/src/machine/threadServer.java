@@ -62,6 +62,7 @@ public class threadServer extends Thread {
 				
 				if (inputLine.equals("quit"))
 					break;
+				
 				/*
 				outputLine = stdIn.readLine();
 			    if (outputLine != null) {
