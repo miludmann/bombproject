@@ -17,7 +17,7 @@ public class gameWindow extends JFrame{
 	
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.setSize(1280, 800);
-	    //this.setLocationRelativeTo(null); // Center the window
+	    this.setLocationRelativeTo(null); // Center the window
 	    this.setVisible(true);
 	    
 	    j1 = new JPanel();
