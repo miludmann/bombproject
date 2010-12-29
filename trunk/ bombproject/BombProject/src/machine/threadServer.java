@@ -58,6 +58,11 @@ public class threadServer extends Thread {
 			while ((inputLine = in.readLine()) != null) {
 				System.out.println("SERVER: String received: " + inputLine);
 				
+				if(inputLine.equals("clientOK"))
+				{
+					gameServ.setReady(true);
+				}
+				
 				gameServ.getUnit().interpret(inputLine);
 				
 				if (inputLine.equals("quit"))
