@@ -147,6 +147,10 @@ public class player{
 			{
 				setTimeLeft(Long.parseLong(splitStr[1]));
 			}
+			if (splitStr[0].equalsIgnoreCase("bombPlanted"))
+			{
+				setBombPlanted(Boolean.parseBoolean(splitStr[1]));
+			}
 		}
 	}
 
