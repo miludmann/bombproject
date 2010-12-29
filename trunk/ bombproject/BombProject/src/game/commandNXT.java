@@ -56,12 +56,12 @@ public class commandNXT {
 			{
 				
 				getUnit().setBombDefused(true);
-				
+				getUnit().setTimeLeft(0);
+
 				System.out.println("Defuse the bomb !");
-				
-				System.out.println(getUnit().getCl().toString());
 
 				getUnit().getCl().getTc().sendMsgServer("bombDefused true");
+				getUnit().getCl().getTc().sendMsgServer("timeLeft 0");
 			}
 			break;
 			
