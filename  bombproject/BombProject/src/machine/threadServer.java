@@ -63,7 +63,7 @@ public class threadServer extends Thread {
 					gameServ.setReady(true);
 				}
 				
-				if ( null != inputLine )
+				if ( null != gameServ.getUnit() )
 					gameServ.getUnit().interpret(inputLine);
 				
 				if (inputLine.equals("quit"))
