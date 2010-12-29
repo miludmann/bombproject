@@ -2,6 +2,7 @@ package game;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.lang.reflect.Array;
 
 public class player{
 	
@@ -73,8 +74,8 @@ public class player{
 		return bombDefused;
 	}
 
-	public void setTimeLeft(int timeLeft) {
-		this.timeLeft = timeLeft;
+	public void setTimeLeft(long l) {
+		this.timeLeft = l;
 	}
 
 	public long getTimeLeft() {
@@ -114,12 +115,30 @@ public class player{
 	}
 	
 	public void interpret(String s) {
+		
+		String[] splitStr = s.split(" ");
+		int len = splitStr.length;
 
-		if(s.equals("defuse"))
-		{
-			setBombDefused(true);
-			setTimeLeft(0);
-			setTimeStart(System.currentTimeMillis());
+		switch (len){
+		
+		case 1:
+			if(s.equals("defuse"))
+			{
+				setBombDefused(true);
+				setTimeLeft(0);
+				setTimeStart(System.currentTimeMillis());
+			}
+			break;
+			
+		case 2:
+			if (splitStr[0].equalsIgnoreCase("timeStart"))
+			{
+				setTimeStart(Long.parseLong(splitStr[1]));
+			}
+			if (splitStr[0].equalsIgnoreCase("timeLeft"))
+			{
+				setTimeLeft(Long.parseLong(splitStr[1]));
+			}
 		}
 	}
 }
