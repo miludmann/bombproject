@@ -49,6 +49,21 @@ public class commandNXT {
 				getUnit().getServ().getTs().sendMsgClient("bombPlanted true");
 			}
 			break;
+			
+		case 'k':
+			// Defuse Bomb
+			if ( getUnit().isBombPlanted() && !getUnit().isBombDefused() && !getUnit().isTerrorist() )
+			{
+				
+				getUnit().setBombDefused(true);
+				
+				System.out.println("Defuse the bomb !");
+
+				getUnit().getServ().getTs().sendMsgClient("bombDefused true");
+			}
+			break;
+			
+			
 		}
 	}
 

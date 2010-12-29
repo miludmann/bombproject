@@ -151,6 +151,10 @@ public class player{
 			{
 				setBombPlanted(Boolean.parseBoolean(splitStr[1]));
 			}
+			if (splitStr[0].equalsIgnoreCase("bombDefused"))
+			{
+				setBombDefused(Boolean.parseBoolean(splitStr[1]));
+			}
 		}
 	}
 
