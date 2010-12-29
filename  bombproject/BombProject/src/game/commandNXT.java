@@ -58,6 +58,8 @@ public class commandNXT {
 				getUnit().setBombDefused(true);
 				
 				System.out.println("Defuse the bomb !");
+				
+				System.out.println(getUnit().getCl().toString());
 
 				getUnit().getCl().getTc().sendMsgServer("bombDefused true");
 			}
