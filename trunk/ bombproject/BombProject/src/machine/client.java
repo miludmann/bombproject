@@ -58,4 +58,10 @@ public class client {
 	public player getUnit() {
 		return unit;
 	}
+	public static void setTc(threadClient tc) {
+		client.tc = tc;
+	}
+	public static threadClient getTc() {
+		return tc;
+	}
 }
