@@ -24,7 +24,7 @@ public class client {
     public static void main(String[] args) throws IOException {
     	
     	client gameClient = new client(15000, "localhost");
-    	threadClient tc = new threadClient(gameClient);
+    	tc = new threadClient(gameClient);
     	tc.start();
     	
     	
