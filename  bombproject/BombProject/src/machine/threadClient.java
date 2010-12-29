@@ -44,7 +44,8 @@ public class threadClient extends Thread {
 			while ((fromServer = in.readLine()) != null) {
 			    System.out.println("CLIENT: String received: " + fromServer);
 			    
-				gameClient.getUnit().interpret(fromServer);
+				if ( null != gameClient.getUnit() )
+					gameClient.getUnit().interpret(fromServer);
 			    
 				if (fromServer.equals("quit"))
 					break;
