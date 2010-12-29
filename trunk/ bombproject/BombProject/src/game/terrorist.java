@@ -8,6 +8,7 @@ public class terrorist extends player {
 	
 	public terrorist(server s) {
 		super(true);
+		super.setServ(s);
 		setServ(s);
 	}
 	
