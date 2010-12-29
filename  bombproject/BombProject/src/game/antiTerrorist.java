@@ -7,6 +7,7 @@ public class antiTerrorist extends player {
 
 	public antiTerrorist(client c) {
 		super(false);
+		super.setCl(c);
 		setCl(c);
 	}
 

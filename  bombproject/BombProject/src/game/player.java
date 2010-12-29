@@ -2,10 +2,15 @@ package game;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.lang.reflect.Array;
+
+import machine.client;
+import machine.server;
 
 public class player{
 	
+	private server serv;
+	private client cl;
+
 	private gameWindow gw;
 	private commandNXT cmdNXT;
 	private boolean movable;
@@ -16,6 +21,9 @@ public class player{
 	private long timeLeft;
 	
 	public player(boolean isT){
+		setServ(null);
+		setCl(null);
+		
 		setGw(new gameWindow());
 		setCmdNXT(new commandNXT(this));
 		setMovable(false);
@@ -140,5 +148,21 @@ public class player{
 				setTimeLeft(Long.parseLong(splitStr[1]));
 			}
 		}
+	}
+
+	public void setServ(server serv) {
+		this.serv = serv;
+	}
+
+	public server getServ() {
+		return serv;
+	}
+
+	public void setCl(client cl) {
+		this.cl = cl;
+	}
+
+	public client getCl() {
+		return cl;
 	}
 }

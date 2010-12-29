@@ -36,13 +36,16 @@ public class commandNXT {
 			// Plant Bomb
 			if ( ! getUnit().isBombPlanted() )
 			{
+				long timeRef = System.currentTimeMillis();
+				
 				getUnit().setBombPlanted(true);
 				getUnit().setTimeLeft(40);
 				getUnit().setTimeStart(System.currentTimeMillis());
+				
+				
 				System.out.println("Plant the bomb !");
 			}
 			break;
-		
 		}
 	}
 
