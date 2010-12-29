@@ -112,4 +112,17 @@ public class player{
 	public boolean isMovable() {
 		return movable;
 	}
+	
+	public void interpret(String s) {
+		if(s.equals("clientOK"))
+		{
+			gameServ.setReady(true);
+		}
+		
+		if(s.equals("defuse"))
+		{
+			gameServ.getUnit().setBombDefused(true);
+			gameServ.getUnit().setTimeLeft(0);
+			gameServ.getUnit().setTimeStart(System.currentTimeMillis());
+	}
 }

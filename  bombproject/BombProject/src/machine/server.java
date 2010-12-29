@@ -149,8 +149,8 @@ public class server {
 	}
 	
     private void startGame() {
-    	// Here is the code where we initiate the game
-    	// Need to set all the server and client data
-    	
+    	long timeRef = System.currentTimeMillis();
+    	getUnit().setTimeStart(timeRef);
+    	getUnit().setTimeLeft(80);
 	}
 }

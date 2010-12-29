@@ -58,7 +58,7 @@ public class threadServer extends Thread {
 			while ((inputLine = in.readLine()) != null) {
 				System.out.println("SERVER: String received: " + inputLine);
 				
-				interpret(inputLine);
+				gameServ.getUnit().interpret(inputLine);
 				
 				if (inputLine.equals("quit"))
 					break;
@@ -89,20 +89,6 @@ public class threadServer extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	private void interpret(String inputLine) {
-		
-		if(inputLine.equals("clientOK"))
-		{
-			gameServ.setReady(true);
-		}
-		
-		if(inputLine.equals("defuse"))
-		{
-			gameServ.getUnit().setBombDefused(true);
-			gameServ.getUnit().setTimeLeft(0);
-			gameServ.getUnit().setTimeStart(System.currentTimeMillis());		}
 	}
 
 	public void setOut(PrintWriter out) {

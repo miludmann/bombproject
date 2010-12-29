@@ -3,9 +3,11 @@ package game;
 public class commandNXT {
 	
 	private static player unitP;
+	private boolean isTerrorist;
 	
 	public commandNXT(player t) {
 		setUnit(t);
+		setTerrorist(t.isTerrorist());
 	}
 
 	public static void commandReleasedTerrorist(char c){
@@ -54,6 +56,14 @@ public class commandNXT {
 
 	public static player getUnit() {
 		return unitP;
+	}
+
+	public void setTerrorist(boolean isTerrorist) {
+		this.isTerrorist = isTerrorist;
+	}
+
+	public boolean isTerrorist() {
+		return isTerrorist;
 	}
 
 }
