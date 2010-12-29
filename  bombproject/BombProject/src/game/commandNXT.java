@@ -34,7 +34,7 @@ public class commandNXT {
 			break;
 		case 'p':
 			// Plant Bomb
-			if ( ! getUnit().isBombPlanted() && getUnit().isTerrorist() )
+			if ( (!getUnit().isBombPlanted()) && getUnit().isTerrorist() )
 			{
 				long timeRef = System.currentTimeMillis();
 				
