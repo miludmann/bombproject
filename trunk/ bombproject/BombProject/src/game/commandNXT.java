@@ -46,7 +46,7 @@ public class commandNXT {
 
 				getUnit().getServ().getTs().sendMsgClient("timeStart " +timeRef);
 				getUnit().getServ().getTs().sendMsgClient("timeLeft 40");
-				
+				getUnit().getServ().getTs().sendMsgClient("bombPlanted true");
 			}
 			break;
 		}
