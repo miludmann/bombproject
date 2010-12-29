@@ -27,7 +27,7 @@ public class player{
 		setGw(new gameWindow());
 		setCmdNXT(new commandNXT(this));
 		setMovable(false);
-		setTerrorist(true);
+		setTerrorist(isT);
 		setBombPlanted(false);
 		setTimeStart(System.currentTimeMillis());
 		setTimeLeft(0);
