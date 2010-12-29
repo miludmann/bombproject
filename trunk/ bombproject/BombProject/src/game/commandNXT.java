@@ -34,16 +34,19 @@ public class commandNXT {
 			break;
 		case 'p':
 			// Plant Bomb
-			if ( ! getUnit().isBombPlanted() )
+			if ( ! getUnit().isBombPlanted() && getUnit().isTerrorist() )
 			{
 				long timeRef = System.currentTimeMillis();
 				
 				getUnit().setBombPlanted(true);
 				getUnit().setTimeLeft(40);
-				getUnit().setTimeStart(System.currentTimeMillis());
-				
+				getUnit().setTimeStart(timeRef);
 				
 				System.out.println("Plant the bomb !");
+
+				getUnit().getServ().getTs().sendMsgClient("timeStart " +timeRef);
+				getUnit().getServ().getTs().sendMsgClient("timeLeft 40");
+				
 			}
 			break;
 		}
