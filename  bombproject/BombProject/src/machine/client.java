@@ -61,7 +61,7 @@ public class client {
 	public static void setTc(threadClient tc) {
 		client.tc = tc;
 	}
-	public static threadClient getTc() {
+	public threadClient getTc() {
 		return tc;
 	}
 }
