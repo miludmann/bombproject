@@ -150,7 +150,12 @@ public class server {
 	
     private void startGame() {
     	long timeRef = System.currentTimeMillis();
+    	
     	getUnit().setTimeStart(timeRef);
     	getUnit().setTimeLeft(80);
+    	
+    	getTs().sendMsgClient("timeStart " + Long.toString(timeRef));
+    	getTs().sendMsgClient("timeLeft 80");
+    	
 	}
 }
