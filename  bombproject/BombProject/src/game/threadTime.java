@@ -28,11 +28,14 @@ public class threadTime extends Thread {
 	   		isPlanted = unit.isBombPlanted();
 	   		isDefused = unit.isBombDefused();
 	   		
+	   		
 	   		if (isPlanted)
+	   		{
 	   			if(isDefused)
 		   			unit.getGw().getBombStatus().setText("Bombe Defused !");
 	   			else
 	   				unit.getGw().getBombStatus().setText("Bombe planted !");
+	   		}
 	   		else
 	   			unit.getGw().getBombStatus().setText("Sector Clear");
     	}
