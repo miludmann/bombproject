@@ -23,6 +23,8 @@ public class client {
 	}
     public static void main(String[] args) throws IOException {
     	
+    	settings.init();
+    	
     	client gameClient = new client(settings.port, settings.IPServer);
     	tc = new threadClient(gameClient);
     	tc.start();
