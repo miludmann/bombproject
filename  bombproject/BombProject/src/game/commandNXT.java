@@ -1,5 +1,7 @@
 package game;
 
+import machine.settings;
+
 public class commandNXT {
 	
 	private static player unitP;
@@ -43,13 +45,13 @@ public class commandNXT {
 				long timeRef = System.currentTimeMillis();
 				
 				getUnit().setBombPlanted(true);
-				getUnit().setTimeLeft(40);
+				getUnit().setTimeLeft(settings.timeBomb);
 				getUnit().setTimeStart(timeRef);
 				
 				System.out.println("Plant the bomb !");
 
-				getUnit().getServ().getTs().sendMsgClient("timeStart " +timeRef);
-				getUnit().getServ().getTs().sendMsgClient("timeLeft 40");
+				getUnit().getServ().getTs().sendMsgClient("timeStart " + timeRef);
+				getUnit().getServ().getTs().sendMsgClient("timeLeft " + settings.timeBomb);
 				getUnit().getServ().getTs().sendMsgClient("bombPlanted true");
 			}
 			break;

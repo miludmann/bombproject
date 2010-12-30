@@ -13,7 +13,17 @@ public class threadTime extends Thread {
     	long remainingTime;
     	boolean isPlanted, isDefused;
     	
-    	while ( true )
+    	while ( ! unit.isMovable() )
+    	{
+			try {
+				Thread.currentThread().sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+    	while ( unit.isMovable() )
     	{
 			try {
 				Thread.currentThread().sleep(100);
@@ -23,8 +33,8 @@ public class threadTime extends Thread {
 			}
     		
 			remainingTime = unit.getTimeLeft() - (System.currentTimeMillis() - unit.getTimeStart())/1000;
-	   		
-			if(remainingTime <= 0)
+			
+			if ( remainingTime < 0 )
 				break;
 			
 			unit.getGw().getTime().setText(String.valueOf(remainingTime));
@@ -44,7 +54,6 @@ public class threadTime extends Thread {
 	   			unit.getGw().getBombStatus().setText("Sector Clear");
     	}
     	
-		unit.getGw().getTime().setText(String.valueOf(0));
-
+		unit.getGw().getBombStatus().setText("End of the Game");
     }	
 }

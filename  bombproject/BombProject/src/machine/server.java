@@ -88,7 +88,7 @@ public class server {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) throws IOException {
     	
-    	server gameServer = new server(15000);
+    	server gameServer = new server(settings.port);
 
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 		String outputLine;
@@ -152,11 +152,11 @@ public class server {
     	long timeRef = System.currentTimeMillis();
     	
     	getUnit().setTimeStart(timeRef);
-    	getUnit().setTimeLeft(80);
+    	getUnit().setTimeLeft(settings.timeGame);
     	getUnit().setMovable(true);
     	
     	getTs().sendMsgClient("timeStart " + Long.toString(timeRef));
-    	getTs().sendMsgClient("timeLeft 80");
+    	getTs().sendMsgClient("timeLeft " + Long.toString(settings.timeGame));
     	getTs().sendMsgClient("movable true");
     	
 	}
