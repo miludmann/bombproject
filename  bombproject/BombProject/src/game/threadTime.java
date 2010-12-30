@@ -33,11 +33,6 @@ public class threadTime extends Thread {
 			}
     		
 			remainingTime = unit.getTimeLeft() - (System.currentTimeMillis() - unit.getTimeStart())/1000;
-			
-			if ( remainingTime < 0 )
-				break;
-			
-			unit.getGw().getTime().setText(String.valueOf(remainingTime));
 	   		
 	   		isPlanted = unit.isBombPlanted();
 	   		isDefused = unit.isBombDefused();
@@ -52,8 +47,42 @@ public class threadTime extends Thread {
 	   		}
 	   		else
 	   			unit.getGw().getBombStatus().setText("Sector Clear");
+	   		
+			if ( remainingTime < 0 )
+			{
+				unit.setMovable(false);
+				break;
+			}
+			
+			unit.getGw().getTime().setText(String.valueOf(remainingTime));
     	}
     	
-		unit.getGw().getBombStatus().setText("End of the Game");
-    }	
+		
+		
+		// Wait one second....
+		// in case of delays
+		try {
+			Thread.currentThread().sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+   		isPlanted = unit.isBombPlanted();
+   		isDefused = unit.isBombDefused();
+   		
+   		
+   		if (isPlanted)
+   		{
+   			if(isDefused)
+	   			unit.getGw().getBombStatus().setText("Bombe Defused !");
+   			else
+   				unit.getGw().getBombStatus().setText("Bombe planted !");
+   		}
+   		else
+   			unit.getGw().getBombStatus().setText("Sector Clear");
+		
+		// And check the winner
+		// (... and display it !)
+	}	
 }

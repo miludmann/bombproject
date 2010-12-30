@@ -33,7 +33,7 @@ public class server {
 		JFrame infoConnect = new JFrame();
 		infoConnect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		infoConnect.setSize(200, 100);
-		//infoConnect.setLocationRelativeTo(null); // Center the window
+		infoConnect.setLocationRelativeTo(null); // Center the window
 		infoConnect.setVisible(true);
 		
 		JButton initiateGame = new JButton();
@@ -60,6 +60,7 @@ public class server {
     	
 		initiateGame.setText("Start Game");
 		initiateGame.setEnabled(true);
+		infoConnect.requestFocus();
 
 		initiateGame.addActionListener(
 			    new ActionListener() {
@@ -81,12 +82,15 @@ public class server {
     	while(!getStarted);
 		
 		infoConnect.setVisible(false);
+		getUnit().getGw().requestFocus();
 		
 		startGame();
 	}
 	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) throws IOException {
+		
+		settings.init();
     	
     	server gameServer = new server(settings.port);
 
