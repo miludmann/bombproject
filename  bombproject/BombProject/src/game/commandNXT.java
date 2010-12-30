@@ -15,6 +15,10 @@ public class commandNXT {
 	}
 	
 	public static void commandTypedTerrorist(char c){
+		
+		if(!getUnit().isMovable())
+			return;
+		
 		switch(c) {
 		case 'z':
 			// Go forwards

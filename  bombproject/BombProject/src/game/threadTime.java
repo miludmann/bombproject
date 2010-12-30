@@ -23,7 +23,11 @@ public class threadTime extends Thread {
 			}
     		
 			remainingTime = unit.getTimeLeft() - (System.currentTimeMillis() - unit.getTimeStart())/1000;
-	   		unit.getGw().getTime().setText(String.valueOf(Math.max(remainingTime,0)));
+	   		
+			if(remainingTime <= 0)
+				break;
+			
+			unit.getGw().getTime().setText(String.valueOf(remainingTime));
 	   		
 	   		isPlanted = unit.isBombPlanted();
 	   		isDefused = unit.isBombDefused();
@@ -39,5 +43,8 @@ public class threadTime extends Thread {
 	   		else
 	   			unit.getGw().getBombStatus().setText("Sector Clear");
     	}
+    	
+		unit.getGw().getTime().setText(String.valueOf(0));
+
     }	
 }
