@@ -153,9 +153,11 @@ public class server {
     	
     	getUnit().setTimeStart(timeRef);
     	getUnit().setTimeLeft(80);
+    	getUnit().setMovable(true);
     	
     	getTs().sendMsgClient("timeStart " + Long.toString(timeRef));
     	getTs().sendMsgClient("timeLeft 80");
+    	getTs().sendMsgClient("movable true");
     	
 	}
 }

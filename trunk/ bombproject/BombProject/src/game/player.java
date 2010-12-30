@@ -155,6 +155,10 @@ public class player{
 			{
 				setBombDefused(Boolean.parseBoolean(splitStr[1]));
 			}
+			if (splitStr[0].equalsIgnoreCase("movable"))
+			{
+				setMovable(Boolean.parseBoolean(splitStr[1]));
+			}
 		}
 	}
 
