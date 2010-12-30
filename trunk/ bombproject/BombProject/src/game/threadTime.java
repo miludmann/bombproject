@@ -71,18 +71,33 @@ public class threadTime extends Thread {
    		isPlanted = unit.isBombPlanted();
    		isDefused = unit.isBombDefused();
    		
-   		
-   		if (isPlanted)
-   		{
-   			if(isDefused)
-	   			unit.getGw().getBombStatus().setText("Bombe Defused !");
-   			else
-   				unit.getGw().getBombStatus().setText("Bombe planted !");
-   		}
-   		else
-   			unit.getGw().getBombStatus().setText("Sector Clear");
 		
 		// And check the winner
 		// (... and display it !)
+   		
+   		if (unit.isTerrorist())
+   		{
+   			if(isPlanted)
+   			{
+   				if(isDefused)
+   					unit.getGw().getBombStatus().setText("You lost: bomb defused");
+   				else
+   					unit.getGw().getBombStatus().setText("You won: target destroyed");
+   			}
+   			else
+   				unit.getGw().getBombStatus().setText("You lost: target safe");
+   		}
+   		else
+   		{
+   			if(isPlanted)
+   			{
+				if(isDefused)
+   					unit.getGw().getBombStatus().setText("You won: bomb defused");
+   				else
+   					unit.getGw().getBombStatus().setText("You lost: target destroyed");
+   			}
+   			else
+   				unit.getGw().getBombStatus().setText("You won: target safe");
+   		}   		
 	}	
 }
