@@ -31,7 +31,7 @@ public class server {
     	
     	
 		System.out.println("Waiting for client");
-		/*
+		
 		JFrame infoConnect = new JFrame();
 		infoConnect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		infoConnect.setSize(200, 100);
@@ -57,9 +57,9 @@ public class server {
 			}
     	}
     	while(!isReady);
-    	*/
+    	
     	unit = new terrorist(this);
-    	/*
+    	
 		initiateGame.setText("Start Game");
 		initiateGame.setEnabled(true);
 		infoConnect.requestFocus();
@@ -86,7 +86,7 @@ public class server {
 		infoConnect.setVisible(false);
 		
 		getUnit().getGw().requestFocus();
-		*/
+		
 		startGame();
 		
 	}

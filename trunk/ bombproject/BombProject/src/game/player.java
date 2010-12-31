@@ -38,19 +38,26 @@ public class player{
 		setTimeLeft(0);
 		
 		
-		JComponent vid;
+		JComponent vid = null;
 		
 		if(isTerrorist())
 		{
-		   vid = new ImageStreamComponent(settings.streamT);
-		   getGw().getJ1().add(vid);
+			if ( ! settings.streamT.equals("NULL") )
+			{
+				vid = new ImageStreamComponent(settings.streamT);
+				getGw().getJ1().add(vid);
+			}
 		}
 		else
 		{
-		    vid = new ImageStreamComponent(settings.streamAT);
-		    getGw().getJ1().add(vid);
+			if ( ! settings.streamAT.equals("NULL") )
+			{
+				vid = new ImageStreamComponent(settings.streamAT);
+				getGw().getJ1().add(vid);
+			}
 		}
-				
+		
+		
 		threadTime tt = new threadTime(this);
     	tt.start();
 		
