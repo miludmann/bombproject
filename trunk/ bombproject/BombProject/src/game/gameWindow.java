@@ -71,8 +71,9 @@ public class gameWindow extends JFrame{
 	    timeM2.setText("  ~");
 
 	    
+	    Font fStatus = new Font("Times New Roman", Font.BOLD, 14);
 	    bombStatus = new JLabel();
-
+	    bombStatus.setFont(fStatus);
 	    j2.add(bombStatus);
 	    
 	    
