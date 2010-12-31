@@ -10,6 +10,7 @@ public class terrorist extends player {
 		super(true);
 		super.setServ(s);
 		setServ(s);
+
 	}
 	
 	public void setServ(server serv) {

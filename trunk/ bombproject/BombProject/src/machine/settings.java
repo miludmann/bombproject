@@ -12,6 +12,9 @@ public class settings {
 	public static int port = 15000;
 	public static String IPServer = "localhost";
 	
+	public static String streamT = "192.168.2.101:8080";
+	public static String streamAT = null;
+		
 	public static long timeGame = 40;
 	public static long timeBomb = 10;
 	
@@ -32,6 +35,14 @@ public class settings {
 	        strLine = br.readLine();
 	        strSplit = strLine.split(" ");
 	        IPServer = strSplit[1];
+
+	        strLine = br.readLine();
+	        strSplit = strLine.split(" ");
+	        streamT = strSplit[1];
+
+	        strLine = br.readLine();
+	        strSplit = strLine.split(" ");
+	        streamAT = strSplit[1];
 
 	        strLine = br.readLine();
 	        strSplit = strLine.split(" ");

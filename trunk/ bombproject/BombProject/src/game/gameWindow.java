@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JFrame;
@@ -51,8 +50,17 @@ public class gameWindow extends JFrame{
 	    add (j5);
 	    add (j6);
 	    
-	    j3.add ( time = new JLabel() );
-	    j2.add ( bombStatus = new JLabel() );
+	    time = new JLabel();
+	    bombStatus = new JLabel();
+	    
+	    //time.setBounds(0, 0, 130, 50);
+	    //time.setBorder(BorderFactory.createLineBorder(Color.black));
+
+	    
+	    j3.add ( time );
+	    j2.add ( bombStatus );
+	    
+	    
 
 	}
 
