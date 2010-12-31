@@ -1,7 +1,10 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Font;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,7 +13,8 @@ import javax.swing.JPanel;
 public class gameWindow extends JFrame{
 	
 	private JPanel j1, j2, j3, j4, j5, j6;
-	private JLabel time, bombStatus;
+	private JLabel bombStatus;
+	private JLabel timeM1, timeM2, timeMS, timeS1, timeS2;
 	
 	public gameWindow(){
 	
@@ -50,15 +54,26 @@ public class gameWindow extends JFrame{
 	    add (j5);
 	    add (j6);
 	    
-	    time = new JLabel();
-	    bombStatus = new JLabel();
+	    j3.setLayout(new BoxLayout(j3, BoxLayout.Y_AXIS));
 	    
-	    //time.setBounds(0, 0, 130, 50);
-	    //time.setBorder(BorderFactory.createLineBorder(Color.black));
+	    j3.add(timeM1 = new JLabel());
+	    j3.add(timeM2 = new JLabel());
+	    j3.add(timeS1 = new JLabel());
+	    j3.add(timeS2 = new JLabel());
+	    
+	    Font fTest = new Font("Times New Roman", Font.PLAIN, 70);
+
+	    timeM1.setFont(fTest);
+	    timeM2.setFont(fTest);
+	    timeS1.setFont(fTest);
+	    timeS2.setFont(fTest);
+	    
+	    timeM2.setText("  ~");
 
 	    
-	    j3.add ( time );
-	    j2.add ( bombStatus );
+	    bombStatus = new JLabel();
+
+	    j2.add(bombStatus);
 	    
 	    
 
@@ -112,13 +127,6 @@ public class gameWindow extends JFrame{
 		return j6;
 	}
 
-	public void setTime(JLabel time) {
-		this.time = time;
-	}
-
-	public JLabel getTime() {
-		return time;
-	}
 
 	public void setBombStatus(JLabel bombStatus) {
 		this.bombStatus = bombStatus;
@@ -126,5 +134,45 @@ public class gameWindow extends JFrame{
 
 	public JLabel getBombStatus() {
 		return bombStatus;
+	}
+
+	public void setTimeM1(JLabel timeM1) {
+		this.timeM1 = timeM1;
+	}
+
+	public JLabel getTimeM1() {
+		return timeM1;
+	}
+
+	public void setTimeM2(JLabel timeM2) {
+		this.timeM2 = timeM2;
+	}
+
+	public JLabel getTimeM2() {
+		return timeM2;
+	}
+
+	public void setTimeMS(JLabel timeMS) {
+		this.timeMS = timeMS;
+	}
+
+	public JLabel getTimeMS() {
+		return timeMS;
+	}
+
+	public void setTimeS1(JLabel timeS1) {
+		this.timeS1 = timeS1;
+	}
+
+	public JLabel getTimeS1() {
+		return timeS1;
+	}
+
+	public void setTimeS2(JLabel timeS2) {
+		this.timeS2 = timeS2;
+	}
+
+	public JLabel getTimeS2() {
+		return timeS2;
 	}
 }

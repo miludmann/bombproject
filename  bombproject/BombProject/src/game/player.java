@@ -24,6 +24,8 @@ public class player{
 	private boolean bombDefused;
 	private long timeStart;
 	private long timeLeft;
+	private JComponent vid;
+
 	
 	public player(boolean isT){
 		setServ(null);
@@ -38,13 +40,14 @@ public class player{
 		setTimeLeft(0);
 		
 		
-		JComponent vid = null;
+		
+		// add the video on j1 on the window
 		
 		if(isTerrorist())
 		{
 			if ( ! settings.streamT.equals("NULL") )
 			{
-				vid = new ImageStreamComponent(settings.streamT);
+				setVid(new ImageStreamComponent(settings.streamT));
 				getGw().getJ1().add(vid);
 			}
 		}
@@ -52,11 +55,11 @@ public class player{
 		{
 			if ( ! settings.streamAT.equals("NULL") )
 			{
-				vid = new ImageStreamComponent(settings.streamAT);
+				setVid(new ImageStreamComponent(settings.streamAT));
 				getGw().getJ1().add(vid);
 			}
 		}
-		
+		//End of adding the video part
 		
 		threadTime tt = new threadTime(this);
     	tt.start();
@@ -201,5 +204,13 @@ public class player{
 
 	public client getCl() {
 		return cl;
+	}
+
+	public void setVid(JComponent vid) {
+		this.vid = vid;
+	}
+
+	public JComponent getVid() {
+		return vid;
 	}
 }
