@@ -3,8 +3,13 @@ package game;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JComponent;
+
+import videoStream.ImageStreamComponent;
+
 import machine.client;
 import machine.server;
+import machine.settings;
 
 public class player{
 	
@@ -33,6 +38,19 @@ public class player{
 		setTimeLeft(0);
 		
 		
+		JComponent vid;
+		
+		if(isTerrorist())
+		{
+		   vid = new ImageStreamComponent(settings.streamT);
+		   getGw().getJ1().add(vid);
+		}
+		else
+		{
+		    vid = new ImageStreamComponent(settings.streamAT);
+		    getGw().getJ1().add(vid);
+		}
+				
 		threadTime tt = new threadTime(this);
     	tt.start();
 		

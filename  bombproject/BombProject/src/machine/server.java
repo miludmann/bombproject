@@ -20,6 +20,7 @@ public class server {
 	private static threadServer ts;
 	private player unit;
 	
+	@SuppressWarnings("static-access")
 	public server(int port){
 		setPort(port);
 		setReady(false);
@@ -28,8 +29,9 @@ public class server {
     	ts = new threadServer(this);
     	ts.start();
     	
+    	
 		System.out.println("Waiting for client");
-
+		/*
 		JFrame infoConnect = new JFrame();
 		infoConnect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		infoConnect.setSize(200, 100);
@@ -55,9 +57,9 @@ public class server {
 			}
     	}
     	while(!isReady);
-    	
+    	*/
     	unit = new terrorist(this);
-    	
+    	/*
 		initiateGame.setText("Start Game");
 		initiateGame.setEnabled(true);
 		infoConnect.requestFocus();
@@ -82,9 +84,11 @@ public class server {
     	while(!getStarted);
 		
 		infoConnect.setVisible(false);
-		getUnit().getGw().requestFocus();
 		
+		getUnit().getGw().requestFocus();
+		*/
 		startGame();
+		
 	}
 	
 	@SuppressWarnings("unused")
