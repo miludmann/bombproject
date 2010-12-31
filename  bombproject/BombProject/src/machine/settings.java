@@ -12,8 +12,8 @@ public class settings {
 	public static int port = 15000;
 	public static String IPServer = "localhost";
 	
-	public static String streamT = "192.168.2.101:8080";
-	public static String streamAT = null;
+	public static String streamT = "NULL";
+	public static String streamAT = "NULL";
 		
 	public static long timeGame = 40;
 	public static long timeBomb = 10;
@@ -29,27 +29,27 @@ public class settings {
 	        String[] strSplit;
 
 	        strLine = br.readLine();
-	        strSplit = strLine.split(" ");
+	        strSplit = strLine.split("[ ]+");
 	        port = Integer.parseInt(strSplit[1]);
 	        
 	        strLine = br.readLine();
-	        strSplit = strLine.split(" ");
+	        strSplit = strLine.split("[ ]+");
 	        IPServer = strSplit[1];
 
 	        strLine = br.readLine();
-	        strSplit = strLine.split(" ");
+	        strSplit = strLine.split("[ ]+");
 	        streamT = strSplit[1];
 
 	        strLine = br.readLine();
-	        strSplit = strLine.split(" ");
+	        strSplit = strLine.split("[ ]+");
 	        streamAT = strSplit[1];
 
 	        strLine = br.readLine();
-	        strSplit = strLine.split(" ");
+	        strSplit = strLine.split("[ ]+");
 	        timeGame = Long.parseLong(strSplit[1]);
 
 	        strLine = br.readLine();
-	        strSplit = strLine.split(" ");
+	        strSplit = strLine.split("[ ]+");
 	        timeBomb = Long.parseLong(strSplit[1]);
 	        
 		    in.close();
