@@ -54,7 +54,9 @@ public class threadTime extends Thread {
 				break;
 			}
 			
-			unit.getGw().getTime().setText(String.valueOf(remainingTime));
+			unit.getGw().getTimeM1().setText("  " + String.valueOf(remainingTime/60));
+			unit.getGw().getTimeS1().setText("  " + String.valueOf((remainingTime%60)/10));
+			unit.getGw().getTimeS2().setText("  " + String.valueOf((remainingTime%60)%10));
     	}
     	
 		
@@ -80,24 +82,24 @@ public class threadTime extends Thread {
    			if(isPlanted)
    			{
    				if(isDefused)
-   					unit.getGw().getBombStatus().setText("You lost: bomb defused");
+   					unit.getGw().getBombStatus().setText("YOU LOT: Bomb defused");
    				else
-   					unit.getGw().getBombStatus().setText("You won: target destroyed");
+   					unit.getGw().getBombStatus().setText("YOU WON: Target destroyed");
    			}
    			else
-   				unit.getGw().getBombStatus().setText("You lost: target safe");
+   				unit.getGw().getBombStatus().setText("YOU LOST: Target safe");
    		}
    		else
    		{
    			if(isPlanted)
    			{
 				if(isDefused)
-   					unit.getGw().getBombStatus().setText("You won: bomb defused");
+   					unit.getGw().getBombStatus().setText("YOU WON: Bomb defused");
    				else
-   					unit.getGw().getBombStatus().setText("You lost: target destroyed");
+   					unit.getGw().getBombStatus().setText("YOU LOST: Target destroyed");
    			}
    			else
-   				unit.getGw().getBombStatus().setText("You won: target safe");
+   				unit.getGw().getBombStatus().setText("YOU WON: target safe");
    		}   		
 	}	
 }
