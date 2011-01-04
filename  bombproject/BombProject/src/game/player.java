@@ -5,6 +5,8 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JComponent;
 
+import GUI.gameWindow;
+
 import machine.client;
 import machine.server;
 import machine.settings;

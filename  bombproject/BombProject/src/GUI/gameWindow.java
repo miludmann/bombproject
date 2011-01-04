@@ -1,9 +1,10 @@
-package game;
+package GUI;
 
 import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,9 +19,8 @@ public class gameWindow extends JFrame{
 	public gameWindow(){
 	
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    this.setSize(1280, 800);
+	    this.setSize(1280, 810);
 	    this.setLocationRelativeTo(null); // Center the window
-	    this.setVisible(true);
 	    
 	    j1 = new JPanel();
 		//j1.setBackground(Color.CYAN);
@@ -29,7 +29,7 @@ public class gameWindow extends JFrame{
 	    j2 = new JPanel();
 		j2.setBackground(Color.GREEN);
 	    j2.setBounds(800, 0, 350, 350);
-	    
+
 	    j3 = new JPanel();
 		//j3.setBackground(Color.RED);
 	    j3.setBounds(1150, 0, 130, 350);
@@ -37,10 +37,20 @@ public class gameWindow extends JFrame{
 	    j4 = new JPanel();
 		j4.setBackground(Color.BLUE);
 	    j4.setBounds(800, 350, 480, 130);
-	    
+
+
 	    j5 = new JPanel();
 		j5.setBackground(Color.DARK_GRAY);
 	    j5.setBounds(0, 480, 800, 320);
+	    
+	    JLabel labelImg = new JLabel();
+	    ImageIcon img = new ImageIcon(System.getProperty("user.dir") + "/src/GUI/map.png");
+	    
+	    labelImg.setIcon(img);
+	    j5.add(labelImg);
+	    
+	    System.out.println( img.getIconHeight() + " " + img.getIconWidth() );
+	    
 	    
 	    j6 = new JPanel();
 		j6.setBackground(Color.YELLOW);
@@ -74,8 +84,7 @@ public class gameWindow extends JFrame{
 	    bombStatus.setFont(fStatus);
 	    j2.add(bombStatus);
 	    
-	    
-
+	    this.setVisible(true);
 	}
 
 	public void setJ1(JPanel j1) {
