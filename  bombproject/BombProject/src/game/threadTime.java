@@ -1,8 +1,11 @@
 package game;
 
+import java.awt.Color;
+
 public class threadTime extends Thread {
 
 	private player unit;
+	public static String[] seqTime = {"-", "\\", "|", "/"};
 	
 	public threadTime(player t){
 		this.unit = t;
@@ -10,6 +13,7 @@ public class threadTime extends Thread {
 	
     public void run() {
     	
+    	String strAnim;
     	long remainingTime;
     	boolean isPlanted, isDefused;
     	
@@ -26,7 +30,7 @@ public class threadTime extends Thread {
     	while ( unit.isMovable() )
     	{
 			try {
-				Thread.currentThread().sleep(100);
+				Thread.currentThread().sleep(250);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -40,23 +44,48 @@ public class threadTime extends Thread {
 	   		
 	   		if (isPlanted)
 	   		{
+	   			if ( unit.getGw().getColorFont().equals(Color.GREEN))
+	   				unit.getGw().changeColorFont(Color.RED);
+	   			
 	   			if(isDefused)
-		   			unit.getGw().getBombStatus().setText("Bombe Defused !");
+		   			unit.getGw().getBombStatus().setText("Bomb Defused !");
 	   			else
-	   				unit.getGw().getBombStatus().setText("Bombe planted !");
+	   				unit.getGw().getBombStatus().setText("Bomb planted !");
 	   		}
 	   		else
 	   			unit.getGw().getBombStatus().setText("Sector Clear");
 	   		
-			if ( remainingTime < 0 )
+	   		
+			
+			unit.getGw().getTimeM1().setText(" " + String.valueOf(remainingTime/60));
+			unit.getGw().getTimeS1().setText(" " + String.valueOf((remainingTime%60)/10));
+			unit.getGw().getTimeS2().setText(" " + String.valueOf((remainingTime%60)%10));
+			
+			if ( remainingTime < 1 )
 			{
 				unit.setMovable(false);
+				unit.getGw().getTimeS2().setText(" 0");
 				break;
 			}
 			
-			unit.getGw().getTimeM1().setText("  " + String.valueOf(remainingTime/60));
-			unit.getGw().getTimeS1().setText("  " + String.valueOf((remainingTime%60)/10));
-			unit.getGw().getTimeS2().setText("  " + String.valueOf((remainingTime%60)%10));
+			strAnim = unit.getGw().getTimeM2().getText();
+			
+			
+			if(!strAnim.equals(""))
+			{
+				for (int i=0; i<seqTime.length; i++)
+				{
+					if(strAnim.equals(" " + seqTime[i]))
+					{
+						unit.getGw().getTimeM2().setText(" " + seqTime[(i+1)%seqTime.length]);
+						break;
+					}
+				}
+			}
+			else
+			{
+				unit.getGw().getTimeM2().setText(" " + seqTime[0]);
+			}
     	}
     	
 		
@@ -82,7 +111,7 @@ public class threadTime extends Thread {
    			if(isPlanted)
    			{
    				if(isDefused)
-   					unit.getGw().getBombStatus().setText("YOU LOT: Bomb defused");
+   					unit.getGw().getBombStatus().setText("YOU LOST: Bomb defused");
    				else
    					unit.getGw().getBombStatus().setText("YOU WON: Target destroyed");
    			}

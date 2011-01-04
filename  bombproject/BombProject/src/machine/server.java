@@ -29,9 +29,12 @@ public class server {
     	ts = new threadServer(this);
     	ts.start();
     	
-    	
-		System.out.println("Waiting for client");
+    	unit = new terrorist(this);
+		startGame();
+
 		/*
+		System.out.println("Waiting for client");
+		
 		JFrame infoConnect = new JFrame();
 		infoConnect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		infoConnect.setSize(200, 100);
@@ -57,9 +60,9 @@ public class server {
 			}
     	}
     	while(!isReady);
-    	*/
+    	
     	unit = new terrorist(this);
-    	/*
+    	
 		initiateGame.setText("Start Game");
 		initiateGame.setEnabled(true);
 		infoConnect.requestFocus();
@@ -86,9 +89,9 @@ public class server {
 		infoConnect.setVisible(false);
 		
 		getUnit().getGw().requestFocus();
-		*/
-		startGame();
 		
+		startGame();
+		*/
 	}
 	
 	@SuppressWarnings("unused")

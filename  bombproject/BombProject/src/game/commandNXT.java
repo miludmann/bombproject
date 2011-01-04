@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Color;
+
 import machine.settings;
 
 public class commandNXT {
@@ -63,6 +65,7 @@ public class commandNXT {
 				
 				getUnit().setBombDefused(true);
 				getUnit().setTimeLeft(0);
+				getUnit().getGw().changeColorFont(Color.BLUE);
 
 				System.out.println("Defuse the bomb !");
 
