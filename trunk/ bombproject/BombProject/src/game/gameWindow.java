@@ -3,7 +3,6 @@ package game;
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,7 +23,7 @@ public class gameWindow extends JFrame{
 	    this.setVisible(true);
 	    
 	    j1 = new JPanel();
-		j1.setBackground(Color.CYAN);
+		//j1.setBackground(Color.CYAN);
 	    j1.setBounds(0, 0, 800, 480);
 	    
 	    j2 = new JPanel();
@@ -32,7 +31,7 @@ public class gameWindow extends JFrame{
 	    j2.setBounds(800, 0, 350, 350);
 	    
 	    j3 = new JPanel();
-		j3.setBackground(Color.RED);
+		//j3.setBackground(Color.RED);
 	    j3.setBounds(1150, 0, 130, 350);
 	    
 	    j4 = new JPanel();
@@ -61,15 +60,14 @@ public class gameWindow extends JFrame{
 	    j3.add(timeS1 = new JLabel());
 	    j3.add(timeS2 = new JLabel());
 	    
-	    Font fTest = new Font("Times New Roman", Font.PLAIN, 70);
+	    Font fTest = new Font("Consolas", Font.PLAIN, 72);
 
 	    timeM1.setFont(fTest);
 	    timeM2.setFont(fTest);
 	    timeS1.setFont(fTest);
 	    timeS2.setFont(fTest);
 	    
-	    timeM2.setText("  ~");
-
+	    changeColorFont(Color.GREEN);
 	    
 	    Font fStatus = new Font("Times New Roman", Font.BOLD, 14);
 	    bombStatus = new JLabel();
@@ -175,5 +173,16 @@ public class gameWindow extends JFrame{
 
 	public JLabel getTimeS2() {
 		return timeS2;
+	}
+	
+	public void changeColorFont(Color c) {
+		timeM1.setForeground(c);
+		timeM2.setForeground(c);
+		timeS1.setForeground(c);
+		timeS2.setForeground(c);
+	}
+	
+	public Color getColorFont() {
+		return timeM1.getForeground();
 	}
 }

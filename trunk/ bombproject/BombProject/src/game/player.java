@@ -1,15 +1,15 @@
 package game;
 
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JComponent;
 
-import videoStream.ImageStreamComponent;
-
 import machine.client;
 import machine.server;
 import machine.settings;
+import videoStream.ImageStreamComponent;
 
 public class player{
 	
@@ -182,6 +182,7 @@ public class player{
 			if (splitStr[0].equalsIgnoreCase("bombDefused"))
 			{
 				setBombDefused(Boolean.parseBoolean(splitStr[1]));
+				getGw().changeColorFont(Color.BLUE);
 			}
 			if (splitStr[0].equalsIgnoreCase("movable"))
 			{
