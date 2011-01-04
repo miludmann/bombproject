@@ -1,7 +1,5 @@
 package game;
 
-import java.awt.Color;
-
 import machine.settings;
 
 public class commandNXT {
@@ -25,57 +23,80 @@ public class commandNXT {
 		
 		switch(c) {
 		case 'z':
-			// Go forwards
-			System.out.println("Go forwards");
+			goForward();
 			break;
 		case 's':
-			// Go backwards
-			System.out.println("Go backwards");
+			goBackwards();
 			break;
 		case 'q':
-			// Go left
-			System.out.println("Go left");
+			goLeft();
 			break;
 		case 'd':
-			// Go right
-			System.out.println("Go right");
+			goRight();
 			break;
 		case 'p':
-			// Plant Bomb
-			if ( (!getUnit().isBombPlanted()) && getUnit().isTerrorist() )
-			{
-				long timeRef = System.currentTimeMillis();
-				
-				getUnit().setBombPlanted(true);
-				getUnit().setTimeLeft(settings.timeBomb);
-				getUnit().setTimeStart(timeRef);
-				
-				System.out.println("Plant the bomb !");
-
-				getUnit().getServ().getTs().sendMsgClient("timeStart " + timeRef);
-				getUnit().getServ().getTs().sendMsgClient("timeLeft " + settings.timeBomb);
-				getUnit().getServ().getTs().sendMsgClient("bombPlanted true");
-			}
+			plantBomb();
 			break;
-			
-		case 'k':
-			// Defuse Bomb
-			if ( getUnit().isBombPlanted() && !getUnit().isBombDefused() && !getUnit().isTerrorist() )
-			{
-				
-				getUnit().setBombDefused(true);
-				getUnit().setTimeLeft(0);
-				getUnit().getGw().changeColorFont(Color.BLUE);
-
-				System.out.println("Defuse the bomb !");
-
-				getUnit().getCl().getTc().sendMsgServer("bombDefused true");
-				getUnit().getCl().getTc().sendMsgServer("timeLeft 0");
-			}
+		case 'r':
+			sendDefuseColor("r");
 			break;
-			
-			
+		case 'b':
+			sendDefuseColor("b");
+			break;
+		case 'y':
+			sendDefuseColor("y");
+			break;
+		case 'g':
+			sendDefuseColor("g");
+			break;
+		
 		}
+	}
+
+	private static void sendDefuseColor(String string) {
+		// send the color to the Bomb
+		if ( ! getUnit().isTerrorist() && getUnit().isBombDefusable() )
+		{
+			System.out.println("Defuse color: " + string);
+		}
+	}
+
+	private static void plantBomb() {
+		// Plant Bomb
+		if ( (!getUnit().isBombPlanted()) && getUnit().isTerrorist() )
+		{
+			long timeRef = System.currentTimeMillis();
+			
+			getUnit().setBombPlanted(true);
+			getUnit().setTimeLeft(settings.timeBomb);
+			getUnit().setTimeStart(timeRef);
+			
+			System.out.println("Plant the bomb !");
+
+			getUnit().getServ().getTs().sendMsgClient("timeStart " + timeRef);
+			getUnit().getServ().getTs().sendMsgClient("timeLeft " + settings.timeBomb);
+			getUnit().getServ().getTs().sendMsgClient("bombPlanted true");
+		}		
+	}
+
+	private static void goRight() {
+		// Go right
+		System.out.println("Go right");		
+	}
+
+	private static void goLeft() {
+		// Go left
+		System.out.println("Go left");		
+	}
+
+	private static void goBackwards() {
+		// Go backwards
+		System.out.println("Go backwards");		
+	}
+
+	private static void goForward() {
+		// Go forwards
+		System.out.println("Go forwards");		
 	}
 
 	public static void commandPressedTerrorist(char c){

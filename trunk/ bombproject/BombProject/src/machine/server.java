@@ -29,69 +29,72 @@ public class server {
     	ts = new threadServer(this);
     	ts.start();
     	
-    	unit = new terrorist(this);
-		startGame();
-
-		/*
-		System.out.println("Waiting for client");
-		
-		JFrame infoConnect = new JFrame();
-		infoConnect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		infoConnect.setSize(200, 100);
-		infoConnect.setLocationRelativeTo(null); // Center the window
-		infoConnect.setVisible(true);
-		
-		JButton initiateGame = new JButton();
-		infoConnect.add(initiateGame);
-		initiateGame.setEnabled(false);
-
-		int progress = 0;
-    	do
+    	if ( true )
     	{
-    		
-    		initiateGame.setText(" Waiting for client " + repeat(". ", progress));
-    		progress=(progress>5)?0:progress+1;
-    		
-			try {
-				Thread.currentThread().sleep(500);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	    	unit = new terrorist(this);
     	}
-    	while(!isReady);
-    	
-    	unit = new terrorist(this);
-    	
-		initiateGame.setText("Start Game");
-		initiateGame.setEnabled(true);
-		infoConnect.requestFocus();
-
-		initiateGame.addActionListener(
-			    new ActionListener() {
-			        public void actionPerformed(ActionEvent e) {
-			        	setGetStarted(true);
-			        }
-			    }
-			);
-
-    	do
+    	else
     	{
-			try {
-				Thread.currentThread().sleep(500);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
+			System.out.println("Waiting for client");
+			
+			JFrame infoConnect = new JFrame();
+			infoConnect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			infoConnect.setSize(200, 100);
+			infoConnect.setLocationRelativeTo(null); // Center the window
+			infoConnect.setVisible(true);
+			
+			JButton initiateGame = new JButton();
+			infoConnect.add(initiateGame);
+			initiateGame.setEnabled(false);
+	
+			int progress = 0;
+	    	do
+	    	{
+	    		
+	    		initiateGame.setText(" Waiting for client " + repeat(". ", progress));
+	    		progress=(progress>5)?0:progress+1;
+	    		
+				try {
+					Thread.currentThread().sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    	}
+	    	while(!isReady);
+	    	
+	    	unit = new terrorist(this);
+	    	
+			initiateGame.setText("Start Game");
+			initiateGame.setEnabled(true);
+			infoConnect.requestFocus();
+	
+			initiateGame.addActionListener(
+				    new ActionListener() {
+				        public void actionPerformed(ActionEvent e) {
+				        	setGetStarted(true);
+				        }
+				    }
+				);
+	
+	    	do
+	    	{
+				try {
+					Thread.currentThread().sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    	}
+	    	while(!getStarted);
+			
+			infoConnect.setVisible(false);
+			
+			getUnit().getGw().requestFocus();
     	}
-    	while(!getStarted);
-		
-		infoConnect.setVisible(false);
-		
-		getUnit().getGw().requestFocus();
 		
 		startGame();
-		*/
 	}
 	
 	@SuppressWarnings("unused")
@@ -160,13 +163,11 @@ public class server {
 	}
 	
     private void startGame() {
-    	long timeRef = System.currentTimeMillis();
     	
-    	getUnit().setTimeStart(timeRef);
+    	getUnit().setTimeStart(System.currentTimeMillis());
     	getUnit().setTimeLeft(settings.timeGame);
     	getUnit().setMovable(true);
     	
-    	getTs().sendMsgClient("timeStart " + Long.toString(timeRef));
     	getTs().sendMsgClient("timeLeft " + Long.toString(settings.timeGame));
     	getTs().sendMsgClient("movable true");
     	

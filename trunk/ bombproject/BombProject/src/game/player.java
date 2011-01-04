@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -22,6 +21,7 @@ public class player{
 	private boolean isTerrorist;
 	private boolean bombPlanted;
 	private boolean bombDefused;
+	private boolean bombDefusable;
 	private long timeStart;
 	private long timeLeft;
 	private JComponent vid;
@@ -79,7 +79,6 @@ public class player{
 
 			public void keyPressed(KeyEvent e) {
 			// TODO: Do something for the keyPressed event
-				//serv.getTs().sendMsgClient(String.valueOf(e.getKeyChar()));
 				commandNXT.commandPressedTerrorist(e.getKeyChar());
 			}
 			});
@@ -174,15 +173,11 @@ public class player{
 			if (splitStr[0].equalsIgnoreCase("timeLeft"))
 			{
 				setTimeLeft(Long.parseLong(splitStr[1]));
+				setTimeStart(System.currentTimeMillis());
 			}
 			if (splitStr[0].equalsIgnoreCase("bombPlanted"))
 			{
 				setBombPlanted(Boolean.parseBoolean(splitStr[1]));
-			}
-			if (splitStr[0].equalsIgnoreCase("bombDefused"))
-			{
-				setBombDefused(Boolean.parseBoolean(splitStr[1]));
-				getGw().changeColorFont(Color.BLUE);
 			}
 			if (splitStr[0].equalsIgnoreCase("movable"))
 			{
@@ -214,4 +209,13 @@ public class player{
 	public JComponent getVid() {
 		return vid;
 	}
+
+	public void setBombDefusable(boolean bombDefusable) {
+		this.bombDefusable = bombDefusable;
+	}
+
+	public boolean isBombDefusable() {
+		return bombDefusable;
+	}
+
 }
