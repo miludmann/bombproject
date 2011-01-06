@@ -2,10 +2,11 @@ package game;
 
 import java.awt.Color;
 
+import GUI.timePanel;
+
 public class threadTime extends Thread {
 
 	private player unit;
-	public static String[] seqTime = {"-", "\\", "|", "/"};
 	
 	public threadTime(player t){
 		this.unit = t;
@@ -13,7 +14,6 @@ public class threadTime extends Thread {
 	
     public void run() {
     	
-    	String strAnim;
     	long remainingTime;
     	boolean isPlanted, isDefused;
     	
@@ -41,7 +41,7 @@ public class threadTime extends Thread {
 	   		isPlanted = unit.isBombPlanted();
 	   		isDefused = unit.isBombDefused();
 	   		
-	   		
+	   		/*
 	   		if (isPlanted)
 	   		{
 	   			if ( unit.getGw().getColorFont().equals(Color.GREEN))
@@ -54,41 +54,18 @@ public class threadTime extends Thread {
 	   		}
 	   		else
 	   			unit.getGw().getBombStatus().setText("Sector Clear");
+	   		*/
+
+	   		((timePanel)unit.getGw().getRGUI().getTimePanel()).refreshTime(remainingTime);
 	   		
-	   		
-			
-			unit.getGw().getTimeM1().setText(" " + String.valueOf(remainingTime/60));
-			unit.getGw().getTimeS1().setText(" " + String.valueOf((remainingTime%60)/10));
-			unit.getGw().getTimeS2().setText(" " + String.valueOf((remainingTime%60)%10));
-			
 			if ( remainingTime < 1 )
 			{
 				unit.setMovable(false);
-				unit.getGw().getTimeS2().setText(" 0");
+		   		((timePanel)unit.getGw().getRGUI().getTimePanel()).refreshTime(0);
 				break;
-			}
-			
-			strAnim = unit.getGw().getTimeM2().getText();
-			
-			
-			if(!strAnim.equals(""))
-			{
-				for (int i=0; i<seqTime.length; i++)
-				{
-					if(strAnim.equals(" " + seqTime[i]))
-					{
-						unit.getGw().getTimeM2().setText(" " + seqTime[(i+1)%seqTime.length]);
-						break;
-					}
-				}
-			}
-			else
-			{
-				unit.getGw().getTimeM2().setText(" " + seqTime[0]);
 			}
     	}
     	
-		
 		
 		// Wait one second....
 		// in case of delays
