@@ -29,7 +29,6 @@ public class gameWindow extends JFrame{
 	    
 	    this.setLayout(defaultLayout);
 	    
-	    
 	    this.setLGUI(new leftGUI());
 	    this.add(getLGUI());
 	    
