@@ -63,7 +63,7 @@ public class player{
 		}
 		//End of adding the video part
 		
-		threadTime tt = new threadTime(this);
+		threadGame tt = new threadGame(this);
     	tt.start();
 		
 

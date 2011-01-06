@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
@@ -10,7 +11,7 @@ import javax.swing.JPanel;
 public class timePanel extends JPanel{
 	
 	private JLabel timeDisplayed;
-	private String[] seq = {" ", ":"};
+	private String[] seq = {":", " "};
 	private int seqBuffer;
 	
 	public timePanel(){
@@ -24,8 +25,12 @@ public class timePanel extends JPanel{
 		
 	    Font fCount = new Font("Consolas", Font.PLAIN, 72);
 
+	    getTimeDisplayed().setAlignmentX(CENTER_ALIGNMENT);
+	    
 	    getTimeDisplayed().setFont(fCount);
 	    getTimeDisplayed().setText("0:00");
+	    changeColor(Color.GREEN);
+	    
 	}
 
 	public void setTimeDisplayed(JLabel timeDisplayed) {
@@ -65,6 +70,8 @@ public class timePanel extends JPanel{
 		return seqBuffer;
 	}
 	
-	
+	public void changeColor(Color c){
+		getTimeDisplayed().setForeground(c);
+	}
 
 }

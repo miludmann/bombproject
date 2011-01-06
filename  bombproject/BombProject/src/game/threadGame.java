@@ -1,18 +1,17 @@
 package game;
 
-import java.awt.Color;
+import GUI.*;
 
-import GUI.timePanel;
-
-public class threadTime extends Thread {
+public class threadGame extends Thread {
 
 	private player unit;
 	
-	public threadTime(player t){
+	public threadGame(player t){
 		this.unit = t;
 	}
 	
-    public void run() {
+    @SuppressWarnings("static-access")
+	public void run() {
     	
     	long remainingTime;
     	boolean isPlanted, isDefused;
@@ -27,10 +26,12 @@ public class threadTime extends Thread {
 			}
     	}
     	
+   		((infoPanel) unit.getGw().getRGUI().getInfoPanel()).showSide(unit.isTerrorist());
+    	
     	while ( unit.isMovable() )
     	{
 			try {
-				Thread.currentThread().sleep(250);
+				Thread.currentThread().sleep(500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -41,21 +42,10 @@ public class threadTime extends Thread {
 	   		isPlanted = unit.isBombPlanted();
 	   		isDefused = unit.isBombDefused();
 	   		
-	   		/*
-	   		if (isPlanted)
-	   		{
-	   			if ( unit.getGw().getColorFont().equals(Color.GREEN))
-	   				unit.getGw().changeColorFont(Color.RED);
-	   			
-	   			if(isDefused)
-		   			unit.getGw().getBombStatus().setText("Bomb Defused !");
-	   			else
-	   				unit.getGw().getBombStatus().setText("Bomb planted !");
-	   		}
-	   		else
-	   			unit.getGw().getBombStatus().setText("Sector Clear");
-	   		*/
-
+	   		// Update status
+	   		((infoPanel) unit.getGw().getRGUI().getInfoPanel()).changeInfos(false, unit.isTerrorist(), unit.isBombPlanted(), unit.isBombDefused());
+	   		
+	   		// Update remaining time
 	   		((timePanel)unit.getGw().getRGUI().getTimePanel()).refreshTime(remainingTime);
 	   		
 			if ( remainingTime < 1 )
@@ -83,29 +73,7 @@ public class threadTime extends Thread {
 		// And check the winner
 		// (... and display it !)
    		
-   		if (unit.isTerrorist())
-   		{
-   			if(isPlanted)
-   			{
-   				if(isDefused)
-   					unit.getGw().getBombStatus().setText("YOU LOST: Bomb defused");
-   				else
-   					unit.getGw().getBombStatus().setText("YOU WON: Target destroyed");
-   			}
-   			else
-   				unit.getGw().getBombStatus().setText("YOU LOST: Target safe");
-   		}
-   		else
-   		{
-   			if(isPlanted)
-   			{
-				if(isDefused)
-   					unit.getGw().getBombStatus().setText("YOU WON: Bomb defused");
-   				else
-   					unit.getGw().getBombStatus().setText("YOU LOST: Target destroyed");
-   			}
-   			else
-   				unit.getGw().getBombStatus().setText("YOU WON: target safe");
-   		}   		
+   		((infoPanel) unit.getGw().getRGUI().getInfoPanel()).changeInfos(true, unit.isTerrorist(), unit.isBombPlanted(), unit.isBombDefused());
+
 	}	
 }

@@ -15,8 +15,8 @@ public class settings {
 	public static String streamT = "NULL";
 	public static String streamAT = "NULL";
 		
-	public static long timeGame = 40;
-	public static long timeBomb = 10;
+	public static long timeGame = 10;
+	public static long timeBomb = 5;
 	
 	public static void init() throws UnsupportedEncodingException, FileNotFoundException
 	{
