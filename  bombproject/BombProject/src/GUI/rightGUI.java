@@ -1,7 +1,5 @@
 package GUI;
 
-import java.awt.Color;
-
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
