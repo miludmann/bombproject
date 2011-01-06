@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.BoxLayout;
@@ -16,12 +17,26 @@ public class gameWindow extends JFrame{
 	private JLabel bombStatus;
 	private JLabel timeM1, timeM2, timeMS, timeS1, timeS2;
 	
+	private leftGUI lGUI;
+	private rightGUI rGUI;
+	
 	public gameWindow(){
 	
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    this.setSize(1280, 810);
-	    this.setLocationRelativeTo(null); // Center the window
 	    
+	    //BoxLayout defaultLayout = new BoxLayout(this, BoxLayout.X_AXIS);
+	    FlowLayout defaultLayout = new FlowLayout(FlowLayout.CENTER, 0, 0);
+	    
+	    this.setLayout(defaultLayout);
+	    
+	    this.setLGUI(new leftGUI());
+	    this.add(getLGUI());
+	    
+	    this.setRGUI(new rightGUI());
+	    this.add(this.getRGUI());
+	    
+	    
+	    /*
 	    j1 = new JPanel();
 		//j1.setBackground(Color.CYAN);
 	    j1.setBounds(0, 0, 800, 480);
@@ -40,6 +55,7 @@ public class gameWindow extends JFrame{
 
 
 	    j5 = new JPanel();
+	    j5.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
 		j5.setBackground(Color.DARK_GRAY);
 	    j5.setBounds(0, 480, 800, 320);
 	    
@@ -49,12 +65,12 @@ public class gameWindow extends JFrame{
 	    labelImg.setIcon(img);
 	    j5.add(labelImg);
 	    
-	    System.out.println( img.getIconHeight() + " " + img.getIconWidth() );
 	    
 	    
 	    j6 = new JPanel();
 		j6.setBackground(Color.YELLOW);
 	    j6.setBounds(800, 480, 480, 320);
+	    
 	    
 	    add (j1);
 	    add (j2);
@@ -62,6 +78,7 @@ public class gameWindow extends JFrame{
 	    add (j4);
 	    add (j5);
 	    add (j6);
+	    
 	    
 	    j3.setLayout(new BoxLayout(j3, BoxLayout.Y_AXIS));
 	    
@@ -83,7 +100,11 @@ public class gameWindow extends JFrame{
 	    bombStatus = new JLabel();
 	    bombStatus.setFont(fStatus);
 	    j2.add(bombStatus);
+	   	
+	   	*/
 	    
+	    this.pack();
+	    this.setLocationRelativeTo(null); // Center the window
 	    this.setVisible(true);
 	}
 
@@ -144,45 +165,6 @@ public class gameWindow extends JFrame{
 		return bombStatus;
 	}
 
-	public void setTimeM1(JLabel timeM1) {
-		this.timeM1 = timeM1;
-	}
-
-	public JLabel getTimeM1() {
-		return timeM1;
-	}
-
-	public void setTimeM2(JLabel timeM2) {
-		this.timeM2 = timeM2;
-	}
-
-	public JLabel getTimeM2() {
-		return timeM2;
-	}
-
-	public void setTimeMS(JLabel timeMS) {
-		this.timeMS = timeMS;
-	}
-
-	public JLabel getTimeMS() {
-		return timeMS;
-	}
-
-	public void setTimeS1(JLabel timeS1) {
-		this.timeS1 = timeS1;
-	}
-
-	public JLabel getTimeS1() {
-		return timeS1;
-	}
-
-	public void setTimeS2(JLabel timeS2) {
-		this.timeS2 = timeS2;
-	}
-
-	public JLabel getTimeS2() {
-		return timeS2;
-	}
 	
 	public void changeColorFont(Color c) {
 		timeM1.setForeground(c);
@@ -193,5 +175,21 @@ public class gameWindow extends JFrame{
 	
 	public Color getColorFont() {
 		return timeM1.getForeground();
+	}
+
+	public void setLGUI(leftGUI lGUI) {
+		this.lGUI = lGUI;
+	}
+
+	public leftGUI getLGUI() {
+		return lGUI;
+	}
+
+	public void setRGUI(rightGUI rGUI) {
+		this.rGUI = rGUI;
+	}
+
+	public rightGUI getRGUI() {
+		return rGUI;
 	}
 }

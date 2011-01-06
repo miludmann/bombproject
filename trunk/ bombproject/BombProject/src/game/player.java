@@ -50,7 +50,7 @@ public class player{
 			if ( ! settings.streamT.equals("NULL") )
 			{
 				setVid(new ImageStreamComponent(settings.streamT));
-				getGw().getJ1().add(vid);
+				getGw().getLGUI().getStreamPanel().add(vid);
 			}
 		}
 		else
@@ -58,7 +58,7 @@ public class player{
 			if ( ! settings.streamAT.equals("NULL") )
 			{
 				setVid(new ImageStreamComponent(settings.streamAT));
-				getGw().getJ1().add(vid);
+				getGw().getLGUI().getStreamPanel().add(vid);
 			}
 		}
 		//End of adding the video part
