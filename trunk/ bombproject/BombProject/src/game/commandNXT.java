@@ -75,6 +75,12 @@ public class commandNXT {
 		case 'p':
 			plantBomb();
 			break;
+		case 'l':
+			decreaseSpeed();
+			break;
+		case 'm':
+			increaseSpeed();
+			break;
 		case 'r':
 			sendDefuseColor("r");
 			break;
@@ -90,7 +96,20 @@ public class commandNXT {
 		
 		}
 	}
+	
+	private static void increaseSpeed(){
+		// increase speed
+		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "increaseSpeed"));
+		System.out.println("Increase Speed");	
+	}
 
+	private static void decreaseSpeed(){
+		// decrease speed
+		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "decreaseSpeed"));
+		System.out.println("Decrease Speed");	
+	}
+
+	
 	private static void sendDefuseColor(String string) {
 		// send the color to the Bomb
 		if ( ! getUnit().isTerrorist() && getUnit().isBombDefusable() )
