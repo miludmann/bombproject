@@ -54,8 +54,8 @@ public class MessageFrameworkTester implements MessageListenerInterface
 	
 	public MessageFrameworkTester()
 	{	
-		MessageFramwork.getInstance().addMessageListener(this);
-		MessageFramwork.getInstance().ConnectToNXT(m_info);
+		MessageFramework.getInstance().addMessageListener(this);
+		MessageFramework.getInstance().ConnectToNXT(m_info);
 	
 //		LIMessage msg = new LIMessage(LIMessageType.Command, "Hello World");
 //		MessageFramwork.getInstance().SendMessage( msg );
@@ -71,7 +71,7 @@ public class MessageFrameworkTester implements MessageListenerInterface
 		
 		    WindowListener listener = new WindowAdapter() {
 		      public void windowClosing(WindowEvent w) {
-		    	MessageFramwork.getInstance().close();
+		    	MessageFramework.getInstance().close();
 		      }
 		    };		    
 		    
@@ -80,35 +80,35 @@ public class MessageFrameworkTester implements MessageListenerInterface
 		    StopButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ae) {
 		    	LIMessage msg = new LIMessage(LIMessageType.Command, "0");
-		    	MessageFramwork.getInstance().SendMessage(msg); 
+		    	MessageFramework.getInstance().SendMessage(msg); 
 		      }
 		    });
 		    
 		    ForwardButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ae) {
 		    	LIMessage msg = new LIMessage(LIMessageType.Command, "1");
-		    	MessageFramwork.getInstance().SendMessage(msg);
+		    	MessageFramework.getInstance().SendMessage(msg);
 		      }
 		    });
 		    
 		    BackwardButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ae) {
 		    	LIMessage msg = new LIMessage(LIMessageType.Command, "2");
-		    	MessageFramwork.getInstance().SendMessage(msg);
+		    	MessageFramework.getInstance().SendMessage(msg);
 		      }
 		    });
 		    
 		    LeftButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ae) {
 		    	LIMessage msg = new LIMessage(LIMessageType.Command, "3");
-		    	MessageFramwork.getInstance().SendMessage(msg);
+		    	MessageFramework.getInstance().SendMessage(msg);
 		      }
 		    });
 		    
 		    RightButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ae) {
 		    	LIMessage msg = new LIMessage(LIMessageType.Command, "4");
-		    	MessageFramwork.getInstance().SendMessage(msg);
+		    	MessageFramework.getInstance().SendMessage(msg);
 		      }
 		    });
 		    
