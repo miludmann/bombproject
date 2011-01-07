@@ -3,12 +3,12 @@ package game;
 import lejos.pc.comm.NXTCommFactory;
 import lejos.pc.comm.NXTInfo;
 import MessageComponent.LIMessage;
-import MessageComponent.MessageFramwork;
+import MessageComponent.MessageFramework;
 import MessageComponent.MessageListenerInterface;
 
 public class nxtBrick implements MessageListenerInterface {
 	
-	private static MessageFramwork mF;
+	private static MessageFramework mF;
 	private NXTInfo m_info;
 	private commandNXT cmd;
 
@@ -16,7 +16,7 @@ public class nxtBrick implements MessageListenerInterface {
 	public nxtBrick(String name, String address){
 		
 		setM_info(new NXTInfo(NXTCommFactory.BLUETOOTH, name, address));
-		setMF(MessageFramwork.getInstance());
+		setMF(MessageFramework.getInstance());
 		getMF().addMessageListener(this);
 		getMF().ConnectToNXT(m_info);
 	}
@@ -31,11 +31,11 @@ public class nxtBrick implements MessageListenerInterface {
 		System.out.println(msg.getM_payload());
 	}
 
-	public static void setMF(MessageFramwork mF) {
+	public static void setMF(MessageFramework mF) {
 		nxtBrick.mF = mF;
 	}
 
-	public static MessageFramwork getMF() {
+	public static MessageFramework getMF() {
 		return mF;
 	}
 
