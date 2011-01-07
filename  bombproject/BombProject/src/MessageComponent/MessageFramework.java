@@ -4,14 +4,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-import lejos.pc.comm.NXTCommFactory;
-import lejos.pc.comm.NXTConnector;
-import lejos.pc.comm.NXTInfo;
 
-
-public class MessageFramwork {
+public class MessageFramework {
 	
-	private static MessageFramwork m_instance = new MessageFramwork();
+	private static MessageFramework m_instance = new MessageFramework();
 	private Object m_guard;
 	
 	protected ArrayList<MessageListenerInterface> m_messageListeners; 	
@@ -23,7 +19,7 @@ public class MessageFramwork {
 	private Reader m_reader;
 	private ArrayList<Byte> m_receivedBytes;
 	
-	private MessageFramwork() {
+	private MessageFramework() {
 		
 		m_messageListeners = new ArrayList<MessageListenerInterface>();
 		m_receivedBytes = new ArrayList<Byte>();
@@ -35,7 +31,7 @@ public class MessageFramwork {
     	m_reader.setDaemon(true);
 	}
 	
-	public static synchronized MessageFramwork getInstance() {
+	public static synchronized MessageFramework getInstance() {
 		return m_instance;
 	}
 	
