@@ -12,11 +12,23 @@ public class settings {
 	public static int port = 15000;
 	public static String IPServer = "localhost";
 	
+	//public static String streamT = "192.168.2.101:8080";
 	public static String streamT = "NULL";
 	public static String streamAT = "NULL";
 		
-	public static long timeGame = 10;
-	public static long timeBomb = 5;
+	public static long timeGame = 500;
+	public static long timeBomb = 200;
+	
+	public static String nameBrickTerrorist = "Freja";
+	public static String macBrickTerrorist = "001653099CE9";
+	
+	public static String nameBrickCounterTerrorist = "Freja";
+	public static String macBrickCounterTerrorist = "001653099CE9";
+	
+	public static String nameBrickBomb = "Freja";
+	public static String macBrickBomb = "001653099CE9";
+	
+	
 	
 	public static void init() throws UnsupportedEncodingException, FileNotFoundException
 	{

@@ -33,11 +33,12 @@ public class player{
 		setServ(null);
 		setCl(null);
 		
-		setGw(new gameWindow());
-		setCmdNXT(new commandNXT(this));
 		setMovable(false);
 		setTerrorist(isT);
 		setBombPlanted(false);
+		
+		setGw(new gameWindow());
+		setCmdNXT(new commandNXT(this));
 		setTimeStart(System.currentTimeMillis());
 		setTimeLeft(0);
 		
