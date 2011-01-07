@@ -45,20 +45,19 @@ public class LIMessage {
 		return new LIMessage(msgType, payload);
 	}
 	
-	public LIMessageType getM_msgType() {
+	public LIMessageType getMsgType() {
 		return m_msgType;
 	}
 
-	public void setM_msgType(LIMessageType type) {
+	public void setMsgType(LIMessageType type) {
 		m_msgType = type;
 	}
 
-	public String getM_payload() {
+	public String getPayload() {
 		return m_payload;
 	}
 
-	public void setM_payload(String m_payload) {
+	public void setPayload(String m_payload) {
 		this.m_payload = m_payload;
 	}
-
 }
