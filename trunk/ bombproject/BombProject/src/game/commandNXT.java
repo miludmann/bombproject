@@ -16,7 +16,7 @@ public class commandNXT {
 		setUnit(t);
 		setTerrorist(t.isTerrorist());
 		
-				
+		/*
 		if(getUnit().isTerrorist())
 		{
 			setBrick(new nxtBrick(this,
@@ -29,7 +29,7 @@ public class commandNXT {
 								  settings.nameBrickCounterTerrorist,
 								  settings.macBrickCounterTerrorist));
 		}
-		
+		*/
 		
 	}
 
@@ -81,6 +81,9 @@ public class commandNXT {
 		case 'm':
 			increaseSpeed();
 			break;
+		case 't':
+			test();
+			break;
 		case 'r':
 			sendDefuseColor("r");
 			break;
@@ -95,6 +98,11 @@ public class commandNXT {
 			break;
 		
 		}
+	}
+	
+	public static void test(){
+		getUnit().getGw().getLGUI().getStreamPanel().remove(getUnit().getVid());
+		getUnit().getGw().getLGUI().getStreamPanel().add(getUnit().getVid2());
 	}
 	
 	private static void increaseSpeed(){

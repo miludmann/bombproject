@@ -26,7 +26,8 @@ public class player{
 	private boolean bombDefusable;
 	private long timeStart;
 	private long timeLeft;
-	private JComponent vid;
+	private JComponent vid, vid2;
+	
 
 	
 	public player(boolean isT){
@@ -44,24 +45,29 @@ public class player{
 		
 		
 		
-		// add the video on j1 on the window
-		
+		// add the video on the window
+		setVid(null);
+
 		if(isTerrorist())
 		{
 			if ( ! settings.streamT.equals("NULL") )
-			{
 				setVid(new ImageStreamComponent(settings.streamT));
-				getGw().getLGUI().getStreamPanel().add(vid);
-			}
+				
+			if ( ! settings.streamAT.equals("NULL") )
+				setVid2(new ImageStreamComponent(settings.streamAT));
 		}
 		else
 		{
-			if ( ! settings.streamAT.equals("NULL") )
-			{
+			if ( ! settings.streamT.equals("NULL") )
 				setVid(new ImageStreamComponent(settings.streamAT));
-				getGw().getLGUI().getStreamPanel().add(vid);
-			}
+				
+			if ( ! settings.streamAT.equals("NULL") )
+				setVid2(new ImageStreamComponent(settings.streamT));
 		}
+
+		if(getVid() != null)
+			getGw().getLGUI().getStreamPanel().add(vid);
+
 		//End of adding the video part
 		
 		threadGame tt = new threadGame(this);
@@ -219,6 +225,14 @@ public class player{
 
 	public boolean isBombDefusable() {
 		return bombDefusable;
+	}
+
+	public void setVid2(JComponent vid2) {
+		this.vid2 = vid2;
+	}
+
+	public JComponent getVid2() {
+		return vid2;
 	}
 
 }
