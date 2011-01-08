@@ -81,6 +81,18 @@ public class commandNXT {
 		case 'm':
 			increaseSpeed();
 			break;
+		case 'w':
+			fwdL();  
+			break;
+		case 'x':
+			fwdR();
+			break;
+		case 'c':
+			rwdL();
+			break;
+		case 'v':
+			rwdR();
+			break;
 		case 't':
 			test();
 			break;
@@ -104,6 +116,32 @@ public class commandNXT {
 		getUnit().getGw().getLGUI().getStreamPanel().remove(getUnit().getVid());
 		getUnit().getGw().getLGUI().getStreamPanel().add(getUnit().getVid2());
 	}
+	
+	private static void fwdL(){
+		// increase speed
+		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "fwdL"));
+		System.out.println("Increase Speed");	
+	}
+	
+	private static void fwdR(){
+		// increase speed
+		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "fwdR"));
+		System.out.println("Increase Speed");	
+	}
+	
+	private static void rwdL(){
+		// increase speed
+		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "rwdL"));
+		System.out.println("Increase Speed");	
+	}
+	
+	private static void rwdR(){
+		// increase speed
+		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "rwdR"));
+		System.out.println("Increase Speed");	
+	}
+	
+	
 	
 	private static void increaseSpeed(){
 		// increase speed
