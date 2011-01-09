@@ -39,7 +39,8 @@ public class MessageFrameworkTester implements MessageListenerInterface
 	protected boolean m_btOpen = false;
 	
 	//protected NXTInfo m_info = new NXTInfo(NXTCommFactory.BLUETOOTH, "NXT", "001653007B78");  //School "00165309782B"
-	protected NXTInfo m_info = new NXTInfo(NXTCommFactory.BLUETOOTH, "Freja", "001653099CE9");  //School "00165309782B"
+	//protected NXTInfo m_info = new NXTInfo(NXTCommFactory.BLUETOOTH, "Freja", "001653099CE9");  //School "00165309782B"
+	protected NXTInfo m_info = new NXTInfo(NXTCommFactory.BLUETOOTH, "ole", "00165309782B"); 
 	
 	public static void main(String args[]) {
 		try	{
@@ -111,7 +112,6 @@ public class MessageFrameworkTester implements MessageListenerInterface
 		    	MessageFramework.getInstance().SendMessage(msg);
 		      }
 		    });
-		    
 		    
 		    buttonPanel.add(StopButton);
 		    buttonPanel.add(ForwardButton);
