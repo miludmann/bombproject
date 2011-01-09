@@ -1,10 +1,9 @@
 package widgets;
-import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Random;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -21,6 +20,8 @@ public class WidgetTester {
 	protected InfraredRadar m_irRadar;
 	protected ObstacleRadar m_obstacleRadar;
 
+	protected Random m_rand;
+	
 	public static void main(String args[]) {
 		try	{
 			WidgetTester m_instance = new WidgetTester();
@@ -35,9 +36,11 @@ public class WidgetTester {
 	public void run(String[] args)  {
 		
 		m_frame = new JFrame(title);
-		m_frame.setSize(1600, 900);
+		m_frame.setSize(1600, 800);
 		m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
+		m_rand = new Random();
+		
 		Container contentPane = m_frame.getContentPane();
 		BoxLayout layout = new BoxLayout(contentPane, BoxLayout.X_AXIS);
 		contentPane.setLayout(layout);
@@ -80,6 +83,11 @@ public class WidgetTester {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
+					
+					int x = (int)Math.round((m_rand.nextDouble()*510d)-255d);
+					int y = (int)Math.round((m_rand.nextDouble()*510d)-255d);
+					
+					m_obstacleRadar.addObstacle(x, y);
 	    		}
 	    	}
 	    	

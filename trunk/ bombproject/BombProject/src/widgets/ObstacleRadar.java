@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.jws.Oneway;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
@@ -17,9 +18,12 @@ public class ObstacleRadar extends JPanel {
 	protected ArrayList<Obstacle> m_obstacles;
 	protected Calendar m_calander;
 	
-	protected Color m_surfaceColor;
+	protected final Color m_surfaceColor = new Color(0, 70, 0);
+	protected Color m_scalingColor = new Color(80,255,80);
 	
 	protected double m_cmPixelRatio;
+	protected long m_maxAgeInMillis;
+	protected int m_surfaceEdgeBoarder;
 	
 	public ObstacleRadar()
 	{
@@ -29,9 +33,9 @@ public class ObstacleRadar extends JPanel {
 		m_obstacles = new ArrayList<Obstacle>();
 		m_calander = Calendar.getInstance();
 		
-		m_cmPixelRatio = 1; //1 cm = 1 pixel
-		m_surfaceColor = new Color(0, 70, 0);
-		
+		m_surfaceEdgeBoarder = 10;
+		m_cmPixelRatio = 1.00; //1 cm = 1 pixel
+		m_maxAgeInMillis = 5000;
 		
 		this.setSize(400, 400);
 		this.setDoubleBuffered(true);
@@ -46,42 +50,86 @@ public class ObstacleRadar extends JPanel {
 			drawSurface(g2d);
 			
 			for(int i=0; i<m_obstacles.size(); i++)
-				drawObstacle(m_obstacles.get(i), g2d);	
+				drawObstacle(m_obstacles.get(i), g2d);
 			
-			//g2d.drawImage(m_imgSensorTop ,sensorLeft, sensorTop, sensorLeft+m_sensorImgWidth, sensorTop+m_sensorImgHeight, 0, 0, m_imgSensorTop.getWidth(), m_imgSensorTop.getHeight(), null);
+			drawScaleing(g2d);
+			drawCenter(g2d);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	private void drawScaleing(Graphics2D g2d) {
+
+		int centerX = this.getWidth()/2;
+		int centerY = this.getHeight()/2;
+		
+		ArrayList<Integer> meterRings = new ArrayList<Integer>();
+		
+		int ringRadius = 100;
+		while(true)
+		{
+			meterRings.add((int)Math.round(ringRadius * m_cmPixelRatio)); //Radius
+			ringRadius+=100;
+			
+			if(ringRadius*m_cmPixelRatio > (this.getWidth()/2 - m_surfaceEdgeBoarder))
+				break;
+		}
+		
+		g2d.setColor(m_scalingColor);
+		for(int i=0; i<meterRings.size(); i++)
+		{
+			g2d.drawOval(centerX-meterRings.get(i), centerY-meterRings.get(i), 2*meterRings.get(i), 2*meterRings.get(i));
+		}
+	}
+	
+	private void drawCenter(Graphics2D g2d)
+	{
+		int centerX = this.getWidth()/2;
+		int centerY = this.getHeight()/2;
+		
+		g2d.setColor(m_scalingColor);
+		g2d.drawLine(centerX, centerY-10, centerX-10, centerY);
+		g2d.drawLine(centerX-10, centerY, centerX+10, centerY);
+		g2d.drawLine(centerX+10, centerY, centerX, centerY-10);
+	}
+
 	private void drawSurface(Graphics2D g2d)
 	{
 		g2d.setPaint(m_surfaceColor);
-		g2d.fillOval(10, 10, this.getWidth()-20, this.getWidth()-20);
+		g2d.fillOval(10, 10, this.getWidth()-20, this.getHeight()-20);
 	}
 	
 	private void drawObstacle(Obstacle obstacle, Graphics2D g2d) {
-		g2d.setPaint(new Color(0, 255, 0));
-		g2d.drawLine(obstacle.getXCm(), obstacle.getYCm(), obstacle.getXCm(), obstacle.getXCm());
+		
+		//Calculate age
+		long ageInMillis = System.currentTimeMillis() - obstacle.getAgeInMillis();
+		
+		int intencity = (int)Math.round( ((((double)m_maxAgeInMillis-(double)ageInMillis)/(double)m_maxAgeInMillis*255d)+m_surfaceColor.getGreen()));
+		if(intencity > 255)
+			intencity = 255;
+		
+		int centerX = this.getWidth()/2;
+		int centerY = this.getHeight()/2;
+		
+		//Calculate relative dot
+		int obstacleX = (int)Math.round(centerX+(obstacle.getXCm()*m_cmPixelRatio));
+		int obstacleY = (int)Math.round(centerY-(obstacle.getYCm()*m_cmPixelRatio));
+		
+		if(ageInMillis >= m_maxAgeInMillis)
+		{
+			m_obstacles.remove(obstacle); //to old remove it
+			return;
+		}
+		else
+		{
+			g2d.setPaint(new Color(0, intencity, 0));
+			g2d.fillOval(obstacleX, obstacleY, 4, 4);
+		}
+		
+		//g2d.drawLine(obstacle.getXCm(), obstacle.getYCm(), 1, 1);
 	}
-	
-//	protected void drawSensor(int sensor, int intencity, Graphics2D g2d)
-//	{
-//		int sensorWidth = getWidth()/20;
-//		int sensorHeight = getHeight()/20;
-//		
-//		int sensorLeft = (int)Math.round((float)getWidth()/100f*29.5f);
-//		int sensorTop = (int)Math.round((float)getHeight()/100f*76f);
-//		
-//		int sensorOffset = (int)Math.round((float)getWidth()/100*9);
-//		
-//		g2d.setPaint(new Color(0, 0, 0));
-//		g2d.fillOval(sensorLeft + (sensorOffset*sensor),sensorTop, sensorWidth, sensorHeight);
-//		
-//		g2d.setPaint(new Color(intencity, 0, 0));
-//		g2d.fillOval(sensorLeft+2 +(sensorOffset*sensor), sensorTop+2, sensorWidth-4, sensorHeight-4);
-//	}
 
 	protected void clear(Graphics g) {
 		super.paintComponent(g);
@@ -103,6 +151,11 @@ public class ObstacleRadar extends JPanel {
 		repaint();
 	}
 	
+	public void setMaxObstacleAgeMillis(int maxAgeMs)
+	{
+		m_maxAgeInMillis = maxAgeMs;
+	}
+	
 	public int addObstacle(int Xcm, int Ycm)
 	{
 		Obstacle obstacle = new Obstacle(Xcm, Ycm);
@@ -119,13 +172,13 @@ public class ObstacleRadar extends JPanel {
 		protected int m_xCm;
 		protected int m_yCm;
 		protected boolean m_firstDraw;
-		protected Date m_timeStamp;
+		protected long m_ageInMillis;
 		
 		Obstacle(int xCm, int yCm) {
 			m_xCm = xCm;
 			m_yCm = yCm;
 			m_firstDraw = true;
-			m_timeStamp = m_calander.getTime(); 
+			m_ageInMillis = System.currentTimeMillis(); 
 		}
 		
 		public int getXCm()
@@ -143,9 +196,10 @@ public class ObstacleRadar extends JPanel {
 			return m_firstDraw;
 		}
 		
-		public Date getTimeStamp()
+		public long getAgeInMillis()
 		{
-			return m_timeStamp;
-		}		
+			return m_ageInMillis;
+		}
+		
 	}
 }
