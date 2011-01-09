@@ -50,6 +50,18 @@ public class commandNXT {
 		case 'd':
 			stop();
 			break;
+		case 'w':
+			stop();
+			break;
+		case 'x':
+			stop();
+			break;
+		case 'c':
+			stop();
+			break;
+		case 'v':
+			stop();
+			break;
 		}
 	}
 

@@ -295,7 +295,6 @@ public class player{
 				getGw().getRGUI().getRadarPanel().getIrRadar().setSensor(arg1, arg2);
 			}
 			break;
-		
 		}
 	}
 
