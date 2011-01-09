@@ -12,7 +12,8 @@ import lejos.pc.comm.NXTInfo;
 public class MessageFramework {
 	
 	private static MessageFramework m_instance = new MessageFramework();
-	private Object m_guard;
+	private Object m_RXguard;
+	private Object m_TXguard;
 	
 	protected ArrayList<MessageListenerInterface> m_messageListeners; 	
 	protected NXTConnector m_connecter;
@@ -27,7 +28,9 @@ public class MessageFramework {
 		
 		m_messageListeners = new ArrayList<MessageListenerInterface>();
 		m_receivedBytes = new ArrayList<Byte>();
-		m_guard = new Object();
+		m_RXguard = new Object();
+		m_TXguard = new Object();
+		
 		m_connecter = new NXTConnector();
 		m_connected = false;
 		
@@ -127,11 +130,11 @@ public class MessageFramework {
     	//only create and transmit the message if it is valid
     	if(isPacketValid(msgBytes))
     	{
-    		LIMessage msg = LIMessage.setEncodedMsg(msgBytes);
-    		for(int j=0; j<m_messageListeners.size(); j++)
-    		{
-	    		synchronized (m_guard) {
-	    			m_messageListeners.get(j).recievedNewMessage(msg);
+    		synchronized (m_RXguard) {
+	    		LIMessage msg = LIMessage.setEncodedMsg(msgBytes);
+	    		for(int j=0; j<m_messageListeners.size(); j++)
+	    		{
+		    			m_messageListeners.get(j).recievedNewMessage(msg);
 	    		}
     		}
     	}
