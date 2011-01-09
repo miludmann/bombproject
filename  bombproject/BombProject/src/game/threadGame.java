@@ -60,7 +60,7 @@ public class threadGame extends Thread {
 				break;
 			}
 			
-			unit.getGw().repaint();
+			unit.getGw().getRGUI().getRadarPanel().getIrRadar().repaint();
     	}
     	
 		
