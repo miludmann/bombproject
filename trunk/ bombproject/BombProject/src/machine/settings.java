@@ -9,14 +9,14 @@ import java.io.UnsupportedEncodingException;
 
 public class settings {
 	
+	public static boolean serverOnly = true;
+	public static boolean activateVideo = false;
+	
 	public static int port = 15000;
 	public static String IPServer = "localhost";
 	
-	//public static String streamT = "192.168.2.101:8080";
-	//public static String streamAT = "192.168.2.103:8000";
-
-	public static String streamT = "NULL";
-	public static String streamAT = "NULL";
+	public static String streamT = "192.168.2.101:8080";
+	public static String streamAT = "192.168.2.103:8000";
 
 	public static long timeGame = 500;
 	public static long timeBomb = 200;
