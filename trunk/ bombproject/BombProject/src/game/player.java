@@ -203,12 +203,12 @@ public class player{
 			{
 				setMovable(Boolean.parseBoolean(splitStr[1]));
 			}
-			if (splitStr[0].equalsIgnoreCase("defCode"))
+			if (splitStr[0].equalsIgnoreCase("DC"))
 			{
-				getServ().getBrick().sendMessage("defCode " + splitStr[1]);
+				getServ().getBrick().sendMessage("DC " + splitStr[1]);
 				System.out.println(splitStr[1]);
 			}
-			if (splitStr[0].equalsIgnoreCase("defSeq"))
+			if (splitStr[0].equalsIgnoreCase("DS"))
 			{
 				getGw().getRGUI().getDefusePanel().getCombinaison().setText(splitStr[1]);
 			}
