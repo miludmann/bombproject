@@ -36,7 +36,7 @@ public class server {
     	ts = new threadServer(this);
     	ts.start();
     	
-    	if ( false )
+    	if ( true )
     	{
 	    	unit = new terrorist(this);
     	}
@@ -226,7 +226,7 @@ public class server {
 			break;
 			
 		case 2:
-			if (splitStr[0].equalsIgnoreCase("timeLeft"))
+			if (splitStr[0].equalsIgnoreCase("NT"))
 			{
 				// Set the time left to 0 for the server
 		    	getUnit().setTimeLeft(0);

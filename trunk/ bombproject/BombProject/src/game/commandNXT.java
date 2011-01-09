@@ -125,12 +125,8 @@ public class commandNXT {
 	}
 	
 	public static void test(){
-		/*
-		getUnit().getGw().getLGUI().getStreamPanel().remove(getUnit().getVid());
-		getUnit().getGw().getLGUI().getStreamPanel().add(getUnit().getVid2());
-		*/
-		
-		getUnit().getServ().interpretBomb("DS abxy");
+		if ( unitP.isTerrorist() )
+			getUnit().getServ().getBrick().sendMessage("test");
 	}
 	
 	private static void fwdL(){
@@ -185,7 +181,18 @@ public class commandNXT {
 			getUnit().getServ().getTs().sendMsgClient("timeLeft " + settings.timeBomb);
 			
 			// activate the bomb
-			getUnit().getServ().getBrick().sendMessage("planted");
+			
+			String time = Long.toString(settings.timeBomb);
+			
+			for ( int i = time.length(); i < 4; i++)
+				time = "0" + time;
+			
+			System.out.println(time);
+			
+			getUnit().getServ().getBrick().sendMessage("GT");
+			getUnit().getServ().getBrick().sendMessage("PL " + time);
+
+			
 		}		
 	}
 	
