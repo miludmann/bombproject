@@ -56,6 +56,7 @@ public class threadGame extends Thread {
 			if ( remainingTime < 1 )
 			{
 				unit.setMovable(false);
+				unit.getCmdNXT().stop();
 		   		((timePanel)unit.getGw().getRGUI().getTimePanel()).refreshTime(0);
 				break;
 			}
