@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Color;
+
 import GUI.*;
 
 public class threadGame extends Thread {
@@ -14,7 +16,6 @@ public class threadGame extends Thread {
 	public void run() {
     	
     	long remainingTime;
-    	boolean isPlanted, isDefused;
     	
     	while ( ! unit.isMovable() )
     	{
@@ -36,11 +37,15 @@ public class threadGame extends Thread {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-    		
+			
+			// Change the color of the timer when the bomb is dropped
+			timePanel tp = (timePanel) unit.getGw().getRGUI().getTimePanel();
+    		if ( unit.isBombPlanted() && tp.getColor().equals(Color.GREEN) )
+			{
+				tp.changeColor(Color.RED);
+			}
+			
 			remainingTime = unit.getTimeLeft() - (System.currentTimeMillis() - unit.getTimeStart())/1000;
-	   		
-	   		isPlanted = unit.isBombPlanted();
-	   		isDefused = unit.isBombDefused();
 	   		
 	   		// Update status
 	   		((infoPanel) unit.getGw().getRGUI().getInfoPanel()).changeInfos(false, unit.isTerrorist(), unit.isBombPlanted(), unit.isBombDefused());
@@ -65,10 +70,7 @@ public class threadGame extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-   		isPlanted = unit.isBombPlanted();
-   		isDefused = unit.isBombDefused();
-   		
+  		
 		
 		// And check the winner
 		// (... and display it !)

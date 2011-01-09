@@ -6,8 +6,9 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class rightGUI extends JPanel {
 	
-	private JPanel infoPanel;
-	private JPanel timePanel;
+	private infoPanel infoPanel;
+	private timePanel timePanel;
+	private defusePanel defusePanel;
 	
 	public rightGUI(){
 		
@@ -19,9 +20,12 @@ public class rightGUI extends JPanel {
 		
 		this.setTimePanel(new timePanel());
 		this.add(this.getTimePanel());
+		
+		this.setDefusePanel(new defusePanel());
+		this.add(this.getDefusePanel());
 	}
 
-	public void setTimePanel(JPanel timePanel) {
+	public void setTimePanel(timePanel timePanel) {
 		this.timePanel = timePanel;
 	}
 
@@ -29,12 +33,20 @@ public class rightGUI extends JPanel {
 		return timePanel;
 	}
 
-	public void setInfoPanel(JPanel infoPanel) {
+	public void setInfoPanel(infoPanel infoPanel) {
 		this.infoPanel = infoPanel;
 	}
 
 	public JPanel getInfoPanel() {
 		return infoPanel;
+	}
+
+	public void setDefusePanel(defusePanel defusePanel) {
+		this.defusePanel = defusePanel;
+	}
+
+	public defusePanel getDefusePanel() {
+		return defusePanel;
 	}
 
 }

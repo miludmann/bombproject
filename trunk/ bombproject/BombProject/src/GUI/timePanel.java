@@ -73,5 +73,9 @@ public class timePanel extends JPanel{
 	public void changeColor(Color c){
 		getTimeDisplayed().setForeground(c);
 	}
+	
+	public Color getColor(){
+		return getTimeDisplayed().getForeground();
+	}
 
 }

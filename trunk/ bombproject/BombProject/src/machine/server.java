@@ -1,5 +1,6 @@
 package machine;
 
+import game.nxtBrick;
 import game.player;
 import game.terrorist;
 
@@ -19,6 +20,8 @@ public class server {
 	private int port;
 	private static threadServer ts;
 	private player unit;
+	public static nxtBrick brick;
+
 	
 	@SuppressWarnings("static-access")
 	public server(int port){
@@ -26,10 +29,14 @@ public class server {
 		setReady(false);
 		setGetStarted(false);
 		
+		setBrick(new nxtBrick(this,
+				  settings.nameBrickBomb,
+				  settings.macBrickBomb));
+		
     	ts = new threadServer(this);
     	ts.start();
     	
-    	if ( true )
+    	if ( false )
     	{
 	    	unit = new terrorist(this);
     	}
@@ -96,7 +103,7 @@ public class server {
 		
 		startGame();
 	}
-	
+
 	@SuppressWarnings("unused")
 	public static void main(String[] args) throws IOException {
 		
@@ -115,6 +122,15 @@ public class server {
 	    }
 		while(!outputLine.equals("quit"));
     }
+	
+
+	public nxtBrick getBrick() {
+		return brick;
+	}
+
+	public static void setBrick(nxtBrick brick) {
+		server.brick = brick;
+	}
 
 	public void setPort(int port) {
 		this.port = port;
@@ -172,4 +188,56 @@ public class server {
     	getTs().sendMsgClient("movable true");
     	
 	}
+    
+    public void interpretBomb(String s){
+    	// This is where we interpret the messages from the bomb
+    	System.out.println("Server <- Bomb : " + s);
+    	
+		
+		String[] splitStr = s.split(" ");
+		int len = splitStr.length;
+
+		switch (len){
+		
+		case 1:
+			if(s.equals("defusable"))
+			{
+		    	getTs().sendMsgClient("defusable");
+			}
+			if(s.equals("defused"))
+			{				
+				// Set the time left to 0 and bomb defused for the server
+				getUnit().setBombDefused(true);
+		    	getUnit().setTimeLeft(0);
+				
+				// Set the time left to 0 and bomb defused for the client
+		    	getTs().sendMsgClient("timeLeft 0");
+		    	getTs().sendMsgClient("defused");
+			}			
+			if(s.equals("BOOM"))
+			{
+				// Set the time left to 0 for the server
+		    	getUnit().setTimeLeft(0);
+				
+				// Set the time left to 0 for the client
+		    	getTs().sendMsgClient("timeLeft 0");
+			}
+
+			break;
+			
+		case 2:
+			if (splitStr[0].equalsIgnoreCase("timeLeft"))
+			{
+				// Set the time left to 0 for the server
+		    	getUnit().setTimeLeft(0);
+				
+				// Set the time left to 0 for the client
+		    	getTs().sendMsgClient("timeLeft 0");
+			}
+			if (splitStr[0].equalsIgnoreCase("defSeq"))
+			{
+				getTs().sendMsgClient("defSeq " + splitStr[1]);
+			}
+		}
+    }
 }
