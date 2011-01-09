@@ -307,6 +307,15 @@ public class player{
 					
 					getGw().getRGUI().getRadarPanel().getIrRadar().setSensor(arg1, arg2);
 				}
+				
+				if (splitStr[0].equalsIgnoreCase("RC"))
+				{
+					int arg1 = Integer.parseInt(splitStr[1]);
+					int arg2 = Integer.parseInt(splitStr[2]);
+					
+					getGw().getRGUI().getRadarPanel().getORadar().addObstacle(arg1, arg2);
+				}
+				
 			} catch(Exception e) {
 				System.err.println("Player IRV msg: " + e.getMessage());
 			}
