@@ -36,7 +36,7 @@ public class server {
     	ts = new threadServer(this);
     	ts.start();
     	
-    	if ( true )
+    	if ( false )
     	{
 	    	unit = new terrorist(this);
     	}
@@ -234,9 +234,9 @@ public class server {
 				// Set the time left to 0 for the client
 		    	getTs().sendMsgClient("timeLeft 0");
 			}
-			if (splitStr[0].equalsIgnoreCase("defSeq"))
+			if (splitStr[0].equalsIgnoreCase("DS"))
 			{
-				getTs().sendMsgClient("defSeq " + splitStr[1]);
+				getTs().sendMsgClient("DS " + splitStr[1]);
 			}
 		}
     }

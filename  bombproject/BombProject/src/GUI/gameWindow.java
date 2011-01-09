@@ -24,12 +24,12 @@ public class gameWindow extends JFrame{
 		contentPane.setLayout(layout);
 
 
-		InfraredRadar test = new InfraredRadar();
-	
 	    this.setLGUI(new leftGUI());
 	    this.setRGUI(new rightGUI());
 	    
-	    contentPane.add(test);
+		//InfraredRadar test = new InfraredRadar();
+	    //1contentPane.add(test);
+	    
 	    contentPane.add(getLGUI());
 	    contentPane.add(getRGUI());
 

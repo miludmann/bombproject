@@ -130,7 +130,7 @@ public class commandNXT {
 		getUnit().getGw().getLGUI().getStreamPanel().add(getUnit().getVid2());
 		*/
 		
-		getUnit().getServ().interpretBomb("defSeq abxy");
+		getUnit().getServ().interpretBomb("DS abxy");
 	}
 	
 	private static void fwdL(){
@@ -168,7 +168,7 @@ public class commandNXT {
 		if ( ! getUnit().isTerrorist() /*&& getUnit().isBombDefusable()*/ )
 		{
 			getUnit().getGw().getRGUI().getDefusePanel().getCombinaison().setText("");
-			getUnit().getCl().getTc().sendMsgServer("defCode " + string);
+			getUnit().getCl().getTc().sendMsgServer("DC " + string);
 		}
 	}
 
