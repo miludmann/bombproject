@@ -189,8 +189,8 @@ public class commandNXT {
 			
 			System.out.println(time);
 			
-			getUnit().getServ().getBrick().sendMessage("GT");
-			getUnit().getServ().getBrick().sendMessage("PL " + time);
+			getUnit().getServ().getBrick().sendMessage("pl");
+			getUnit().getServ().getBrick().sendMessage("gt " + time);
 
 			
 		}		
