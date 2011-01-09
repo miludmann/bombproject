@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 
 public class ImageStreamComponent extends javax.swing.JComponent {
@@ -71,6 +72,8 @@ public class ImageStreamComponent extends javax.swing.JComponent {
 					repaint();
 				} catch (NullPointerException e) {
 					//Will most times throw a nullpointer exception when closing the application.
+				} catch (IIOException e) {
+					System.out.println("Warning no connection to stream");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}	
