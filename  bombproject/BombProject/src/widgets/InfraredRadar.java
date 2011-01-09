@@ -22,6 +22,9 @@ public class InfraredRadar extends JPanel {
 	protected static final int m_sensorImgWidth = 42;
 	protected static final int m_sensorImgHeight = 80;
 	
+	protected static final int m_directionOffColor = 70;
+	protected static final int m_directionOnColor = 255;
+	
 	protected int[] m_sectorValues;
 	protected int[] m_sensorValues;
 	
@@ -44,6 +47,9 @@ public class InfraredRadar extends JPanel {
 				e.printStackTrace();
 			}
 		}
+		
+		//Clearing the direction
+		setDirection(0);
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -110,10 +116,12 @@ public class InfraredRadar extends JPanel {
 		if(direction < 0 || direction > 9) //Direction range is only 1-9 
 			return;
 			
-		for(int i=0; i<m_sectorValues.length; i++)
-			m_sectorValues[i] = (i+1==direction?255:70);
+		for(int i=0; i<m_sectorValues.length; i++) {
+			m_sectorValues[i] = (i+1==direction?m_directionOnColor:m_directionOffColor);
+		}
 		
 		invalidate(); //indicate repaint required
+		repaint();
 	}
 	
 	public void setSensor(int sensor, int intensity)
@@ -124,5 +132,6 @@ public class InfraredRadar extends JPanel {
 		m_sensorValues[sensor] = intensity;
 		
 		invalidate(); //indicate repaint required
+		repaint();
 	}
 }
