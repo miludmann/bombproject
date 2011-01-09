@@ -32,17 +32,17 @@ public class server {
 		setBrick(new nxtBrick(this,
 				  settings.nameBrickBomb,
 				  settings.macBrickBomb));
+
 		
-    	ts = new threadServer(this);
-    	ts.start();
-    	
     	if ( settings.serverOnly )
     	{
 	    	unit = new terrorist(this);
     	}
     	else
     	{
-
+    		ts = new threadServer(this);
+        	ts.start();
+        	
 			System.out.println("Waiting for client");
 			
 			JFrame infoConnect = new JFrame();
