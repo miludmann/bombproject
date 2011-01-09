@@ -47,7 +47,12 @@ public class nxtBrick implements MessageListenerInterface {
 		{
 			getCmd();
 			// Message coming from player's NXT Brick
-			commandNXT.getUnit().interpretBrick(msg.getPayload());
+			try {
+				commandNXT.getUnit().interpretBrick(msg.getPayload());
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else
 		{

@@ -17,6 +17,7 @@ public class radarPanel extends Container {
 		this.setLayout(layout);
 		
 		setIrRadar(new InfraredRadar());
+		
 		this.add(getIrRadar());
 	}
 

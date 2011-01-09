@@ -256,7 +256,7 @@ public class player{
 		return vid2;
 	}
 	
-	public void interpretBrick(String s){
+	public void interpretBrick(String s) throws InterruptedException{
     	// This is where we interpret the messages from the player's brick
     	System.out.println("Player <- Brick : " + s);
     	
@@ -278,14 +278,21 @@ public class player{
 		case 2:
 			if (splitStr[0].equalsIgnoreCase("IRD"))
 			{
-				getGw().getRGUI().getRadarPanel().getIrRadar().setDirection(Integer.parseInt(splitStr[1]));
+				int arg1 = Integer.parseInt(splitStr[1]);
+
+				arg1 = Integer.parseInt(splitStr[1]);
+				getGw().getRGUI().getRadarPanel().getIrRadar().setDirection(arg1);
+				
 			}
 			break;
 			
 		case 3:
 			if (splitStr[0].equalsIgnoreCase("IRV"))
 			{
-				getGw().getRGUI().getRadarPanel().getIrRadar().setSensor(Integer.parseInt(splitStr[1]), Integer.parseInt(splitStr[2]));
+				int arg1 = Integer.parseInt(splitStr[1]);
+				int arg2 = Integer.parseInt(splitStr[2]);
+				
+				getGw().getRGUI().getRadarPanel().getIrRadar().setSensor(arg1, arg2);
 			}
 			break;
 		
