@@ -143,14 +143,31 @@ public class MessageFramework {
     
     private boolean isPacketValid(byte[] packet)
     {
-    	if(packet[0] != (byte)2) //Does it contain a start frame byte?	
+    	try
+    	{
+	    	if(packet[0] != (byte)2) //Does it contain a start frame byte?	
+	    		return false;
+	    	else if(packet[2] != (byte)':') //Does it contain the command payload seperator?
+	    		return false;
+	    	else if(packet[packet.length-1] != (byte)3) //Does it contain an end frame byte?
+	    		return false;
+	    	else
+	    		return true;
+    	} catch (Exception e) {
+    		System.err.println("Received corrupt package: " + getBytesString(packet));
     		return false;
-    	else if(packet[2] != (byte)':') //Does it contain the command payload seperator?
-    		return false;
-    	else if(packet[packet.length-1] != (byte)3) //Does it contain an end frame byte?
-    		return false;
-    	else
-    		return true;
+    	}
+    }
+    
+    private String getBytesString(byte[] bytes)
+    {
+    	StringBuilder sb = new StringBuilder();
+    	for(int i=0; i<bytes.length; i++)
+    	{
+    		sb.append(String.valueOf(bytes[i] + ", "));
+    	}
+    	
+    	return sb.toString();
     }
     
     public void close() {
