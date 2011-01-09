@@ -5,11 +5,13 @@ import java.awt.Container;
 import javax.swing.BoxLayout;
 
 import widgets.InfraredRadar;
+import widgets.ObstacleRadar;
 
 @SuppressWarnings("serial")
 public class radarPanel extends Container {
 	
 	private InfraredRadar irRadar;
+	private ObstacleRadar oRadar;
 	
 	public radarPanel(){
 		
@@ -17,8 +19,10 @@ public class radarPanel extends Container {
 		this.setLayout(layout);
 		
 		setIrRadar(new InfraredRadar());
+		setORadar(new ObstacleRadar());
 		
 		this.add(getIrRadar());
+		this.add(getORadar());
 	}
 
 	public void setIrRadar(InfraredRadar irRadar) {
@@ -27,6 +31,14 @@ public class radarPanel extends Container {
 
 	public InfraredRadar getIrRadar() {
 		return irRadar;
+	}
+
+	public void setORadar(ObstacleRadar oRadar) {
+		this.oRadar = oRadar;
+	}
+
+	public ObstacleRadar getORadar() {
+		return oRadar;
 	}
 
 }

@@ -43,34 +43,7 @@ public class player{
 		setTimeLeft(0);
 		
 		
-		
-		// add the video on the window
-		setVid(null);
-
-		if(isTerrorist())
-		{
-			if ( ! settings.streamT.equals("NULL") )
-				setVid(new ImageStreamComponent(settings.streamT));
-			/*
-			if ( ! settings.streamAT.equals("NULL") )
-				setVid2(new ImageStreamComponent(settings.streamAT));
-			*/
-		}
-		else
-		{
-			if ( ! settings.streamT.equals("NULL") )
-				setVid(new ImageStreamComponent(settings.streamAT));
-			
-			/*
-			if ( ! settings.streamAT.equals("NULL") )
-				setVid2(new ImageStreamComponent(settings.streamT));
-			*/
-		}
-
-		if(getVid() != null)
-			getGw().getLGUI().getStreamPanel().add(vid);
-
-		//End of adding the video part
+		addVideo();
 		
 		threadGame tt = new threadGame(this);
     	tt.start();
@@ -94,6 +67,39 @@ public class player{
 			}
 			});
 				
+	}
+	
+	public void addVideo(){
+		if ( settings.activateVideo )
+		{
+			// add the video on the window
+			setVid(null);
+	
+			if(isTerrorist())
+			{
+				if ( ! settings.streamT.equals("NULL") )
+					setVid(new ImageStreamComponent(settings.streamT));
+				/*
+				if ( ! settings.streamAT.equals("NULL") )
+					setVid2(new ImageStreamComponent(settings.streamAT));
+				*/
+			}
+			else
+			{
+				if ( ! settings.streamT.equals("NULL") )
+					setVid(new ImageStreamComponent(settings.streamAT));
+				
+				/*
+				if ( ! settings.streamAT.equals("NULL") )
+					setVid2(new ImageStreamComponent(settings.streamT));
+				*/
+			}
+	
+			if(getVid() != null)
+				getGw().getLGUI().getStreamPanel().add(vid);
+	
+			//End of adding the video part
+		}
 	}
 
 	public void setGw(gameWindow gw) {

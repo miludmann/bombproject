@@ -59,8 +59,6 @@ public class threadGame extends Thread {
 		   		((timePanel)unit.getGw().getRGUI().getTimePanel()).refreshTime(0);
 				break;
 			}
-			
-			unit.getGw().getRGUI().getRadarPanel().getIrRadar().repaint();
     	}
     	
 		
