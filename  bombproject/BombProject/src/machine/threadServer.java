@@ -1,5 +1,7 @@
 package machine;
 
+import game.nxtBrick;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,6 +13,7 @@ public class threadServer extends Thread {
 	
 	private server gameServ;
 	private PrintWriter out;
+	public static nxtBrick brick;
 	
 	public threadServer(server serv){
 		gameServ = serv;

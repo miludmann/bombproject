@@ -5,12 +5,12 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JComponent;
 
-import GUI.gameWindow;
-
 import machine.client;
 import machine.server;
 import machine.settings;
 import videoStream.ImageStreamComponent;
+import GUI.gameWindow;
+import GUI.infoPanel;
 
 public class player{
 	
@@ -52,17 +52,20 @@ public class player{
 		{
 			if ( ! settings.streamT.equals("NULL") )
 				setVid(new ImageStreamComponent(settings.streamT));
-				
+			/*
 			if ( ! settings.streamAT.equals("NULL") )
 				setVid2(new ImageStreamComponent(settings.streamAT));
+			*/
 		}
 		else
 		{
 			if ( ! settings.streamT.equals("NULL") )
 				setVid(new ImageStreamComponent(settings.streamAT));
-				
+			
+			/*
 			if ( ! settings.streamAT.equals("NULL") )
 				setVid2(new ImageStreamComponent(settings.streamT));
+			*/
 		}
 
 		if(getVid() != null)
@@ -120,6 +123,7 @@ public class player{
 
 	public void setTimeLeft(long l) {
 		this.timeLeft = l;
+		this.setTimeStart(System.currentTimeMillis());
 	}
 
 	public long getTimeLeft() {
@@ -188,10 +192,28 @@ public class player{
 			{
 				setBombPlanted(Boolean.parseBoolean(splitStr[1]));
 			}
+			if (splitStr[0].equalsIgnoreCase("defused"))
+			{
+				setBombDefused(true);
+			}
+			if (splitStr[0].equalsIgnoreCase("defusable"))
+			{
+				setBombDefusable(true);
+			}
 			if (splitStr[0].equalsIgnoreCase("movable"))
 			{
 				setMovable(Boolean.parseBoolean(splitStr[1]));
 			}
+			if (splitStr[0].equalsIgnoreCase("defCode"))
+			{
+				getServ().getBrick().sendMessage("defCode " + splitStr[1]);
+				System.out.println(splitStr[1]);
+			}
+			if (splitStr[0].equalsIgnoreCase("defSeq"))
+			{
+				getGw().getRGUI().getDefusePanel().getCombinaison().setText(splitStr[1]);
+			}
+			
 		}
 	}
 
@@ -233,6 +255,11 @@ public class player{
 
 	public JComponent getVid2() {
 		return vid2;
+	}
+	
+	public void interpretBrick(String s){
+    	// This is where we interpret the messages from the player's brick
+    	System.out.println("Player <- Brick : " + s);
 	}
 
 }

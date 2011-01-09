@@ -16,7 +16,7 @@ public class commandNXT {
 		setUnit(t);
 		setTerrorist(t.isTerrorist());
 		
-		/*
+		
 		if(getUnit().isTerrorist())
 		{
 			setBrick(new nxtBrick(this,
@@ -29,7 +29,7 @@ public class commandNXT {
 								  settings.nameBrickCounterTerrorist,
 								  settings.macBrickCounterTerrorist));
 		}
-		*/
+		
 		
 	}
 
@@ -82,7 +82,7 @@ public class commandNXT {
 			increaseSpeed();
 			break;
 		case 'w':
-			fwdL();  
+			fwdL();
 			break;
 		case 'x':
 			fwdR();
@@ -113,54 +113,50 @@ public class commandNXT {
 	}
 	
 	public static void test(){
+		/*
 		getUnit().getGw().getLGUI().getStreamPanel().remove(getUnit().getVid());
 		getUnit().getGw().getLGUI().getStreamPanel().add(getUnit().getVid2());
+		*/
+		
+		getUnit().getServ().interpretBomb("defSeq abxy");
 	}
 	
 	private static void fwdL(){
-		// increase speed
-		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "fwdL"));
-		System.out.println("Increase Speed");	
+		getBrick().sendMessage("fwdL");
 	}
 	
 	private static void fwdR(){
-		// increase speed
-		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "fwdR"));
-		System.out.println("Increase Speed");	
+		getBrick().sendMessage("fwdR");
 	}
 	
 	private static void rwdL(){
-		// increase speed
-		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "rwdL"));
-		System.out.println("Increase Speed");	
+		getBrick().sendMessage("rwdL");
 	}
 	
 	private static void rwdR(){
-		// increase speed
-		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "rwdR"));
-		System.out.println("Increase Speed");	
+		getBrick().sendMessage("rwdR");
 	}
 	
-	
-	
+
 	private static void increaseSpeed(){
 		// increase speed
-		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "increaseSpeed"));
+		getBrick().sendMessage("increaseSpeed");
 		System.out.println("Increase Speed");	
 	}
 
 	private static void decreaseSpeed(){
 		// decrease speed
-		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "decreaseSpeed"));
+		getBrick().sendMessage("decreaseSpeed");
 		System.out.println("Decrease Speed");	
 	}
 
 	
 	private static void sendDefuseColor(String string) {
 		// send the color to the Bomb
-		if ( ! getUnit().isTerrorist() && getUnit().isBombDefusable() )
+		if ( ! getUnit().isTerrorist() /*&& getUnit().isBombDefusable()*/ )
 		{
-			System.out.println("Defuse color: " + string);
+			getUnit().getGw().getRGUI().getDefusePanel().getCombinaison().setText("");
+			getUnit().getCl().getTc().sendMsgServer("defCode " + string);
 		}
 	}
 
@@ -168,48 +164,47 @@ public class commandNXT {
 		// Plant Bomb
 		if ( (!getUnit().isBombPlanted()) && getUnit().isTerrorist() )
 		{
-			long timeRef = System.currentTimeMillis();
-			
+			// plant the bomb for the server
 			getUnit().setBombPlanted(true);
 			getUnit().setTimeLeft(settings.timeBomb);
-			getUnit().setTimeStart(timeRef);
 			
-			System.out.println("Plant the bomb !");
-
-			getUnit().getServ().getTs().sendMsgClient("timeStart " + timeRef);
-			getUnit().getServ().getTs().sendMsgClient("timeLeft " + settings.timeBomb);
+			// plant the bomb for the client 
 			getUnit().getServ().getTs().sendMsgClient("bombPlanted true");
+			getUnit().getServ().getTs().sendMsgClient("timeLeft " + settings.timeBomb);
+			
+			// activate the bomb
+			getUnit().getServ().getBrick().sendMessage("planted");
 		}		
 	}
 	
 	
 	private static void stop() {
 		// Stop
-		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "stop"));
-		System.out.println("Go right");	
+		getBrick().sendMessage("stop");
+		System.out.println("Stop");	
 	}
 
 	private static void goRight() {
 		// Go right
-		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "right"));
+		getBrick().sendMessage("right");
 		System.out.println("Go right");		
 	}
 
 	private static void goLeft() {
 		// Go left
-		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "left"));
+		getBrick().sendMessage("left");
 		System.out.println("Go left");		
 	}
 
 	private static void goBackward() {
 		// Go backward
-		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "backward"));
+		getBrick().sendMessage("backward");
 		System.out.println("Go backward");		
 	}
 
 	private static void goForward() {
 		// Go forward
-		nxtBrick.getMF().SendMessage(new LIMessage(LIMessageType.Command, "forward"));
+		getBrick().sendMessage("forward");
 		System.out.println("Go forward");		
 	}
 
@@ -237,7 +232,7 @@ public class commandNXT {
 		commandNXT.brick = brick;
 	}
 
-	public nxtBrick getBrick() {
+	public static nxtBrick getBrick() {
 		return brick;
 	}
 
