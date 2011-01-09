@@ -10,7 +10,6 @@ import machine.server;
 import machine.settings;
 import videoStream.ImageStreamComponent;
 import GUI.gameWindow;
-import GUI.infoPanel;
 
 public class player{
 	
@@ -260,6 +259,37 @@ public class player{
 	public void interpretBrick(String s){
     	// This is where we interpret the messages from the player's brick
     	System.out.println("Player <- Brick : " + s);
+    	
+		
+		String[] splitStr = s.split(" ");
+		int len = splitStr.length;
+
+		switch (len){
+		
+		case 1:
+			if(s.equals("defuse"))
+			{
+				setBombDefused(true);
+				setTimeLeft(0);
+				setTimeStart(System.currentTimeMillis());
+			}
+			break;
+			
+		case 2:
+			if (splitStr[0].equalsIgnoreCase("IRD"))
+			{
+				getGw().getRGUI().getRadarPanel().getIrRadar().setDirection(Integer.parseInt(splitStr[1]));
+			}
+			break;
+			
+		case 3:
+			if (splitStr[0].equalsIgnoreCase("IRV"))
+			{
+				getGw().getRGUI().getRadarPanel().getIrRadar().setSensor(Integer.parseInt(splitStr[1]), Integer.parseInt(splitStr[2]));
+			}
+			break;
+		
+		}
 	}
 
 }

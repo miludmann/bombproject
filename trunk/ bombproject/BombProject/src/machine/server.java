@@ -36,7 +36,7 @@ public class server {
     	ts = new threadServer(this);
     	ts.start();
     	
-    	if ( false )
+    	if ( true )
     	{
 	    	unit = new terrorist(this);
     	}
