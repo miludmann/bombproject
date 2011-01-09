@@ -1,9 +1,12 @@
 package widgets;
 import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,6 +19,7 @@ public class WidgetTester {
 	protected static String title = "Widget Test";
 	
 	protected InfraredRadar m_irRadar;
+	protected ObstacleRadar m_obstacleRadar;
 
 	public static void main(String args[]) {
 		try	{
@@ -31,12 +35,22 @@ public class WidgetTester {
 	public void run(String[] args)  {
 		
 		m_frame = new JFrame(title);
-		m_frame.setSize(800, 800);
+		m_frame.setSize(1600, 900);
 		m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
-		m_irRadar = new InfraredRadar();
+		Container contentPane = m_frame.getContentPane();
+		BoxLayout layout = new BoxLayout(contentPane, BoxLayout.X_AXIS);
+		contentPane.setLayout(layout);
 		
-	    //Dimension d = new Dimension(m_imageStreamPanel.getWidth(), m_imageStreamPanel.getHeight()+20);
+		m_irRadar = new InfraredRadar();
+		//m_irRadar.setMinimumSize(new Dimension(200,200));
+		contentPane.add(m_irRadar);
+		
+		m_obstacleRadar = new ObstacleRadar();
+		//m_obstacleRadar.setMinimumSize(new Dimension(200,200));
+		contentPane.add(m_obstacleRadar);
+		
+		//Dimension d = new Dimension(m_imageStreamPanel.getWidth(), m_imageStreamPanel.getHeight()+20);
 	    //m_frame.setSize(d);
 	    m_frame.setResizable(true);
 	
@@ -47,10 +61,8 @@ public class WidgetTester {
 	    };
 	    
 	    m_frame.addWindowListener(listener);
-		m_frame.getContentPane().add(m_irRadar, BorderLayout.CENTER);
-	    //m_frame.pack();
+		//m_frame.pack();
 	    m_frame.setVisible(true);
-	    
 	    
 	    
 	    while(true)
