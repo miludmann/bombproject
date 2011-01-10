@@ -67,6 +67,7 @@ public class WidgetTester {
 		//m_frame.pack();
 	    m_frame.setVisible(true);
 	    
+	    m_obstacleRadar.setShowCompass(true);
 	    
 	    while(true)
 	    {
@@ -76,7 +77,7 @@ public class WidgetTester {
 	    		for(int j=0; j<256; j++)
 	    		{
 	    			m_irRadar.setSensor(i, j);
-	    			m_frame.repaint();
+	    			//m_frame.repaint();
 	    			
 	    			try {
 						Thread.sleep(2);
@@ -94,7 +95,7 @@ public class WidgetTester {
 		    for(int i=0; i<10; i++)
 		    {
 		    	m_irRadar.setDirection(i);
-		    	m_frame.repaint();
+		    	//m_frame.repaint();
 		    	
 		    	try {
 					Thread.sleep(100);
@@ -107,7 +108,19 @@ public class WidgetTester {
 		    	m_irRadar.setSensor(i, 0);
 		    
 		    m_irRadar.setDirection(0);
-	    	m_frame.repaint();
+		    
+		    
+		    for(int i=0; i<360; i++)
+		    {
+		    	m_obstacleRadar.setCompassAngle(i);
+		    	
+		    	try {
+					Thread.sleep(20);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+		    }
+	    	
 	    }
 	}
 }
