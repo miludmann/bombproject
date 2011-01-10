@@ -36,7 +36,7 @@ public class WidgetTester {
 	public void run(String[] args)  {
 		
 		m_frame = new JFrame(title);
-		m_frame.setSize(1600, 800);
+		m_frame.setSize(1540, 800);
 		m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
 		m_rand = new Random();
@@ -110,12 +110,12 @@ public class WidgetTester {
 		    m_irRadar.setDirection(0);
 		    
 		    
-		    for(int i=0; i<360; i++)
+		    for(int i=0; i<361; i++)
 		    {
 		    	m_obstacleRadar.setCompassAngle(i);
 		    	
 		    	try {
-					Thread.sleep(20);
+					Thread.sleep(10);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
