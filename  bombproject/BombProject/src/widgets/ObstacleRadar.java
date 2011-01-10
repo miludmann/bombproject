@@ -114,8 +114,8 @@ public class ObstacleRadar extends JPanel {
 		int centerX = this.getWidth()/2;
 		int centerY = this.getHeight()/2;
 		
-		double distance = this.getWidth()/2-(2*m_surfaceEdgeBoarder);
-		double angle = (m_compassAngle-90d)*(180d / Math.PI);
+		double distance = this.getWidth()/2-(1*m_surfaceEdgeBoarder);
+		double angle = (m_compassAngle-90d)*(Math.PI/180d);
 		
 		int endpointY = (int)Math.round( (double)centerY + distance * Math.sin( angle ) );
 		int endpointX = (int)Math.round( (double)centerX + distance * Math.cos( angle ) );
