@@ -18,13 +18,19 @@ public class ObstacleRadar extends JPanel {
 	
 	protected final Color m_surfaceColor = new Color(0, 70, 0);
 	protected Color m_scalingColor = new Color(80,255,80);
+	protected Color m_compassNeedleColor = new Color(255,255,255);
 	
 	protected double m_cmPixelRatio;
 	protected long m_maxAgeInMillis;
 	protected int m_surfaceEdgeBoarder;
+
+	
+	protected double m_compassAngle = 0;
+	protected boolean m_showCompass = false;
 	
 	public ObstacleRadar()
 	{
+		
 		setNativeLookAndFeel();
 		setBackground(Color.GRAY);
 	
@@ -42,6 +48,7 @@ public class ObstacleRadar extends JPanel {
 	public void paintComponent(Graphics g) {
 		
 		Graphics2D g2d = (Graphics2D)g;
+		clear(g);
 		
 		try {		
 		
@@ -49,6 +56,9 @@ public class ObstacleRadar extends JPanel {
 			
 			for(int i=0; i<m_obstacles.size(); i++)
 				drawObstacle(m_obstacles.get(i), g2d);
+			
+			if(m_showCompass)
+				drawCompassNeedle(g2d);
 			
 			drawScaleing(g2d);
 			drawCenter(g2d);
@@ -97,6 +107,21 @@ public class ObstacleRadar extends JPanel {
 	{
 		g2d.setPaint(m_surfaceColor);
 		g2d.fillOval(10, 10, this.getWidth()-20, this.getHeight()-20);
+	}
+	
+	private void drawCompassNeedle(Graphics2D g2d)
+	{
+		int centerX = this.getWidth()/2;
+		int centerY = this.getHeight()/2;
+		
+		double distance = this.getWidth()/2-(2*m_surfaceEdgeBoarder);
+		double angle = (m_compassAngle-90d)*(180d / Math.PI);
+		
+		int endpointY = (int)Math.round( (double)centerY + distance * Math.sin( angle ) );
+		int endpointX = (int)Math.round( (double)centerX + distance * Math.cos( angle ) );
+		
+		g2d.setPaint(m_compassNeedleColor);
+		g2d.drawLine(centerX, centerY, endpointX, endpointY);
 	}
 	
 	private void drawObstacle(Obstacle obstacle, Graphics2D g2d) {
@@ -152,6 +177,19 @@ public class ObstacleRadar extends JPanel {
 	public void setMaxObstacleAgeMillis(int maxAgeMs)
 	{
 		m_maxAgeInMillis = maxAgeMs;
+	}
+	
+	public void setShowCompass(boolean enabled)
+	{
+		m_showCompass = enabled;
+	}
+	
+	public void setCompassAngle(double angle)
+	{
+		m_compassAngle = angle;
+		
+		invalidate();
+		repaint();
 	}
 	
 	public int addObstacle(int Xcm, int Ycm)
