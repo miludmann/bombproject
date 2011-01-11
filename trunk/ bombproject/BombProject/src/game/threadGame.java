@@ -1,11 +1,7 @@
 package game;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.util.Random;
 
-import widgets.InfraredRadar;
-import widgets.ObstacleRadar;
 import GUI.infoPanel;
 import GUI.timePanel;
 
@@ -91,6 +87,7 @@ public class threadGame extends Thread {
 			e.printStackTrace();
 		}
   		
+		System.out.println("MOUHAHAHA");
 		
 		// And check the winner
 		// (... and display it !)

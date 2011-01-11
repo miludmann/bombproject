@@ -30,6 +30,7 @@ public class radarPanel extends Container {
 		this.add(getORadar());
 		
 		this.getORadar().setShowCompass(true);
+		this.getORadar().setCmPixelRatio(0.5);
 	}
 
 	public void setIrRadar(InfraredRadar irRadar) {

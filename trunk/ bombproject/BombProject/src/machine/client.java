@@ -15,7 +15,7 @@ public class client {
 	private player unit;
 
 	
-	public client(int port, String host){
+	public client(int port, String hosrgt){
 		setPort(port);
 		setHost(host);
 		

@@ -209,10 +209,10 @@ public class player{
 			{
 				setMovable(Boolean.parseBoolean(splitStr[1]));
 			}
-			if (splitStr[0].equalsIgnoreCase("DC"))
+			if (splitStr[0].equalsIgnoreCase("SC"))
 			{
-				getServ().getBrick().sendMessage("DC " + splitStr[1]);
-				System.out.println(splitStr[1]);
+				if( settings.activateBT )
+					getServ().getBrick().sendMessage("SC" + splitStr[1]);
 			}
 			if (splitStr[0].equalsIgnoreCase("DS"))
 			{
@@ -292,7 +292,7 @@ public class player{
 			}
 			if (splitStr[0].equalsIgnoreCase("CP"))
 			{
-				int arg1 = Integer.parseInt(splitStr[1]);
+				double arg1 = Double.parseDouble(splitStr[1]);
 
 				getGw().getRGUI().getRadarPanel().getORadar().setCompassAngle(arg1);
 			}

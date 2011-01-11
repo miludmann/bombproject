@@ -198,10 +198,6 @@ public class ObstacleRadar extends JPanel {
 		Obstacle obstacle = new Obstacle(Xcm, Ycm);
 		m_obstacles.add(obstacle);
 		
-		Dimension dTmp = this.getSize();
-		double sizetmp = Math.min(dTmp.getHeight(), dTmp.getWidth());
-		this.setSize((int) sizetmp, (int) sizetmp);
-		
 		invalidate();
 		repaint();
 		

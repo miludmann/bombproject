@@ -9,8 +9,9 @@ import java.io.UnsupportedEncodingException;
 
 public class settings {
 	
-	public static boolean serverOnly = true;
+	public static boolean serverOnly = false;
 	public static boolean activateVideo = false;
+	public static boolean activateBT = true;
 	
 	public static int port = 15000;
 	public static String IPServer = "localhost";
@@ -18,17 +19,17 @@ public class settings {
 	public static String streamT = "192.168.1.2:8080";
 	public static String streamAT = "192.168.2.103:8000";
 
-	public static long timeGame = 500;
-	public static long timeBomb = 200;
+	public static long timeGame = 200;
+	public static long timeBomb = 5;
 	
 	public static String nameBrickTerrorist = "Cutie";
 	public static String macBrickTerrorist = "001653006046";
 	
-	public static String nameBrickCounterTerrorist = "Freja";
+	public static String nameBrickCounterTerrorist = "NXT";
 	public static String macBrickCounterTerrorist = "001653099CE9";
 	
-	public static String nameBrickBomb = "Freja";
-	public static String macBrickBomb = "001653099CE9";
+	public static String nameBrickBomb = "Bomb";
+	public static String macBrickBomb = "00165308D0DD";
 	
 	
 	

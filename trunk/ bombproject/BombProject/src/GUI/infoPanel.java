@@ -77,7 +77,7 @@ public class infoPanel extends JPanel {
 			}
 			else
 			{
-				if(isPlanted)
+				if(!isPlanted)
 				{
 					display+="Sector Clear !";
 				}
