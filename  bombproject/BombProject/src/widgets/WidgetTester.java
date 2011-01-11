@@ -1,5 +1,6 @@
 package widgets;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -9,6 +10,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import lejos.util.Delay;
+
 public class WidgetTester {
 
 	protected WidgetTester m_instance;
@@ -17,6 +20,7 @@ public class WidgetTester {
 	protected final JPanel buttonPanel = new JPanel(); 
 	protected static String title = "Widget Test";
 	
+	protected WirecutWidget m_wireCut;
 	protected InfraredRadar m_irRadar;
 	protected ObstacleRadar m_obstacleRadar;
 
@@ -36,21 +40,26 @@ public class WidgetTester {
 	public void run(String[] args)  {
 		
 		m_frame = new JFrame(title);
-		m_frame.setSize(1540, 800);
+		m_frame.setSize(600, 1080);
 		m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
 		m_rand = new Random();
 		
 		Container contentPane = m_frame.getContentPane();
-		BoxLayout layout = new BoxLayout(contentPane, BoxLayout.X_AXIS);
+		BoxLayout layout = new BoxLayout(contentPane, BoxLayout.Y_AXIS);
 		contentPane.setLayout(layout);
+
+		m_wireCut = new WirecutWidget();
+		m_wireCut.setWireColorEnabled(true);
+//		m_wireCut.setMinimumSize(new Dimension(600, 200));
+//		m_wireCut.setMaximumSize(new Dimension(600, 200));
+//		m_wireCut.setSize(new Dimension(600, 200));
+		contentPane.add(m_wireCut);
 		
 		m_irRadar = new InfraredRadar();
-		//m_irRadar.setMinimumSize(new Dimension(200,200));
 		contentPane.add(m_irRadar);
 		
 		m_obstacleRadar = new ObstacleRadar();
-		//m_obstacleRadar.setMinimumSize(new Dimension(200,200));
 		contentPane.add(m_obstacleRadar);
 		
 		//Dimension d = new Dimension(m_imageStreamPanel.getWidth(), m_imageStreamPanel.getHeight()+20);
@@ -71,6 +80,18 @@ public class WidgetTester {
 	    
 	    while(true)
 	    {
+	    	
+	    	for(int i=0; i<m_wireCut.getSequenceLength(); i++)
+	    	{
+	    		m_wireCut.setCut(i);
+	    		
+	    		try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+	    		
+	    	}
 	    	
 	    	for(int i=0; i<5; i++)
 	    	{

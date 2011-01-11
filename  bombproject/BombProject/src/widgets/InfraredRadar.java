@@ -58,6 +58,8 @@ public class InfraredRadar extends JPanel {
 		Graphics2D g2d = (Graphics2D)g;
 		clear(g);
 		
+		setBackground(Color.WHITE);
+		
 		try {		
 		
 			int sensorLeft = (this.getWidth()-m_sensorImgWidth)/2; 
