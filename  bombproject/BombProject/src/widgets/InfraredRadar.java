@@ -133,10 +133,6 @@ public class InfraredRadar extends JPanel {
 		
 		m_sensorValues[sensor] = intensity;
 		
-		Dimension dTmp = this.getSize();
-		double sizetmp = Math.min(dTmp.getHeight(), dTmp.getWidth());
-		this.setSize((int) sizetmp, (int) sizetmp);
-		
 		invalidate(); //indicate repaint required
 		repaint();
 	}

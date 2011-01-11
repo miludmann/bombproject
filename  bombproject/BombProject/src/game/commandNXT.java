@@ -1,8 +1,6 @@
 package game;
 
 import machine.settings;
-import MessageComponent.LIMessage;
-import MessageComponent.LIMessageType;
 
 public class commandNXT {
 	
@@ -19,15 +17,17 @@ public class commandNXT {
 		
 		if(getUnit().isTerrorist())
 		{
-			setBrick(new nxtBrick(this,
-								  settings.nameBrickTerrorist,
-								  settings.macBrickTerrorist));
+			if( settings.activateBT )
+				setBrick(new nxtBrick(this,
+									  settings.nameBrickTerrorist,
+									  settings.macBrickTerrorist));
 		}
 		else
 		{
-			setBrick(new nxtBrick(this,
-								  settings.nameBrickCounterTerrorist,
-								  settings.macBrickCounterTerrorist));
+			if( settings.activateBT )
+				setBrick(new nxtBrick(this,
+									  settings.nameBrickCounterTerrorist,
+									  settings.macBrickCounterTerrorist));
 		}
 		
 		
@@ -125,36 +125,41 @@ public class commandNXT {
 	}
 	
 	public static void test(){
-		if ( unitP.isTerrorist() )
-			getUnit().getServ().getBrick().sendMessage("test");
+		// test
 	}
 	
 	private static void fwdL(){
-		getBrick().sendMessage("fwdL");
+		if( settings.activateBT )
+			getBrick().sendMessage("fwdL");
 	}
 	
 	private static void fwdR(){
-		getBrick().sendMessage("fwdR");
+		if( settings.activateBT )
+			getBrick().sendMessage("fwdR");
 	}
 	
 	private static void rwdL(){
-		getBrick().sendMessage("rwdL");
+		if( settings.activateBT )
+			getBrick().sendMessage("rwdL");
 	}
 	
 	private static void rwdR(){
-		getBrick().sendMessage("rwdR");
+		if( settings.activateBT )
+			getBrick().sendMessage("rwdR");
 	}
 	
 
 	private static void increaseSpeed(){
 		// increase speed
-		getBrick().sendMessage("increaseSpeed");
+		if( settings.activateBT )
+			getBrick().sendMessage("increaseSpeed");
 		System.out.println("Increase Speed");	
 	}
 
 	private static void decreaseSpeed(){
 		// decrease speed
-		getBrick().sendMessage("decreaseSpeed");
+		if( settings.activateBT )
+			getBrick().sendMessage("decreaseSpeed");
 		System.out.println("Decrease Speed");	
 	}
 
@@ -164,7 +169,7 @@ public class commandNXT {
 		if ( ! getUnit().isTerrorist() /*&& getUnit().isBombDefusable()*/ )
 		{
 			getUnit().getGw().getRGUI().getDefusePanel().getCombinaison().setText("");
-			getUnit().getCl().getTc().sendMsgServer("DC " + string);
+			getUnit().getCl().getTc().sendMsgServer("SC " + string);
 		}
 	}
 
@@ -174,11 +179,11 @@ public class commandNXT {
 		{
 			// plant the bomb for the server
 			getUnit().setBombPlanted(true);
-			getUnit().setTimeLeft(settings.timeBomb);
+			//getUnit().setTimeLeft(settings.timeBomb);
 			
 			// plant the bomb for the client 
 			getUnit().getServ().getTs().sendMsgClient("bombPlanted true");
-			getUnit().getServ().getTs().sendMsgClient("timeLeft " + settings.timeBomb);
+			//getUnit().getServ().getTs().sendMsgClient("timeLeft " + settings.timeBomb);
 			
 			// activate the bomb
 			
@@ -187,43 +192,44 @@ public class commandNXT {
 			for ( int i = time.length(); i < 4; i++)
 				time = "0" + time;
 			
-			System.out.println(time);
-			
-			getUnit().getServ().getBrick().sendMessage("pl");
-			getUnit().getServ().getBrick().sendMessage("gt " + time);
-
-			
+			if( settings.activateBT )
+				getUnit().getServ().getBrick().sendMessage("PL");
 		}		
 	}
 	
 	
 	public static void stop() {
 		// Stop
-		getBrick().sendMessage("stop");
+		if( settings.activateBT )
+			getBrick().sendMessage("stop");
 		System.out.println("Stop");	
 	}
 
 	private static void goRight() {
 		// Go right
-		getBrick().sendMessage("right");
+		if( settings.activateBT )
+			getBrick().sendMessage("right");
 		System.out.println("Go right");		
 	}
 
 	private static void goLeft() {
 		// Go left
-		getBrick().sendMessage("left");
+		if( settings.activateBT )
+			getBrick().sendMessage("left");
 		System.out.println("Go left");		
 	}
 
 	private static void goBackward() {
 		// Go backward
-		getBrick().sendMessage("backward");
+		if( settings.activateBT )
+			getBrick().sendMessage("backward");
 		System.out.println("Go backward");		
 	}
 
 	private static void goForward() {
 		// Go forward
-		getBrick().sendMessage("forward");
+		if( settings.activateBT )
+			getBrick().sendMessage("forward");
 		System.out.println("Go forward");		
 	}
 

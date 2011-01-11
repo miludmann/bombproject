@@ -29,9 +29,10 @@ public class server {
 		setReady(false);
 		setGetStarted(false);
 		
-		setBrick(new nxtBrick(this,
-				  settings.nameBrickBomb,
-				  settings.macBrickBomb));
+		if( settings.activateBT )
+			setBrick(new nxtBrick(this,
+								  settings.nameBrickBomb,
+								  settings.macBrickBomb));
 
 		
     	if ( settings.serverOnly )
@@ -180,12 +181,22 @@ public class server {
 	
     private void startGame() {
     	
+    	System.out.println("START GAME");
+    	
     	getUnit().setTimeStart(System.currentTimeMillis());
     	getUnit().setTimeLeft(settings.timeGame);
     	getUnit().setMovable(true);
     	
     	getTs().sendMsgClient("timeLeft " + Long.toString(settings.timeGame));
     	getTs().sendMsgClient("movable true");
+    	
+		String time = Long.toString(settings.timeGame);
+		
+		for ( int i = time.length(); i < 4; i++)
+			time = "0" + time;
+		
+		if( settings.activateBT )
+			getBrick().sendMessage("GT" + time);
     	
 	}
     
@@ -237,6 +248,13 @@ public class server {
 			if (splitStr[0].equalsIgnoreCase("DS"))
 			{
 				getTs().sendMsgClient("DS " + splitStr[1]);
+			}
+			if (splitStr[0].equalsIgnoreCase("GT"))
+			{
+				long arg1 = Long.parseLong(splitStr[1]);
+				
+				getUnit().setTimeLeft(arg1);
+				getTs().sendMsgClient("timeleft " + splitStr[1]);
 			}
 		}
     }

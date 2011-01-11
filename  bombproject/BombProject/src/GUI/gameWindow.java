@@ -5,8 +5,6 @@ import java.awt.Container;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
-import widgets.InfraredRadar;
-
 @SuppressWarnings("serial")
 public class gameWindow extends JFrame{
 
