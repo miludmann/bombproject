@@ -51,6 +51,9 @@ public class ObstacleRadar extends JPanel {
 		Graphics2D g2d = (Graphics2D)g;
 		clear(g);
 		
+		setBackground(Color.WHITE);
+		
+		
 		try {		
 		
 			drawSurface(g2d);
@@ -126,33 +129,39 @@ public class ObstacleRadar extends JPanel {
 	}
 	
 	private void drawObstacle(Obstacle obstacle, Graphics2D g2d) {
-		
-		//Calculate age
-		long ageInMillis = System.currentTimeMillis() - obstacle.getAgeInMillis();
-		
-		int intencity = (int)Math.round( ((((double)m_maxAgeInMillis-(double)ageInMillis)/(double)m_maxAgeInMillis*255d)+m_surfaceColor.getGreen()));
-		if(intencity > 255)
-			intencity = 255;
-		
-		int centerX = this.getWidth()/2;
-		int centerY = this.getHeight()/2;
-		
-		//Calculate relative dot
-		int obstacleX = (int)Math.round(centerX+(obstacle.getXCm()*m_cmPixelRatio));
-		int obstacleY = (int)Math.round(centerY-(obstacle.getYCm()*m_cmPixelRatio));
-		
-		if(ageInMillis >= m_maxAgeInMillis)
+		try
 		{
-			m_obstacles.remove(obstacle); //to old remove it
-			return;
+			//Calculate age
+			long ageInMillis = System.currentTimeMillis() - obstacle.getAgeInMillis();
+			
+			int intencity = (int)Math.round( ((((double)m_maxAgeInMillis-(double)ageInMillis)/(double)m_maxAgeInMillis*255d)+m_surfaceColor.getGreen()));
+			if(intencity > 255)
+				intencity = 255;
+			
+			int centerX = this.getWidth()/2;
+			int centerY = this.getHeight()/2;
+			
+			//Calculate relative dot
+			int obstacleX = (int)Math.round(centerX+(obstacle.getXCm()*m_cmPixelRatio));
+			int obstacleY = (int)Math.round(centerY-(obstacle.getYCm()*m_cmPixelRatio));
+			
+			if(ageInMillis >= m_maxAgeInMillis)
+			{
+				
+				m_obstacles.remove(obstacle); //to old remove it
+				return;
+				
+			}
+			else
+			{
+				g2d.setPaint(new Color(0, intencity, 0));
+				g2d.fillOval(obstacleX, obstacleY, 4, 4);
+			}
 		}
-		else
+		catch(Exception e)
 		{
-			g2d.setPaint(new Color(0, intencity, 0));
-			g2d.fillOval(obstacleX, obstacleY, 4, 4);
+			System.out.println("Error drawing obstacle");
 		}
-		
-		//g2d.drawLine(obstacle.getXCm(), obstacle.getYCm(), 1, 1);
 	}
 
 	protected void clear(Graphics g) {
