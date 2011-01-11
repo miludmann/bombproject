@@ -1,8 +1,13 @@
 package game;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.util.Random;
 
-import GUI.*;
+import widgets.InfraredRadar;
+import widgets.ObstacleRadar;
+import GUI.infoPanel;
+import GUI.timePanel;
 
 public class threadGame extends Thread {
 
@@ -60,6 +65,20 @@ public class threadGame extends Thread {
 		   		((timePanel)unit.getGw().getRGUI().getTimePanel()).refreshTime(0);
 				break;
 			}
+
+			
+			/*
+			InfraredRadar m_irRadar = unit.getGw().getRGUI().getRadarPanel().getIrRadar();
+			ObstacleRadar m_obstacleRadar = unit.getGw().getRGUI().getRadarPanel().getORadar();
+			
+			long dimTmp = (long) Math.min(m_irRadar.getSize().getHeight(), m_irRadar.getSize().getWidth());
+			
+			m_irRadar.setSize((int) dimTmp, (int)dimTmp);
+			m_obstacleRadar.setSize((int) dimTmp, (int)dimTmp);
+			
+			m_irRadar.repaint();
+			m_obstacleRadar.repaint();
+			*/
     	}
     	
 		

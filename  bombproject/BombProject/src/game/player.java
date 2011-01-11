@@ -282,19 +282,21 @@ public class player{
 			break;
 			
 		case 2:
-			try
+
+			if (splitStr[0].equalsIgnoreCase("IRD"))
 			{
-				if (splitStr[0].equalsIgnoreCase("IRD"))
-				{
-					int arg1 = Integer.parseInt(splitStr[1]);
-	
-					arg1 = Integer.parseInt(splitStr[1]);
-					getGw().getRGUI().getRadarPanel().getIrRadar().setDirection(arg1);
-					
-				}
-			} catch(Exception e) {
-				System.err.println("Player IRD msg: " + e.getMessage());
+				int arg1 = Integer.parseInt(splitStr[1]);
+
+				getGw().getRGUI().getRadarPanel().getIrRadar().setDirection(arg1);
+				
 			}
+			if (splitStr[0].equalsIgnoreCase("CP"))
+			{
+				int arg1 = Integer.parseInt(splitStr[1]);
+
+				getGw().getRGUI().getRadarPanel().getORadar().setCompassAngle(arg1);
+			}
+			
 			break;
 			
 		case 3:

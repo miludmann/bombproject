@@ -197,7 +197,7 @@ public class commandNXT {
 	}
 	
 	
-	private static void stop() {
+	public static void stop() {
 		// Stop
 		getBrick().sendMessage("stop");
 		System.out.println("Stop");	
