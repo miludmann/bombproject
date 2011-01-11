@@ -19,6 +19,8 @@ public class WirecutWidget extends JPanel {
 	protected BufferedImage m_imgWiresCut = null;
 	
 	protected ArrayList<Wire> m_sequence;
+	protected int m_currentSeqIndex;
+	
 	protected boolean m_showColor;
 	
 	public WirecutWidget()
@@ -30,6 +32,7 @@ public class WirecutWidget extends JPanel {
 		this.setDoubleBuffered(true);
 		
 		m_sequence = new ArrayList<Wire>();
+		m_currentSeqIndex = 0;
 		
 		// Lazy loaded and cached
 		if (m_imgWires == null || m_imgWiresCut == null) {
@@ -43,7 +46,7 @@ public class WirecutWidget extends JPanel {
 		
 		//Clearing the sequence
 		m_showColor = false;
-		setSequence("yygbryg");
+		setSequence("");
 	}
 	
 	public void setSequence(String seq) {
@@ -80,6 +83,10 @@ public class WirecutWidget extends JPanel {
 	public void reset()
 	{
 		m_sequence.clear();
+		m_currentSeqIndex = 0;
+		
+		invalidate();
+		repaint();
 	}
 	
 	protected void DrawWire(Graphics2D g2d, int location, WireColor wire, boolean isCut)
@@ -195,6 +202,24 @@ public class WirecutWidget extends JPanel {
 		public WireColor getColor()
 		{
 			return m_color;
+		}
+	}
+	
+	public void nextWireColorCut(char nextColor)
+	{
+		Wire nextWireToCut = m_sequence.get(m_currentSeqIndex);
+		if(nextWireToCut.getColor() == getWireColorFromSeq(nextColor))
+		{
+			nextWireToCut.setCut(true);
+			m_currentSeqIndex++;
+			
+			invalidate();
+			repaint();
+		}
+		else
+		{
+			//TODO: Play failed sound.
+			reset();
 		}
 	}
 }
