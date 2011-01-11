@@ -1,6 +1,7 @@
 package widgets;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -36,7 +37,7 @@ public class InfraredRadar extends JPanel {
 		m_sectorValues = new int[9]; //Representing zone 1 to 9
 		m_sensorValues = new int[5]; //Representing the values of the 5 available sensors
 		
-		this.setSize(400, 400);
+		//this.setSize(400, 400);
 		this.setDoubleBuffered(true);
 		
 		// Lazy loaded and cached
@@ -131,6 +132,10 @@ public class InfraredRadar extends JPanel {
 			return;
 		
 		m_sensorValues[sensor] = intensity;
+		
+		Dimension dTmp = this.getSize();
+		double sizetmp = Math.min(dTmp.getHeight(), dTmp.getWidth());
+		this.setSize((int) sizetmp, (int) sizetmp);
 		
 		invalidate(); //indicate repaint required
 		repaint();

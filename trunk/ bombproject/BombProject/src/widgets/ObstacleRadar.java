@@ -1,6 +1,7 @@
 package widgets;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -196,6 +197,10 @@ public class ObstacleRadar extends JPanel {
 	{
 		Obstacle obstacle = new Obstacle(Xcm, Ycm);
 		m_obstacles.add(obstacle);
+		
+		Dimension dTmp = this.getSize();
+		double sizetmp = Math.min(dTmp.getHeight(), dTmp.getWidth());
+		this.setSize((int) sizetmp, (int) sizetmp);
 		
 		invalidate();
 		repaint();
