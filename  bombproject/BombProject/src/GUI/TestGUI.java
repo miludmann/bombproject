@@ -21,7 +21,7 @@ import widgets.WirecutWidget;
 
 public class TestGUI {
 	
-	protected final static String IP_PORT_FOR_CAMERA = "192.168.0.139:8000";
+	protected final static String IP_PORT_FOR_CAMERA = "10.0.0.119:8000";
 	
 	protected JFrame m_frame;
 	
