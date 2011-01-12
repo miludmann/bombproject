@@ -235,6 +235,7 @@ public class player{
 		case 1:
 			if(s.equals("defused"))
 			{
+				System.out.println("Bomb Defused !");
 				setBombDefused(true);
 				setTimeLeft(0);
 				setTimeStart(System.currentTimeMillis());

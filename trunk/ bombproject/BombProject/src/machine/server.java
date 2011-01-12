@@ -222,11 +222,12 @@ public class server {
 			if(s.equals("defused"))
 			{				
 				// Set the time left to 0 and bomb defused for the server
+				System.out.println("Bomb defused !");
+				
 				getUnit().setBombDefused(true);
 		    	getUnit().setTimeLeft(0);
 				
 				// Set the time left to 0 and bomb defused for the client
-		    	getTs().sendMsgClient("timeLeft 0");
 		    	getTs().sendMsgClient("defused");
 			}
 			if(s.equals("BOOM"))
