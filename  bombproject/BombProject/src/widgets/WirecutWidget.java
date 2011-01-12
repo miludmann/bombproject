@@ -15,7 +15,9 @@ import javax.swing.UIManager;
 public class WirecutWidget extends JPanel {
 
 	private static final long serialVersionUID = 3561474001673677964L;
-	protected final static int WIRE_CELL_WIDTH = 32; 
+	protected final static int WIRE_CELL_WIDTH = 32;
+	
+	protected final static char CONST_CHEAT_CUT_CHAR = 'k';
 	
 	protected BufferedImage m_imgWires = null;
 	protected BufferedImage m_imgWiresCut = null;
@@ -158,6 +160,9 @@ public class WirecutWidget extends JPanel {
 				return WireColor.Yellow;
 			case 'w':
 				return WireColor.White;
+			case 'k':
+				System.out.println("CHEAT CUT");
+				return WireColor.White;
 			default:
 				System.out.println("Illegal char for wire. Returning white as unknow color");
 				return WireColor.White;
@@ -214,7 +219,7 @@ public class WirecutWidget extends JPanel {
 	public void nextWireColorCut(char nextColor)
 	{
 		Wire nextWireToCut = m_sequence.get(m_currentSeqIndex);
-		if(nextWireToCut.getColor() == getWireColorFromSeq(nextColor))
+		if(nextWireToCut.getColor() == getWireColorFromSeq(nextColor) || nextColor == CONST_CHEAT_CUT_CHAR)
 		{
 			nextWireToCut.setCut(true);
 			m_currentSeqIndex++;
