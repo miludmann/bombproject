@@ -218,19 +218,22 @@ public class WirecutWidget extends JPanel {
 	
 	public void nextWireColorCut(char nextColor)
 	{
-		Wire nextWireToCut = m_sequence.get(m_currentSeqIndex);
-		if(nextWireToCut.getColor() == getWireColorFromSeq(nextColor) || nextColor == CONST_CHEAT_CUT_CHAR)
+		if(m_sequence.size() > 0)
 		{
-			nextWireToCut.setCut(true);
-			m_currentSeqIndex++;
-			
-			invalidate();
-			repaint();
-		}
-		else
-		{
-			//TODO: Play failed sound.
-			reset();
+			Wire nextWireToCut = m_sequence.get(m_currentSeqIndex);
+			if(nextWireToCut.getColor() == getWireColorFromSeq(nextColor) || nextColor == CONST_CHEAT_CUT_CHAR)
+			{
+				nextWireToCut.setCut(true);
+				m_currentSeqIndex++;
+				
+				invalidate();
+				repaint();
+			}
+			else
+			{
+				//TODO: Play failed sound.
+				reset();
+			}
 		}
 	}
 }
