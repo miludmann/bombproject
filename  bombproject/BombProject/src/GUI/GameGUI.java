@@ -5,20 +5,18 @@ import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.Random;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import machine.settings;
-
 import videoStream.ImageStreamComponent;
 import widgets.InfraredRadar;
 import widgets.ObstacleRadar;
 import widgets.WirecutWidget;
 
+@SuppressWarnings("serial")
 public class GameGUI extends JFrame {
 		
 	//protected JFrame m_frame;

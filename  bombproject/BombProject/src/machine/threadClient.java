@@ -37,7 +37,7 @@ public class threadClient extends Thread {
         }
 
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-        String fromServer, fromUser;
+        String fromServer;
         
         sendMsgServer("clientOK");
 

@@ -52,8 +52,8 @@ public class threadServer extends Thread {
 			e.printStackTrace();
 		}
 	    
-        BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-	    String inputLine, outputLine;
+        //BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+	    String inputLine;
 	    
         //out.println("Socket initialised");
 	    
