@@ -84,7 +84,7 @@ public class GameGUI extends JFrame {
 		//TOP
 		m_obstacleRadar = new ObstacleRadar();
 		m_obstacleRadar.setMaximumSize(new Dimension(400, 400));
-		m_obstacleRadar.setCmPixelRatio(0.5d);
+		m_obstacleRadar.setCmPixelRatio(0.7d);
 		horisontalPanelTop.add(m_obstacleRadar);
 
 		
