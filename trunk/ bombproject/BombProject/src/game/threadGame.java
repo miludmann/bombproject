@@ -2,7 +2,6 @@ package game;
 
 import java.awt.Color;
 
-import GUI.infoPanel;
 import GUI.timePanel;
 
 public class threadGame extends Thread {
@@ -28,7 +27,7 @@ public class threadGame extends Thread {
 			}
     	}
     	
-   		((infoPanel) unit.getGw().getRGUI().getInfoPanel()).showSide(unit.isTerrorist());
+   		unit.getGg().getM_infoPanel().showSide(unit.isTerrorist());
     	
     	while ( unit.isMovable() )
     	{
@@ -40,7 +39,8 @@ public class threadGame extends Thread {
 			}
 			
 			// Change the color of the timer when the bomb is dropped
-			timePanel tp = (timePanel) unit.getGw().getRGUI().getTimePanel();
+			timePanel tp = unit.getGg().getM_timePanel();
+			
     		if ( unit.isBombPlanted() && tp.getColor().equals(Color.GREEN) )
 			{
 				tp.changeColor(Color.RED);
@@ -49,16 +49,17 @@ public class threadGame extends Thread {
 			remainingTime = unit.getTimeLeft() - (System.currentTimeMillis() - unit.getTimeStart())/1000;
 	   		
 	   		// Update status
-	   		((infoPanel) unit.getGw().getRGUI().getInfoPanel()).changeInfos(false, unit.isTerrorist(), unit.isBombPlanted(), unit.isBombDefused());
+	   		unit.getGg().getM_infoPanel().changeInfos(false, unit.isTerrorist(), unit.isBombPlanted(), unit.isBombDefused());
 	   		
 	   		// Update remaining time
-	   		((timePanel)unit.getGw().getRGUI().getTimePanel()).refreshTime(remainingTime);
+	   		unit.getGg().getM_timePanel().refreshTime(remainingTime);
+	   		
 	   		
 			if ( remainingTime < 1 )
 			{
 				unit.setMovable(false);
 				unit.getCmdNXT().stop();
-		   		((timePanel)unit.getGw().getRGUI().getTimePanel()).refreshTime(0);
+		   		unit.getGg().getM_timePanel().refreshTime(0);
 				break;
 			}
 
@@ -86,13 +87,10 @@ public class threadGame extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-  		
-		System.out.println("MOUHAHAHA");
-		
+  				
 		// And check the winner
 		// (... and display it !)
    		
-   		((infoPanel) unit.getGw().getRGUI().getInfoPanel()).changeInfos(true, unit.isTerrorist(), unit.isBombPlanted(), unit.isBombDefused());
-
+   		unit.getGg().getM_infoPanel().changeInfos(true, unit.isTerrorist(), unit.isBombPlanted(), unit.isBombDefused());
 	}	
 }

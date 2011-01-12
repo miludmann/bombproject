@@ -10,7 +10,6 @@ import java.io.UnsupportedEncodingException;
 public class settings {
 	
 	public static boolean serverOnly = false;
-	public static boolean activateVideo = true;
 	public static boolean activateBT = true;
 	
 	public static int port = 15000;
@@ -18,7 +17,7 @@ public class settings {
 	
 	public static String streamT = "192.168.2.101:8080";
 	public static String streamAT = "192.168.2.102:8080";
-
+	
 	public static long timeGame = 200;
 	public static long timeBomb = 5;
 	
