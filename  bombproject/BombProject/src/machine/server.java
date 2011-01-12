@@ -20,20 +20,26 @@ public class server {
 	private int port;
 	private static threadServer ts;
 	private player unit;
-	public static nxtBrick brick;
+	public nxtBrick brick;
 
 	
-	@SuppressWarnings("static-access")
 	public server(int port){
 		setPort(port);
 		setReady(false);
 		setGetStarted(false);
 		
+		
 		if( settings.activateBT )
+		{
+			System.out.println("YOUPI");
 			setBrick(new nxtBrick(this,
 								  settings.nameBrickBomb,
 								  settings.macBrickBomb));
+			System.out.println("HOP");
 
+		}
+		
+		
 		
     	if ( settings.serverOnly )
     	{
@@ -129,8 +135,8 @@ public class server {
 		return brick;
 	}
 
-	public static void setBrick(nxtBrick brick) {
-		server.brick = brick;
+	public void setBrick(nxtBrick brick) {
+		this.brick = brick;
 	}
 
 	public void setPort(int port) {
@@ -197,6 +203,7 @@ public class server {
 		
 		if( settings.activateBT )
 			getBrick().sendMessage("GT" + time);
+		
     	
 	}
     

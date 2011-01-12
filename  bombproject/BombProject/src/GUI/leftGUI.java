@@ -20,15 +20,8 @@ public class leftGUI extends Container {
 
 		
 		this.setStreamPanel(new JPanel());
-		this.setMapPanel(new JPanel());
+		this.setMapPanel(new mapPanel());
 		
-
-	    JLabel labelImg = new JLabel();
-	    ImageIcon img = new ImageIcon(System.getProperty("user.dir") + "/src/GUI/map.png");
-	    
-	    labelImg.setIcon(img);
-	    getMapPanel().add(labelImg);
-
 		this.add(this.getStreamPanel());
 		this.add(this.getMapPanel());
 	    

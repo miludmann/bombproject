@@ -53,17 +53,17 @@ public class player{
 			
 			public void keyReleased(KeyEvent e) {
 				// TODO: Do something for the keyReleased event
-				commandNXT.commandReleasedTerrorist(e.getKeyChar());
+				getCmdNXT().commandReleasedTerrorist(e.getKeyChar());
 			}
 
 			public void keyTyped(KeyEvent e) {
 			// TODO: Do something for the keyTyped event
-				commandNXT.commandTypedTerrorist(e.getKeyChar());
+				getCmdNXT().commandTypedTerrorist(e.getKeyChar());
 			}
 
 			public void keyPressed(KeyEvent e) {
 			// TODO: Do something for the keyPressed event
-				commandNXT.commandPressedTerrorist(e.getKeyChar());
+				getCmdNXT().commandPressedTerrorist(e.getKeyChar());
 			}
 			});
 				
@@ -216,7 +216,8 @@ public class player{
 			}
 			if (splitStr[0].equalsIgnoreCase("DS"))
 			{
-				getGw().getRGUI().getDefusePanel().getCombinaison().setText(splitStr[1]);
+				getGw().getRGUI().getDefusePanel().getCombinaison().setWireColorEnabled(true);
+				getGw().getRGUI().getDefusePanel().getCombinaison().setSequence(splitStr[1]);
 			}
 			
 		}

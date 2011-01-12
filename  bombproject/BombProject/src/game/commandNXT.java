@@ -6,7 +6,7 @@ public class commandNXT {
 	
 	private static player unitP;
 	private boolean isTerrorist;
-	public static nxtBrick brick;
+	public nxtBrick brick;
 
 	
 	public commandNXT(player t) {
@@ -14,7 +14,7 @@ public class commandNXT {
 		setUnit(t);
 		setTerrorist(t.isTerrorist());
 		
-		
+		/*
 		if(getUnit().isTerrorist())
 		{
 			if( settings.activateBT )
@@ -29,11 +29,11 @@ public class commandNXT {
 									  settings.nameBrickCounterTerrorist,
 									  settings.macBrickCounterTerrorist));
 		}
-		
+		*/
 		
 	}
 
-	public static void commandReleasedTerrorist(char c){
+	public void commandReleasedTerrorist(char c){
 		
 		if(!getUnit().isMovable())
 			return;
@@ -66,7 +66,7 @@ public class commandNXT {
 	}
 
 
-	public static void commandTypedTerrorist(char c){
+	public void commandTypedTerrorist(char c){
 		
 		if(!getUnit().isMovable())
 			return;
@@ -124,39 +124,39 @@ public class commandNXT {
 		}
 	}
 	
-	public static void test(){
+	public void test(){
 		// test
 	}
 	
-	private static void fwdL(){
+	private void fwdL(){
 		if( settings.activateBT )
 			getBrick().sendMessage("fwdL");
 	}
 	
-	private static void fwdR(){
+	private void fwdR(){
 		if( settings.activateBT )
 			getBrick().sendMessage("fwdR");
 	}
 	
-	private static void rwdL(){
+	private void rwdL(){
 		if( settings.activateBT )
 			getBrick().sendMessage("rwdL");
 	}
 	
-	private static void rwdR(){
+	private void rwdR(){
 		if( settings.activateBT )
 			getBrick().sendMessage("rwdR");
 	}
 	
 
-	private static void increaseSpeed(){
+	private void increaseSpeed(){
 		// increase speed
 		if( settings.activateBT )
 			getBrick().sendMessage("increaseSpeed");
 		System.out.println("Increase Speed");	
 	}
 
-	private static void decreaseSpeed(){
+	private void decreaseSpeed(){
 		// decrease speed
 		if( settings.activateBT )
 			getBrick().sendMessage("decreaseSpeed");
@@ -164,16 +164,16 @@ public class commandNXT {
 	}
 
 	
-	private static void sendDefuseColor(String string) {
+	private void sendDefuseColor(String string) {
 		// send the color to the Bomb
 		if ( ! getUnit().isTerrorist() /*&& getUnit().isBombDefusable()*/ )
 		{
-			getUnit().getGw().getRGUI().getDefusePanel().getCombinaison().setText("");
+			//getUnit().getGw().getRGUI().getDefusePanel().getCombinaison().setText("");
 			getUnit().getCl().getTc().sendMsgServer("SC " + string);
 		}
 	}
 
-	private static void plantBomb() {
+	private void plantBomb() {
 		// Plant Bomb
 		if ( (!getUnit().isBombPlanted()) && getUnit().isTerrorist() )
 		{
@@ -198,35 +198,35 @@ public class commandNXT {
 	}
 	
 	
-	public static void stop() {
+	public void stop() {
 		// Stop
 		if( settings.activateBT )
 			getBrick().sendMessage("stop");
 		System.out.println("Stop");	
 	}
 
-	private static void goRight() {
+	private void goRight() {
 		// Go right
 		if( settings.activateBT )
 			getBrick().sendMessage("right");
 		System.out.println("Go right");		
 	}
 
-	private static void goLeft() {
+	private void goLeft() {
 		// Go left
 		if( settings.activateBT )
 			getBrick().sendMessage("left");
 		System.out.println("Go left");		
 	}
 
-	private static void goBackward() {
+	private void goBackward() {
 		// Go backward
 		if( settings.activateBT )
 			getBrick().sendMessage("backward");
 		System.out.println("Go backward");		
 	}
 
-	private static void goForward() {
+	private void goForward() {
 		// Go forward
 		if( settings.activateBT )
 			getBrick().sendMessage("forward");
@@ -254,10 +254,10 @@ public class commandNXT {
 	}
 
 	public void setBrick(nxtBrick brick) {
-		commandNXT.brick = brick;
+		this.brick = brick;
 	}
 
-	public static nxtBrick getBrick() {
+	public nxtBrick getBrick() {
 		return brick;
 	}
 

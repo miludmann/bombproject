@@ -16,7 +16,7 @@ public class gameWindow extends JFrame{
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
 		this.setSize(1280, 800);
-	    
+
 	    Container contentPane = this.getContentPane();
 		BoxLayout layout = new BoxLayout(contentPane, BoxLayout.X_AXIS);
 		contentPane.setLayout(layout);
@@ -34,7 +34,7 @@ public class gameWindow extends JFrame{
 
 	    /*****/
 	    
-	    this.pack();
+	    //this.pack();
 	    this.setLocationRelativeTo(null); // Center the window
 	    this.setResizable(true);
 	    this.setVisible(true);
