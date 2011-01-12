@@ -3,6 +3,7 @@ package videoStream;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -55,9 +56,15 @@ public class ImageStreamComponent extends javax.swing.JComponent {
 	
 	@Override
 	public void paint(Graphics g) {
-		super.paint(g);
-		Image img = m_image;
-		g.drawImage(img, 0, 0, Color.BLACK, null);
+		
+		Graphics2D g2d = (Graphics2D)g;
+		super.paint(g2d);		
+		
+		setBackground(Color.BLACK);
+		
+		BufferedImage img = m_image;
+		//g.drawImage(img, 0, 0, Color.BLACK, null);
+		g2d.drawImage(img, 10, 10, this.getWidth()-10, this.getHeight()-10, 0, 0, img.getWidth(), img.getHeight(),  null);		
 	}
 	
 	final class RefreshHandler implements Runnable {
