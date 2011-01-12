@@ -13,10 +13,10 @@ public class settings {
 	public static boolean activateBT = true;
 	
 	public static int port = 15000;
-	public static String IPServer = "localhost";
+	public static String IPServer = "192.168.1.241";
 	
-	public static String streamT = "192.168.2.101:8080";
-	public static String streamAT = "192.168.2.102:8080";
+	public static String streamT = "192.168.1.52:8080";
+	public static String streamAT = "192.168.1.10:8080";
 	
 	public static long timeGame = 200;
 	public static long timeBomb = 5;

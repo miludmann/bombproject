@@ -228,7 +228,7 @@ public class server {
 				// Set the time left to 0 and bomb defused for the client
 		    	getTs().sendMsgClient("timeLeft 0");
 		    	getTs().sendMsgClient("defused");
-			}			
+			}
 			if(s.equals("BOOM"))
 			{
 				// Set the time left to 0 for the server

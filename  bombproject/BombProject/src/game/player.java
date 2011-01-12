@@ -137,6 +137,10 @@ public class player{
 				setTimeLeft(0);
 				setTimeStart(System.currentTimeMillis());
 			}
+			if (splitStr[0].equalsIgnoreCase("defusable"))
+			{
+				setBombDefusable(true);
+			}
 			break;
 			
 		case 2:
@@ -156,10 +160,6 @@ public class player{
 			if (splitStr[0].equalsIgnoreCase("defused"))
 			{
 				setBombDefused(true);
-			}
-			if (splitStr[0].equalsIgnoreCase("defusable"))
-			{
-				setBombDefusable(true);
 			}
 			if (splitStr[0].equalsIgnoreCase("movable"))
 			{
