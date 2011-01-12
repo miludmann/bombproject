@@ -11,7 +11,7 @@ public class settings {
 	
 	public static boolean serverOnly = false;
 	public static boolean activateVideo = false;
-	public static boolean activateBT = true;
+	public static boolean activateBT = false;
 	
 	public static int port = 15000;
 	public static String IPServer = "localhost";
