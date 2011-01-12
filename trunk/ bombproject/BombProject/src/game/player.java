@@ -160,6 +160,8 @@ public class player{
 			if (splitStr[0].equalsIgnoreCase("defused"))
 			{
 				setBombDefused(true);
+				setTimeLeft(0);
+				setTimeStart(System.currentTimeMillis());
 			}
 			if (splitStr[0].equalsIgnoreCase("movable"))
 			{
