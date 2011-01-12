@@ -64,14 +64,14 @@ public class TestGUI {
 		
 		//Setting right vertical panel
 		horisontalPanel = new JPanel();
-		horisontalPanel.setBackground(Color.GREEN);
+		horisontalPanel.setBackground(Color.WHITE);
 		BoxLayout layoutHorisontal = new BoxLayout(horisontalPanel, BoxLayout.X_AXIS);
 		horisontalPanel.setLayout(layoutHorisontal);
 		
 		
 		//Setting right vertical panel
 		verticalPanelRight = new JPanel();
-		verticalPanelRight.setBackground(Color.BLUE);
+		verticalPanelRight.setBackground(Color.WHITE);
 		BoxLayout layoutRight = new BoxLayout(verticalPanelRight, BoxLayout.Y_AXIS);
 		verticalPanelRight.setLayout(layoutRight);
 		
