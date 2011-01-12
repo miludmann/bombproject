@@ -206,7 +206,7 @@ public class server {
     
     public void interpretBomb(String s){
     	// This is where we interpret the messages from the bomb
-    	System.out.println("Server <- Bomb : " + s);
+    	//System.out.println("Server <- Bomb : " + s);
     	
 		
 		String[] splitStr = s.split(" ");

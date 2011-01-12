@@ -224,7 +224,7 @@ public class player{
 	
 	public void interpretBrick(String s) throws InterruptedException{
     	// This is where we interpret the messages from the player's brick
-    	System.out.println("Player <- Brick : " + s);
+    	//System.out.println("Player <- Brick : " + s);
     	
 		
 		String[] splitStr = s.split(" ");

@@ -168,6 +168,7 @@ public class commandNXT {
 		// send the color to the Bomb
 		if ( ! getUnit().isTerrorist() && getUnit().isBombDefusable() )
 		{
+			System.out.println("Sending color: " + string);
 			//getUnit().getGw().getRGUI().getDefusePanel().getCombinaison().setText("");
 			getUnit().getCl().getTc().sendMsgServer("SC " + string);
 			getUnit().getGg().getM_wireCut().setWireColorEnabled(false);
