@@ -11,7 +11,7 @@ import lejos.pc.comm.NXTInfo;
 
 public class MessageFramework {
 	
-	private static MessageFramework m_instance = new MessageFramework();
+	//private static MessageFramework m_instance = new MessageFramework();
 	private Object m_RXguard;
 	private Object m_TXguard;
 	
@@ -24,7 +24,7 @@ public class MessageFramework {
 	private Reader m_reader;
 	private ArrayList<Byte> m_receivedBytes;
 	
-	private MessageFramework() {
+	public MessageFramework() {
 		
 		m_messageListeners = new ArrayList<MessageListenerInterface>();
 		m_receivedBytes = new ArrayList<Byte>();
@@ -38,9 +38,9 @@ public class MessageFramework {
     	m_reader.setDaemon(true);
 	}
 	
-	public static synchronized MessageFramework getInstance() {
-		return m_instance;
-	}
+//	public static synchronized MessageFramework getInstance() {
+//		return m_instance;
+//	}
 	
 	public boolean ConnectToNXT(NXTInfo info)
 	{    
