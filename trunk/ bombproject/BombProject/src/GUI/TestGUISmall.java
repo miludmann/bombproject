@@ -19,11 +19,11 @@ import widgets.InfraredRadar;
 import widgets.ObstacleRadar;
 import widgets.WirecutWidget;
 
-public class TestGUI {
+public class TestGUISmall extends JFrame {
 	
 	protected final static String IP_PORT_FOR_CAMERA = "10.0.0.105:8000";
 	
-	protected JFrame m_frame;
+	//protected JFrame m_frame;
 	
 	protected JPanel horisontalPanel;
 	protected JPanel verticalPanelLeft; 
@@ -41,24 +41,15 @@ public class TestGUI {
 	
 	protected Random m_rand;
 	
-	public static void main(String args[]) {
-		try	{
-			TestGUI m_instance = new TestGUI();
-			m_instance.run(args);
-		} catch (Throwable t) {
-			t.printStackTrace();
-			System.err.println("Error: " + t.getMessage());
-			System.exit(1);
-		}
-	}
+	
 	
 	public void run(String[] args)  {
 		
 		//Setting frame 
-		m_frame = new JFrame(title);
-		m_frame.setSize(1600, 900);
-		m_frame.setResizable(false);
-		m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//m_frame = new JFrame(title);
+		this.setSize(1600, 900);
+		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
 		m_rand = new Random();
 		
@@ -76,24 +67,24 @@ public class TestGUI {
 		verticalPanelRight.setLayout(layoutRight);
 		
 		m_timePanel = new timePanel();
-		m_timePanel.setTimeDisplayed(new JLabel("10:00"));
-		m_timePanel.setMaximumSize(new Dimension(400, 100));
-		verticalPanelRight.add(m_timePanel);
+//		m_timePanel.setTimeDisplayed(new JLabel("10:00"));
+//		m_timePanel.setMaximumSize(new Dimension(400, 100));
+//		verticalPanelRight.add(m_timePanel);
 		
 		m_obstacleRadar = new ObstacleRadar();
-		m_obstacleRadar.setMaximumSize(new Dimension(400, 400));
+		m_obstacleRadar.setMaximumSize(new Dimension(450, 450));
 		m_obstacleRadar.setCmPixelRatio(0.5d);
 		verticalPanelRight.add(m_obstacleRadar);
 
 		m_irRadar = new InfraredRadar();
-		m_irRadar.setMaximumSize(new Dimension(400, 400));
+		m_irRadar.setMaximumSize(new Dimension(450, 450));
 		verticalPanelRight.add(m_irRadar);
 		
 		m_wireCut = new WirecutWidget();
-		m_wireCut.setWireColorEnabled(true);
-		m_wireCut.setSequence("bggyrrrygg");
-		m_wireCut.setMaximumSize(new Dimension(400, 200));
-		verticalPanelRight.add(m_wireCut);
+//		m_wireCut.setWireColorEnabled(true);
+//		m_wireCut.setSequence("bggyrrrygg");
+//		m_wireCut.setMaximumSize(new Dimension(400, 200));
+//		verticalPanelRight.add(m_wireCut);
 		
 		//Setting left vertical panel
 		verticalPanelLeft = new JPanel();
@@ -101,19 +92,19 @@ public class TestGUI {
 		verticalPanelLeft.setLayout(layoutLeft);
 		
 		m_imageStreamPanel = new ImageStreamComponent(IP_PORT_FOR_CAMERA);
-		m_imageStreamPanel.setMaximumSize(new Dimension(1400, 450));
+		m_imageStreamPanel.setMaximumSize(new Dimension(800, 450));
 		verticalPanelLeft.add(m_imageStreamPanel);
 		
 		m_mapPanel = new mapPanel();
-		m_mapPanel.setMaximumSize(new Dimension(1400, 450));
+		m_mapPanel.setMaximumSize(new Dimension(800, 450));
 		m_mapPanel.setBorder(BorderFactory.createBevelBorder(10));
 		verticalPanelLeft.add(m_mapPanel);
 		
 		horisontalPanel.add(verticalPanelLeft);
 		horisontalPanel.add(verticalPanelRight);
 		
-		m_frame.add(horisontalPanel);
-	    m_frame.setResizable(true);
+		this.add(horisontalPanel);
+	    this.setResizable(true);
 	
 	    WindowListener listener = new WindowAdapter() {
 	      public void windowClosing(WindowEvent w) {
@@ -121,9 +112,9 @@ public class TestGUI {
 	      }
 	    };
 	    
-	    m_frame.addWindowListener(listener);
+	    this.addWindowListener(listener);
 		//m_frame.pack();
-	    m_frame.setVisible(true);
+	    this.setVisible(true);
 	    
 	    m_obstacleRadar.setShowCompass(true);
 	    
