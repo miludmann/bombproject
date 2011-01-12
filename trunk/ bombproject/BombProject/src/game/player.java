@@ -131,7 +131,7 @@ public class player{
 		switch (len){
 		
 		case 1:
-			if(s.equals("defuse"))
+			if(s.equals("defused"))
 			{
 				setBombDefused(true);
 				setTimeLeft(0);
