@@ -40,7 +40,7 @@ public class WidgetTester {
 	public void run(String[] args)  {
 		
 		m_frame = new JFrame(title);
-		m_frame.setSize(400, 1000);
+		m_frame.setSize(600, 1000);
 		m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
 		m_rand = new Random();
@@ -48,24 +48,21 @@ public class WidgetTester {
 		Container contentPane = m_frame.getContentPane();
 		BoxLayout layout = new BoxLayout(contentPane, BoxLayout.Y_AXIS);
 		contentPane.setLayout(layout);
+		
+		m_obstacleRadar = new ObstacleRadar();
+		m_obstacleRadar.setMaximumSize(new Dimension(400, 400));
+		m_obstacleRadar.setCmPixelRatio(0.5d);
+		contentPane.add(m_obstacleRadar);
 
-		m_wireCut = new WirecutWidget();
-		m_wireCut.setWireColorEnabled(true);
-		
-		m_wireCut.setSequence("bbbbg");
-		
-//		m_wireCut.setMinimumSize(new Dimension(600, 200));
-		m_wireCut.setMaximumSize(new Dimension(400, 200));
-//		m_wireCut.setSize(new Dimension(600, 200));
-		contentPane.add(m_wireCut);
-		
 		m_irRadar = new InfraredRadar();
 		m_irRadar.setMaximumSize(new Dimension(400, 400));
 		contentPane.add(m_irRadar);
 		
-		m_obstacleRadar = new ObstacleRadar();
-		m_obstacleRadar.setMaximumSize(new Dimension(400, 400));
-		contentPane.add(m_obstacleRadar);
+		m_wireCut = new WirecutWidget();
+		m_wireCut.setWireColorEnabled(true);
+		m_wireCut.setSequence("bggyrrrygg");
+		m_wireCut.setMaximumSize(new Dimension(400, 200));
+		contentPane.add(m_wireCut);
 		
 		//Dimension d = new Dimension(m_imageStreamPanel.getWidth(), m_imageStreamPanel.getHeight()+20);
 	    //m_frame.setSize(d);
@@ -88,7 +85,9 @@ public class WidgetTester {
 	    	
 	    	for(int i=0; i<m_wireCut.getSequenceLength(); i++)
 	    	{
-	    		m_wireCut.nextWireColorCut('b');
+	    		m_wireCut.setCut(i);
+	    		
+	    		//m_wireCut.nextWireColorCut('b');
 	    		
 	    		try {
 					Thread.sleep(500);
