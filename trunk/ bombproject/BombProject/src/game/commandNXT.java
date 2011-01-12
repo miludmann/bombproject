@@ -236,7 +236,7 @@ public class commandNXT {
 		System.out.println("Go forward");		
 	}
 
-	public static void commandPressedTerrorist(char c){
+	public void commandPressedTerrorist(char c){
 
 	}
 

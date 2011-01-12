@@ -23,6 +23,7 @@ public class server {
 	public nxtBrick brick;
 
 	
+	@SuppressWarnings("static-access")
 	public server(int port){
 		setPort(port);
 		setReady(false);
