@@ -43,7 +43,7 @@ public class threadClient extends Thread {
 
         try {
 			while ((fromServer = in.readLine()) != null) {
-			    System.out.println("CLIENT: String received: " + fromServer);
+			    System.out.println("CLIENT: String received: -" + fromServer +"-");
 			    
 				if ( null != gameClient.getUnit() )
 					gameClient.getUnit().interpret(fromServer);
