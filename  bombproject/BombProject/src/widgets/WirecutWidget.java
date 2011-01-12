@@ -15,7 +15,7 @@ import javax.swing.UIManager;
 public class WirecutWidget extends JPanel {
 
 	private static final long serialVersionUID = 3561474001673677964L;
-	protected final static int WIRE_CELL_WIDTH = 40; 
+	protected final static int WIRE_CELL_WIDTH = 32; 
 	
 	protected BufferedImage m_imgWires = null;
 	protected BufferedImage m_imgWiresCut = null;
@@ -97,8 +97,10 @@ public class WirecutWidget extends JPanel {
 		int xCutStart = getWireCutZone(wire);
 		int yCutStart = 50;  //To center the cut
 		int cutWidth = 36;
+		int drawWidth = 20;
+		int leftOffSet = 45;
 		
-		g2d.drawImage((isCut?m_imgWiresCut:m_imgWires), location * WIRE_CELL_WIDTH, 0, (location * WIRE_CELL_WIDTH) + cutWidth, 200, xCutStart, yCutStart, xCutStart + cutWidth, yCutStart + this.getHeight(), null);
+		g2d.drawImage((isCut?m_imgWiresCut:m_imgWires), location * WIRE_CELL_WIDTH + leftOffSet, 30, (location * WIRE_CELL_WIDTH) + drawWidth + leftOffSet, 550, xCutStart, yCutStart, xCutStart + cutWidth, yCutStart + this.getHeight(), null);
 	}
 
 	public void paintComponent(Graphics g) {
