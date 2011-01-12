@@ -74,12 +74,14 @@ public class ImageStreamComponent extends javax.swing.JComponent {
 	public void paint(Graphics g) {
 		
 		Graphics2D g2d = (Graphics2D)g;
-		super.paint(g2d);		
-		
-		setBackground(Color.WHITE);
-		
 		BufferedImage img = m_image;
-		g2d.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), 0, 0, img.getWidth(), img.getHeight(),  null);
+		
+		if(img != null)
+		{
+			super.paint(g2d);		
+			setBackground(Color.WHITE);
+			g2d.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), 0, 0, img.getWidth(), img.getHeight(),  null);
+		}
 	}
 	
 	final class RefreshHandler implements Runnable {
