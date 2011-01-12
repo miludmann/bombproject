@@ -9,15 +9,15 @@ import java.io.UnsupportedEncodingException;
 
 public class settings {
 	
-	public static boolean serverOnly = false;
-	public static boolean activateVideo = false;
+	public static boolean serverOnly = true;
+	public static boolean activateVideo = true;
 	public static boolean activateBT = false;
 	
 	public static int port = 15000;
 	public static String IPServer = "localhost";
 	
-	public static String streamT = "192.168.1.2:8080";
-	public static String streamAT = "192.168.2.103:8000";
+	public static String streamT = "192.168.2.101:8080";
+	public static String streamAT = "192.168.2.102:8080";
 
 	public static long timeGame = 200;
 	public static long timeBomb = 5;
@@ -30,6 +30,10 @@ public class settings {
 	
 	public static String nameBrickBomb = "Bomb";
 	public static String macBrickBomb = "00165308D0DD";
+	
+	//public static String nameBrickBomb = "Bob-omb";
+	//public static String macBrickBomb = "0016530ADB02";
+	
 	
 	
 	
