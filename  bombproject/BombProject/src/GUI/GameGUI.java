@@ -7,12 +7,12 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.Random;
 
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import machine.settings;
 
 import videoStream.ImageStreamComponent;
 import widgets.InfraredRadar;
@@ -20,15 +20,13 @@ import widgets.ObstacleRadar;
 import widgets.WirecutWidget;
 
 public class GameGUI extends JFrame {
-	
-	protected final static String IP_PORT_FOR_CAMERA = "192.168.1.1:8000";
-	
+		
 	//protected JFrame m_frame;
 	
 	protected JPanel horisontalPanelTop;
-	protected JPanel horisontalPanelButtom; 
-	protected JPanel verticalPanel; 
-	protected JPanel verticalInfoPanel; 
+	protected JPanel horisontalPanelButtom;
+	protected JPanel verticalPanel;
+	protected JPanel verticalInfoPanel;
 	
 	protected static String title = "Lego Strike";
 	
@@ -42,20 +40,23 @@ public class GameGUI extends JFrame {
 	protected ImageStreamComponent m_imageStreamPanel;
 	protected mapPanel m_mapPanel;
 	
-	protected Random m_rand;
+	private boolean isTerrorist;
+		
+	
+	public GameGUI(boolean isTerrorist){
+		setTerrorist(isTerrorist);
+		this.run();
+	}
 	
 	
-	
-	public void run(String[] args)  {
+	public void run()  {
 		
 		//Setting frame 
 		this.setTitle(title);
 		this.setSize(1600, 900);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    
-		m_rand = new Random();
-		
+	    		
 		//Setting vertical panel
 		verticalPanel = new JPanel();
 		verticalPanel.setBackground(Color.WHITE);
@@ -86,7 +87,17 @@ public class GameGUI extends JFrame {
 		m_obstacleRadar.setCmPixelRatio(0.5d);
 		horisontalPanelTop.add(m_obstacleRadar);
 
-		m_imageStreamPanel = new ImageStreamComponent(IP_PORT_FOR_CAMERA);
+		
+		if(this.isTerrorist())
+		{
+			m_imageStreamPanel = new ImageStreamComponent(settings.streamT);
+
+		}
+		else
+		{
+			m_imageStreamPanel = new ImageStreamComponent(settings.streamAT);
+
+		}
 		m_imageStreamPanel.setMaximumSize(new Dimension(800, 450));
 		horisontalPanelTop.add(m_imageStreamPanel);
 		
@@ -97,13 +108,13 @@ public class GameGUI extends JFrame {
 		//BOTTON
 		m_timePanel = new timePanel();
 		m_timePanel.setBackground(Color.WHITE);
-		m_timePanel.setTimeDisplayed(new JLabel("10:00"));
+		//m_timePanel.setTimeDisplayed(new JLabel("10:00"));
 		m_timePanel.setMaximumSize(new Dimension(390, 100));
 		verticalInfoPanel.add(m_timePanel);
 		
 		m_infoPanel = new infoPanel();
 		m_infoPanel.setBackground(Color.WHITE);
-		m_infoPanel.changeInfos(false, true, false, false);
+		//m_infoPanel.changeInfos(false, true, false, false);
 		//m_infoPanel.setTimeDisplayed(new JLabel("10:00"));
 		m_infoPanel.setMaximumSize(new Dimension(390, 100));
 		verticalInfoPanel.add(m_infoPanel);
@@ -116,8 +127,8 @@ public class GameGUI extends JFrame {
 		horisontalPanelButtom.add(m_mapPanel);
 		
 		m_wireCut = new WirecutWidget();
-		m_wireCut.setWireColorEnabled(true);
-		m_wireCut.setSequence("bggyrrrygg");
+		m_wireCut.setWireColorEnabled(false);
+		m_wireCut.setSequence("wwwwwwwwww");
 		m_wireCut.setMaximumSize(new Dimension(390, 450));
 		horisontalPanelButtom.add(m_wireCut);
 		
@@ -141,72 +152,97 @@ public class GameGUI extends JFrame {
 	    this.setVisible(true);
 	    
 	    m_obstacleRadar.setShowCompass(true);
-	    
-	    while(true)
-	    {
-	    	
-	    	for(int i=0; i<m_wireCut.getSequenceLength(); i++)
-	    	{
-	    		m_wireCut.setCut(i);
-	    		
-	    		//m_wireCut.nextWireColorCut('b');
-	    		
-	    		try {
-					Thread.sleep(500);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-	    		
-	    	}
-	    	
-	    	for(int i=0; i<5; i++)
-	    	{
-	    		for(int j=0; j<256; j++)
-	    		{
-	    			m_irRadar.setSensor(i, j);
-	    			//m_frame.repaint();
-	    			
-	    			try {
-						Thread.sleep(2);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					
-					int x = (int)Math.round((m_rand.nextDouble()*510d)-255d);
-					int y = (int)Math.round((m_rand.nextDouble()*510d)-255d);
-					
-					m_obstacleRadar.addObstacle(x, y);
-	    		}
-	    	}
-	    	
-		    for(int i=0; i<10; i++)
-		    {
-		    	m_irRadar.setDirection(i);
-		    	
-		    	try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-		    }
-		    
-		    for(int i=0; i<5; i++)
-		    	m_irRadar.setSensor(i, 0);
-		    
-		    m_irRadar.setDirection(0);
-		    
-		    
-		    for(int i=0; i<361; i++)
-		    {
-		    	m_obstacleRadar.setCompassAngle(i);
-		    	
-		    	try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-		    }
-	    	
-	    }
+	}
+	
+	public timePanel getM_timePanel() {
+		return m_timePanel;
+	}
+
+
+
+	public void setM_timePanel(timePanel panel) {
+		m_timePanel = panel;
+	}
+
+
+
+	public infoPanel getM_infoPanel() {
+		return m_infoPanel;
+	}
+
+
+
+	public void setM_infoPanel(infoPanel panel) {
+		m_infoPanel = panel;
+	}
+
+
+
+	public WirecutWidget getM_wireCut() {
+		return m_wireCut;
+	}
+
+
+
+	public void setM_wireCut(WirecutWidget cut) {
+		m_wireCut = cut;
+	}
+
+
+
+	public InfraredRadar getM_irRadar() {
+		return m_irRadar;
+	}
+
+
+
+	public void setM_irRadar(InfraredRadar radar) {
+		m_irRadar = radar;
+	}
+
+
+
+	public ObstacleRadar getM_obstacleRadar() {
+		return m_obstacleRadar;
+	}
+
+
+
+	public void setM_obstacleRadar(ObstacleRadar radar) {
+		m_obstacleRadar = radar;
+	}
+
+
+
+	public ImageStreamComponent getM_imageStreamPanel() {
+		return m_imageStreamPanel;
+	}
+
+
+
+	public void setM_imageStreamPanel(ImageStreamComponent streamPanel) {
+		m_imageStreamPanel = streamPanel;
+	}
+
+
+
+	public mapPanel getM_mapPanel() {
+		return m_mapPanel;
+	}
+
+
+
+	public void setM_mapPanel(mapPanel panel) {
+		m_mapPanel = panel;
+	}
+
+
+	public void setTerrorist(boolean isTerrorist) {
+		this.isTerrorist = isTerrorist;
+	}
+
+
+	public boolean isTerrorist() {
+		return isTerrorist;
 	}
 }

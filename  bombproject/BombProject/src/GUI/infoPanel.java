@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -32,6 +33,10 @@ public class infoPanel extends JPanel {
 		
 		getInfo1().setAlignmentX(CENTER_ALIGNMENT);
 		getInfo2().setAlignmentX(CENTER_ALIGNMENT);
+		
+		getInfo1().setFont(new Font("Serif", Font.BOLD, 20));
+		getInfo2().setFont(new Font("Serif", Font.BOLD, 30));
+
 	}
 
 	public void setInfo1(JLabel info) {
@@ -100,7 +105,7 @@ public class infoPanel extends JPanel {
 					}
 					else
 					{
-						display+="You won: Target Destroyed";
+						display+="You won: Target Exploded";
 						changeColor(Color.BLUE);
 					}
 				}
@@ -121,7 +126,7 @@ public class infoPanel extends JPanel {
 					}
 					else
 					{
-						display+="You lost: Target Destroyed";
+						display+="You lost: Target Exploded";
 						changeColor(Color.MAGENTA);
 					}
 				}

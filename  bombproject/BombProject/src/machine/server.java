@@ -31,12 +31,9 @@ public class server {
 		
 		if( settings.activateBT )
 		{
-			System.out.println("YOUPI");
 			setBrick(new nxtBrick(this,
 								  settings.nameBrickBomb,
 								  settings.macBrickBomb));
-			System.out.println("HOP");
-
 		}
 		
 		
@@ -105,7 +102,7 @@ public class server {
 			
 			infoConnect.setVisible(false);
 			
-			getUnit().getGw().requestFocus();
+			getUnit().getGg().requestFocus();
     	}
 		
 		startGame();
@@ -254,6 +251,9 @@ public class server {
 			}
 			if (splitStr[0].equalsIgnoreCase("DS"))
 			{
+				getUnit().getGg().getM_wireCut().setWireColorEnabled(true);
+				getUnit().getGg().getM_wireCut().setSequence(splitStr[1]);
+				
 				getTs().sendMsgClient("DS " + splitStr[1]);
 			}
 			if (splitStr[0].equalsIgnoreCase("GT"))

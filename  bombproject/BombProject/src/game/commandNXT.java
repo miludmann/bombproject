@@ -14,7 +14,7 @@ public class commandNXT {
 		setUnit(t);
 		setTerrorist(t.isTerrorist());
 		
-		/*
+		
 		if(getUnit().isTerrorist())
 		{
 			if( settings.activateBT )
@@ -29,7 +29,7 @@ public class commandNXT {
 									  settings.nameBrickCounterTerrorist,
 									  settings.macBrickCounterTerrorist));
 		}
-		*/
+		
 		
 	}
 
@@ -166,10 +166,12 @@ public class commandNXT {
 	
 	private void sendDefuseColor(String string) {
 		// send the color to the Bomb
-		if ( ! getUnit().isTerrorist() /*&& getUnit().isBombDefusable()*/ )
+		if ( ! getUnit().isTerrorist() && getUnit().isBombDefusable() )
 		{
 			//getUnit().getGw().getRGUI().getDefusePanel().getCombinaison().setText("");
 			getUnit().getCl().getTc().sendMsgServer("SC " + string);
+			getUnit().getGg().getM_wireCut().setWireColorEnabled(false);
+			getUnit().getGg().getM_wireCut().nextWireColorCut(string.charAt(0));
 		}
 	}
 

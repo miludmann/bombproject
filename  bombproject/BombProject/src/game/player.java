@@ -8,15 +8,14 @@ import javax.swing.JComponent;
 import machine.client;
 import machine.server;
 import machine.settings;
-import videoStream.ImageStreamComponent;
-import GUI.gameWindow;
+import GUI.GameGUI;
 
 public class player{
 	
 	private server serv;
 	private client cl;
 
-	private gameWindow gw;
+	private GameGUI gg;
 	private commandNXT cmdNXT;
 	private boolean movable;
 	private boolean isTerrorist;
@@ -37,19 +36,17 @@ public class player{
 		setTerrorist(isT);
 		setBombPlanted(false);
 		
-		setGw(new gameWindow());
+		setGg(new GameGUI(this.isTerrorist()));
 		setCmdNXT(new commandNXT(this));
 		setTimeStart(System.currentTimeMillis());
 		setTimeLeft(0);
 		
 		
-		addVideo();
-		
 		threadGame tt = new threadGame(this);
     	tt.start();
 		
 
-		gw.addKeyListener(new KeyAdapter() {
+		gg.addKeyListener(new KeyAdapter() {
 			
 			public void keyReleased(KeyEvent e) {
 				// TODO: Do something for the keyReleased event
@@ -67,47 +64,6 @@ public class player{
 			}
 			});
 				
-	}
-	
-	public void addVideo(){
-		if ( settings.activateVideo )
-		{
-			// add the video on the window
-			setVid(null);
-	
-			if(isTerrorist())
-			{
-				if ( ! settings.streamT.equals("NULL") )
-					setVid(new ImageStreamComponent(settings.streamT));
-				/*
-				if ( ! settings.streamAT.equals("NULL") )
-					setVid2(new ImageStreamComponent(settings.streamAT));
-				*/
-			}
-			else
-			{
-				if ( ! settings.streamT.equals("NULL") )
-					setVid(new ImageStreamComponent(settings.streamAT));
-				
-				/*
-				if ( ! settings.streamAT.equals("NULL") )
-					setVid2(new ImageStreamComponent(settings.streamT));
-				*/
-			}
-	
-			if(getVid() != null)
-				getGw().getLGUI().getStreamPanel().add(vid);
-	
-			//End of adding the video part
-		}
-	}
-
-	public void setGw(gameWindow gw) {
-		this.gw = gw;
-	}
-
-	public gameWindow getGw() {
-		return gw;
 	}
 
 	public void setBombPlanted(boolean b) {
@@ -211,13 +167,16 @@ public class player{
 			}
 			if (splitStr[0].equalsIgnoreCase("SC"))
 			{
+				getGg().getM_wireCut().setWireColorEnabled(false);
+				getGg().getM_wireCut().nextWireColorCut(splitStr[1].charAt(0));
+				
 				if( settings.activateBT )
 					getServ().getBrick().sendMessage("SC" + splitStr[1]);
 			}
 			if (splitStr[0].equalsIgnoreCase("DS"))
 			{
-				getGw().getRGUI().getDefusePanel().getCombinaison().setWireColorEnabled(true);
-				getGw().getRGUI().getDefusePanel().getCombinaison().setSequence(splitStr[1]);
+				getGg().getM_wireCut().setWireColorEnabled(true);
+				getGg().getM_wireCut().setSequence(splitStr[1]);
 			}
 			
 		}
@@ -288,14 +247,14 @@ public class player{
 			{
 				int arg1 = Integer.parseInt(splitStr[1]);
 
-				getGw().getRGUI().getRadarPanel().getIrRadar().setDirection(arg1);
+				getGg().getM_irRadar().setDirection(arg1);
 				
 			}
 			if (splitStr[0].equalsIgnoreCase("CP"))
 			{
 				double arg1 = Double.parseDouble(splitStr[1]);
 
-				getGw().getRGUI().getRadarPanel().getORadar().setCompassAngle(arg1);
+				getGg().getM_obstacleRadar().setCompassAngle(arg1);
 			}
 			
 			break;
@@ -308,7 +267,7 @@ public class player{
 					int arg1 = Integer.parseInt(splitStr[1]);
 					int arg2 = Integer.parseInt(splitStr[2]);
 					
-					getGw().getRGUI().getRadarPanel().getIrRadar().setSensor(arg1, arg2);
+					getGg().getM_irRadar().setSensor(arg1, arg2);
 				}
 				
 				if (splitStr[0].equalsIgnoreCase("RC"))
@@ -316,7 +275,7 @@ public class player{
 					int arg1 = Integer.parseInt(splitStr[1]);
 					int arg2 = Integer.parseInt(splitStr[2]);
 					
-					getGw().getRGUI().getRadarPanel().getORadar().addObstacle(arg1, arg2);
+					getGg().getM_obstacleRadar().addObstacle(arg1, arg2);
 				}
 				
 			} catch(Exception e) {
@@ -326,6 +285,14 @@ public class player{
 			break;
 			
 		}
+	}
+
+	public void setGg(GameGUI gg) {
+		this.gg = gg;
+	}
+
+	public GameGUI getGg() {
+		return gg;
 	}
 
 }
