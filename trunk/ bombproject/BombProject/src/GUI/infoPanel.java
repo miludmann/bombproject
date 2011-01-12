@@ -28,8 +28,8 @@ public class infoPanel extends JPanel {
 		getInfo2().setLayout(defaultLayout);
 		add(info2);
 		
-		getInfo1().setText("");
-		getInfo2().setText("");
+		getInfo1().setText("WAITING FOR");
+		getInfo2().setText("GAME TO START");
 		
 		getInfo1().setAlignmentX(CENTER_ALIGNMENT);
 		getInfo2().setAlignmentX(CENTER_ALIGNMENT);
