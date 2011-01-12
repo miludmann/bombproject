@@ -21,7 +21,8 @@ import lejos.pc.comm.NXTInfo;
 
 public class MessageFrameworkTester implements MessageListenerInterface
 {
-	MessageFrameworkTester m_instance;
+	MessageFramework m_mfBobomb;
+	MessageFramework m_mfNxt;
 	
 	private JFrame m_frame;
 	
@@ -40,7 +41,19 @@ public class MessageFrameworkTester implements MessageListenerInterface
 	
 	//protected NXTInfo m_info = new NXTInfo(NXTCommFactory.BLUETOOTH, "NXT", "001653007B78");  //School "00165309782B"
 	//protected NXTInfo m_info = new NXTInfo(NXTCommFactory.BLUETOOTH, "Freja", "001653099CE9");  //School "00165309782B"
-	protected NXTInfo m_info = new NXTInfo(NXTCommFactory.BLUETOOTH, "ole", "00165309782B"); 
+	//protected NXTInfo m_info = new NXTInfo(NXTCommFactory.BLUETOOTH, "ole", "00165309782B"); 
+	
+	protected NXTInfo m_nxtInfo = new NXTInfo(NXTCommFactory.BLUETOOTH, "NXT", "001653099CE9");
+	protected NXTInfo m_bobombinfo = new NXTInfo(NXTCommFactory.BLUETOOTH, "Bob-omb", "0016530ADB02");
+	
+//	public static String nameBrickCounterTerrorist = "NXT";
+//	public static String macBrickCounterTerrorist = "001653099CE9";
+//	
+//	public static String nameBrickBomb = "Bomb";
+//	public static String macBrickBomb = "00165308D0DD";
+	
+	//public static String nameBrickBomb = "Bob-omb";
+	//public static String macBrickBomb = "0016530ADB02";
 	
 	public static void main(String args[]) {
 		try	{
@@ -55,8 +68,13 @@ public class MessageFrameworkTester implements MessageListenerInterface
 	
 	public MessageFrameworkTester()
 	{	
-		MessageFramework.getInstance().addMessageListener(this);
-		MessageFramework.getInstance().ConnectToNXT(m_info);
+		m_mfBobomb = new MessageFramework();
+		m_mfBobomb.addMessageListener(this);
+		m_mfBobomb.ConnectToNXT(m_bobombinfo);
+		
+		m_mfNxt = new MessageFramework();
+		m_mfNxt.addMessageListener(this);
+		m_mfNxt.ConnectToNXT(m_nxtInfo);
 	
 //		LIMessage msg = new LIMessage(LIMessageType.Command, "Hello World");
 //		MessageFramwork.getInstance().SendMessage( msg );
@@ -72,7 +90,8 @@ public class MessageFrameworkTester implements MessageListenerInterface
 		
 		    WindowListener listener = new WindowAdapter() {
 		      public void windowClosing(WindowEvent w) {
-		    	MessageFramework.getInstance().close();
+		    	m_mfBobomb.close();
+		    	m_mfNxt.close();
 		      }
 		    };		    
 		    
@@ -81,35 +100,40 @@ public class MessageFrameworkTester implements MessageListenerInterface
 		    StopButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ae) {
 		    	LIMessage msg = new LIMessage(LIMessageType.Command, "0");
-		    	MessageFramework.getInstance().SendMessage(msg); 
+		    	m_mfBobomb.SendMessage(msg);
+		    	m_mfNxt.SendMessage(msg); 
 		      }
 		    });
 		    
 		    ForwardButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ae) {
 		    	LIMessage msg = new LIMessage(LIMessageType.Command, "1");
-		    	MessageFramework.getInstance().SendMessage(msg);
+		    	m_mfBobomb.SendMessage(msg);
+		    	m_mfNxt.SendMessage(msg); 
 		      }
 		    });
 		    
 		    BackwardButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ae) {
 		    	LIMessage msg = new LIMessage(LIMessageType.Command, "2");
-		    	MessageFramework.getInstance().SendMessage(msg);
+		    	m_mfBobomb.SendMessage(msg);
+		    	m_mfNxt.SendMessage(msg); 
 		      }
 		    });
 		    
 		    LeftButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ae) {
 		    	LIMessage msg = new LIMessage(LIMessageType.Command, "3");
-		    	MessageFramework.getInstance().SendMessage(msg);
+		    	m_mfBobomb.SendMessage(msg);
+		    	m_mfNxt.SendMessage(msg); 
 		      }
 		    });
 		    
 		    RightButton.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent ae) {
 		    	LIMessage msg = new LIMessage(LIMessageType.Command, "4");
-		    	MessageFramework.getInstance().SendMessage(msg);
+		    	m_mfBobomb.SendMessage(msg);
+		    	m_mfNxt.SendMessage(msg); 
 		      }
 		    });
 		    
