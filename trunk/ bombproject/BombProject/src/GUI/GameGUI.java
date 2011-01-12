@@ -19,19 +19,22 @@ import widgets.InfraredRadar;
 import widgets.ObstacleRadar;
 import widgets.WirecutWidget;
 
-public class TestGUISmall extends JFrame {
+public class GameGUI extends JFrame {
 	
-	protected final static String IP_PORT_FOR_CAMERA = "10.0.0.105:8000";
+	protected final static String IP_PORT_FOR_CAMERA = "192.168.1.1:8000";
 	
 	//protected JFrame m_frame;
 	
-	protected JPanel horisontalPanel;
-	protected JPanel verticalPanelLeft; 
-	protected JPanel verticalPanelRight; 
+	protected JPanel horisontalPanelTop;
+	protected JPanel horisontalPanelButtom; 
+	protected JPanel verticalPanel; 
+	protected JPanel verticalInfoPanel; 
 	
 	protected static String title = "Lego Strike";
 	
 	protected timePanel m_timePanel;
+	protected infoPanel m_infoPanel;
+	
 	protected WirecutWidget m_wireCut;
 	protected InfraredRadar m_irRadar;
 	protected ObstacleRadar m_obstacleRadar;
@@ -46,64 +49,85 @@ public class TestGUISmall extends JFrame {
 	public void run(String[] args)  {
 		
 		//Setting frame 
-		//m_frame = new JFrame(title);
+		this.setTitle(title);
 		this.setSize(1600, 900);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
 		m_rand = new Random();
 		
-		//Setting right vertical panel
-		horisontalPanel = new JPanel();
-		horisontalPanel.setBackground(Color.WHITE);
-		BoxLayout layoutHorisontal = new BoxLayout(horisontalPanel, BoxLayout.X_AXIS);
-		horisontalPanel.setLayout(layoutHorisontal);
+		//Setting vertical panel
+		verticalPanel = new JPanel();
+		verticalPanel.setBackground(Color.WHITE);
+		BoxLayout layoutVertical = new BoxLayout(verticalPanel, BoxLayout.Y_AXIS);
+		verticalPanel.setLayout(layoutVertical);
 		
+		//Setting horisontal panel top
+		horisontalPanelTop = new JPanel();
+		horisontalPanelTop.setBackground(Color.WHITE);
+		BoxLayout layoutHorisontalTop = new BoxLayout(horisontalPanelTop, BoxLayout.X_AXIS);
+		horisontalPanelTop.setLayout(layoutHorisontalTop);
 		
-		//Setting right vertical panel
-		verticalPanelRight = new JPanel();
-		verticalPanelRight.setBackground(Color.WHITE);
-		BoxLayout layoutRight = new BoxLayout(verticalPanelRight, BoxLayout.Y_AXIS);
-		verticalPanelRight.setLayout(layoutRight);
+		//Setting horisontal panel bottom
+		horisontalPanelButtom = new JPanel();
+		horisontalPanelButtom.setBackground(Color.WHITE);
+		BoxLayout layoutHorisontalButtom = new BoxLayout(horisontalPanelButtom, BoxLayout.X_AXIS);
+		horisontalPanelButtom.setLayout(layoutHorisontalButtom);
 		
-		m_timePanel = new timePanel();
-//		m_timePanel.setTimeDisplayed(new JLabel("10:00"));
-//		m_timePanel.setMaximumSize(new Dimension(400, 100));
-//		verticalPanelRight.add(m_timePanel);
-		
+		//Setting vertical info panel for the text
+		verticalInfoPanel = new JPanel();
+		verticalInfoPanel.setBackground(Color.WHITE);
+		BoxLayout layoutVerticalInfoPanel = new BoxLayout(verticalInfoPanel, BoxLayout.Y_AXIS);
+		verticalInfoPanel.setLayout(layoutVerticalInfoPanel);
+				
+		//TOP
 		m_obstacleRadar = new ObstacleRadar();
-		m_obstacleRadar.setMaximumSize(new Dimension(450, 450));
+		m_obstacleRadar.setMaximumSize(new Dimension(400, 400));
 		m_obstacleRadar.setCmPixelRatio(0.5d);
-		verticalPanelRight.add(m_obstacleRadar);
+		horisontalPanelTop.add(m_obstacleRadar);
 
-		m_irRadar = new InfraredRadar();
-		m_irRadar.setMaximumSize(new Dimension(450, 450));
-		verticalPanelRight.add(m_irRadar);
-		
-		m_wireCut = new WirecutWidget();
-//		m_wireCut.setWireColorEnabled(true);
-//		m_wireCut.setSequence("bggyrrrygg");
-//		m_wireCut.setMaximumSize(new Dimension(400, 200));
-//		verticalPanelRight.add(m_wireCut);
-		
-		//Setting left vertical panel
-		verticalPanelLeft = new JPanel();
-		BoxLayout layoutLeft = new BoxLayout(verticalPanelLeft, BoxLayout.Y_AXIS);
-		verticalPanelLeft.setLayout(layoutLeft);
-		
 		m_imageStreamPanel = new ImageStreamComponent(IP_PORT_FOR_CAMERA);
 		m_imageStreamPanel.setMaximumSize(new Dimension(800, 450));
-		verticalPanelLeft.add(m_imageStreamPanel);
+		horisontalPanelTop.add(m_imageStreamPanel);
+		
+		m_irRadar = new InfraredRadar();
+		m_irRadar.setMaximumSize(new Dimension(400, 400));
+		horisontalPanelTop.add(m_irRadar);
+		
+		//BOTTON
+		m_timePanel = new timePanel();
+		m_timePanel.setBackground(Color.WHITE);
+		m_timePanel.setTimeDisplayed(new JLabel("10:00"));
+		m_timePanel.setMaximumSize(new Dimension(390, 100));
+		verticalInfoPanel.add(m_timePanel);
+		
+		m_infoPanel = new infoPanel();
+		m_infoPanel.setBackground(Color.WHITE);
+		m_infoPanel.changeInfos(false, true, false, false);
+		//m_infoPanel.setTimeDisplayed(new JLabel("10:00"));
+		m_infoPanel.setMaximumSize(new Dimension(390, 100));
+		verticalInfoPanel.add(m_infoPanel);
+		horisontalPanelButtom.add(verticalInfoPanel);
 		
 		m_mapPanel = new mapPanel();
 		m_mapPanel.setMaximumSize(new Dimension(800, 450));
-		m_mapPanel.setBorder(BorderFactory.createBevelBorder(10));
-		verticalPanelLeft.add(m_mapPanel);
+		//m_mapPanel.setMaximumSize(new Dimension(1263, 450));
+		//m_mapPanel.setBorder(BorderFactory.createBevelBorder(10));
+		horisontalPanelButtom.add(m_mapPanel);
 		
-		horisontalPanel.add(verticalPanelLeft);
-		horisontalPanel.add(verticalPanelRight);
+		m_wireCut = new WirecutWidget();
+		m_wireCut.setWireColorEnabled(true);
+		m_wireCut.setSequence("bggyrrrygg");
+		m_wireCut.setMaximumSize(new Dimension(390, 450));
+		horisontalPanelButtom.add(m_wireCut);
 		
-		this.add(horisontalPanel);
+		
+		//Putting the together
+		verticalPanel.add(horisontalPanelTop);
+		verticalPanel.add(horisontalPanelButtom);
+		
+		//Adding to frame
+		this.add(verticalPanel);
 	    this.setResizable(true);
 	
 	    WindowListener listener = new WindowAdapter() {

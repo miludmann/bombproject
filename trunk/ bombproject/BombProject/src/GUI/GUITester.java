@@ -3,7 +3,7 @@ package GUI;
 public class GUITester {
 	public static void main(String args[]) {
 		try	{
-			TestGUISmall m_instance = new TestGUISmall();
+			GameGUI m_instance = new GameGUI();
 			m_instance.run(args);
 		} catch (Throwable t) {
 			t.printStackTrace();
