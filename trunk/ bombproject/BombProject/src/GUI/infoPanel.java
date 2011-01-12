@@ -100,18 +100,18 @@ public class infoPanel extends JPanel {
 				{
 					if(isDefused)
 					{
-						display+="Terrorist lost: Bomb Defused";
+						display+="You lost: Bomb Defused";
 						changeColor(Color.MAGENTA);
 					}
 					else
 					{
-						display+="Terrorist won: Target Exploded";
+						display+="You won: Target Exploded";
 						changeColor(Color.BLUE);
 					}
 				}
 				else
 				{
-					display+="Terrorist lost: Target Safe";
+					display+="You lost: Target Safe";
 					changeColor(Color.MAGENTA);
 				}
 			}
@@ -121,18 +121,18 @@ public class infoPanel extends JPanel {
 				{
 					if(isDefused)
 					{
-						display+="C.Terrorist won: Bomb Defused";
+						display+="You won: Bomb Defused";
 						changeColor(Color.BLUE);
 					}
 					else
 					{
-						display+="C.Terrorist lost: Target Exploded";
+						display+="You lost: Target Exploded";
 						changeColor(Color.MAGENTA);
 					}
 				}
 				else
 				{
-					display+="C.Terrorist won: Target Safe";
+					display+="You won: Target Safe";
 					changeColor(Color.BLUE);
 				}
 			}
