@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 
 public class threadClient extends Thread {
@@ -60,6 +61,8 @@ public class threadClient extends Thread {
 					break;
 				*/
 			}
+		} catch (SocketException e) {
+			System.out.println("Error reading from socket:" + e.getMessage());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
