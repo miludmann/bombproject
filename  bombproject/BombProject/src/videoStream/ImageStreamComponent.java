@@ -14,7 +14,7 @@ import java.net.URL;
 import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 
-import GUI.TestGUISmall;
+import GUI.GameGUI;
 
 public class ImageStreamComponent extends javax.swing.JComponent {
 

@@ -40,7 +40,7 @@ public class mapPanel extends JPanel {
 
 		setBackground(Color.WHITE);
 		
-		g2d.drawImage(m_imgMap, 10, 10, this.getWidth()-10, this.getHeight()-10, 0, 0, m_imgMap.getWidth(), m_imgMap.getHeight(), null);		
+		g2d.drawImage(m_imgMap, 0, 0, this.getWidth()-0, this.getHeight()-0, 0, 0, m_imgMap.getWidth(), m_imgMap.getHeight(), null);		
 	}
 	
 	protected void clear(Graphics g) {
