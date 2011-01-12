@@ -11,7 +11,7 @@ import MessageComponent.MessageListenerInterface;
 
 public class nxtBrick implements MessageListenerInterface {
 	
-	private static MessageFramework mF;
+	private MessageFramework mF;
 	private NXTInfo m_info;
 
 	private boolean isPlayer;
@@ -23,7 +23,7 @@ public class nxtBrick implements MessageListenerInterface {
 	public nxtBrick(String name, String address){
 		
 		setM_info(new NXTInfo(NXTCommFactory.BLUETOOTH, name, address));
-		setMF(MessageFramework.getInstance());
+		setMF(new MessageFramework());
 		getMF().addMessageListener(this);
 		getMF().ConnectToNXT(m_info);
 	}
@@ -61,11 +61,11 @@ public class nxtBrick implements MessageListenerInterface {
 		}
 	}
 
-	public static void setMF(MessageFramework mF) {
-		nxtBrick.mF = mF;
+	public void setMF(MessageFramework mF) {
+		this.mF = mF;
 	}
 
-	public static MessageFramework getMF() {
+	public MessageFramework getMF() {
 		return mF;
 	}
 

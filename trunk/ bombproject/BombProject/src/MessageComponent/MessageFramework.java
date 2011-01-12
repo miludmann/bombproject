@@ -53,7 +53,13 @@ public class MessageFramework {
         
         //We could implement a handshake to verify the connection before we approve the connection. 
         m_connected = true;
-        m_reader.start(); //Start to listen for incomming messages
+        
+        try{
+            m_reader.start(); //Start to listen for incomming messages
+        } catch ( IllegalThreadStateException e ) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
         if (m_is == null || m_os == null)
         	return false;
